@@ -2,15 +2,44 @@
 <html lang="en">
 
 <head>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1DNR89J5R6"></script>
+
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+    dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'G-1DNR89J5R6');
+</script>
+
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Emotion Escape - Free Online Robot Emotion Game</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1">
 
-<meta name="description"
+
+<title>
+Emotion Escape - Free Online Robot Emotion Game
+</title>
+
+
+<meta
+name="description"
 content="Play Emotion Escape, a fun online game where you help a robot understand emotions, complete challenges, and escape the Emotion Lab.">
 
-<link rel="icon" type="image/png" href="favicon.png">
+
+<link
+rel="icon"
+type="image/png"
+href="favicon.png">
+
 
 <style>
 
@@ -19,138 +48,353 @@ content="Play Emotion Escape, a fun online game where you help a robot understan
 }
 
 body {
+
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
     min-height: 100vh;
+
     display: grid;
+
     place-items: center;
-    background: linear-gradient(135deg, #10172a, #202b59);
+
+    background:
+    linear-gradient(
+        135deg,
+        #10172a,
+        #202b59
+    );
+
     color: white;
+
 }
+
 
 .game {
-    width: min(920px, 94vw);
-    min-height: 620px;
-    background: #111827;
-    border: 2px solid #334155;
-    border-radius: 24px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.45);
-    overflow: hidden;
+
+    width:
+    min(
+        920px,
+        94vw
+    );
+
+    min-height:
+    620px;
+
+    background:
+    #111827;
+
+    border:
+    2px solid #334155;
+
+    border-radius:
+    24px;
+
+    box-shadow:
+    0 20px 60px
+    rgba(
+        0,
+        0,
+        0,
+        .45
+    );
+
+    overflow:
+    hidden;
+
 }
+
 
 header {
-    padding: 18px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #0f172a;
-    border-bottom: 1px solid #334155;
+
+    padding:
+    18px 24px;
+
+    display:
+    flex;
+
+    justify-content:
+    space-between;
+
+    align-items:
+    center;
+
+    background:
+    #0f172a;
+
+    border-bottom:
+    1px solid #334155;
+
 }
+
 
 h1 {
-    margin: 0;
-    font-size: 24px;
+
+    margin:
+    0;
+
+    font-size:
+    24px;
+
 }
+
 
 .stats {
-    display: flex;
-    gap: 18px;
-    font-weight: bold;
+
+    display:
+    flex;
+
+    gap:
+    18px;
+
+    font-weight:
+    bold;
+
 }
+
 
 main {
-    padding: 26px;
+
+    padding:
+    26px;
+
 }
+
 
 .scene {
-    min-height: 280px;
-    border-radius: 20px;
-    padding: 28px;
-    text-align: center;
-    background: radial-gradient(circle at top, #334155, #172033);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+    min-height:
+    280px;
+
+    border-radius:
+    20px;
+
+    padding:
+    28px;
+
+    text-align:
+    center;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #334155,
+        #172033
+    );
+
+    display:
+    flex;
+
+    flex-direction:
+    column;
+
+    justify-content:
+    center;
+
+    align-items:
+    center;
+
 }
+
 
 .robot {
-    font-size: 92px;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,.25));
-    animation: float 2.3s ease-in-out infinite;
+
+    font-size:
+    92px;
+
+    filter:
+    drop-shadow(
+        0 10px 15px
+        rgba(
+            0,
+            0,
+            0,
+            .25
+        )
+    );
+
+    animation:
+    float
+    2.3s
+    ease-in-out
+    infinite;
+
 }
+
 
 @keyframes float {
+
     50% {
-        transform: translateY(-9px);
+
+        transform:
+        translateY(
+            -9px
+        );
+
     }
+
 }
+
 
 .message {
-    font-size: 22px;
-    max-width: 700px;
-    margin: 18px auto 0;
-    line-height: 1.45;
+
+    font-size:
+    22px;
+
+    max-width:
+    700px;
+
+    margin:
+    18px auto 0;
+
+    line-height:
+    1.45;
+
 }
+
 
 .choices {
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 14px;
-    margin-top: 22px;
+
+    display:
+    grid;
+
+    grid-template-columns:
+    repeat(
+        2,
+        1fr
+    );
+
+    gap:
+    14px;
+
+    margin-top:
+    22px;
+
 }
+
 
 button {
-    border: 0;
-    border-radius: 14px;
-    padding: 16px 18px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    background: #e2e8f0;
-    color: #0f172a;
-    transition: .18s transform;
+
+    border:
+    0;
+
+    border-radius:
+    14px;
+
+    padding:
+    16px 18px;
+
+    font-size:
+    17px;
+
+    font-weight:
+    bold;
+
+    cursor:
+    pointer;
+
+    background:
+    #e2e8f0;
+
+    color:
+    #0f172a;
+
+    transition:
+    .18s transform;
+
 }
+
 
 button:hover {
-    transform: translateY(-2px);
+
+    transform:
+    translateY(
+        -2px
+    );
+
 }
+
 
 .primary {
-    background: #38bdf8;
+
+    background:
+    #38bdf8;
+
 }
+
 
 .hidden {
-    display: none;
+
+    display:
+    none;
+
 }
+
 
 .feedback {
-    min-height: 34px;
-    text-align: center;
-    margin-top: 16px;
-    font-size: 18px;
-    font-weight: bold;
+
+    min-height:
+    34px;
+
+    text-align:
+    center;
+
+    margin-top:
+    16px;
+
+    font-size:
+    18px;
+
+    font-weight:
+    bold;
+
 }
 
+
 .footer {
-    text-align: center;
-    color: #94a3b8;
-    font-size: 13px;
-    margin-top: 18px;
+
+    text-align:
+    center;
+
+    color:
+    #94a3b8;
+
+    font-size:
+    13px;
+
+    margin-top:
+    18px;
+
 }
+
 
 @media(max-width:650px) {
 
     .choices {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+        1fr;
+
     }
+
 
     .robot {
-        font-size: 72px;
+
+        font-size:
+        72px;
+
     }
 
+
     .message {
-        font-size: 19px;
+
+        font-size:
+        19px;
+
     }
 
 }
@@ -159,35 +403,56 @@ button:hover {
 
 </head>
 
+
 <body>
+
 
 <div class="game">
 
+
 <header>
 
-<h1>🤖 Emotion Escape</h1>
+<h1>
+🤖 Emotion Escape
+</h1>
+
 
 <div class="stats">
 
-<span id="level">Level 1/5</span>
+<span id="level">
+Level 1/5
+</span>
 
-<span id="score">Score: 0</span>
+<span id="score">
+Score: 0
+</span>
 
-<span id="lives">❤️❤️❤️</span>
+<span id="lives">
+❤️❤️❤️
+</span>
 
 </div>
 
 </header>
 
 
+
 <main>
+
 
 
 <section id="start">
 
+
 <div class="scene">
 
-<div class="robot">🤖</div>
+
+<div class="robot">
+
+🤖
+
+</div>
+
 
 <div class="message">
 
@@ -198,336 +463,836 @@ to unlock all five doors and escape!
 
 </div>
 
+
 </div>
 
 
 <div class="choices">
 
-<button class="primary" onclick="startGame()">
+
+<button
+class="primary"
+onclick="startGame()">
+
 Start Game
+
 </button>
 
+
 </div>
+
 
 </section>
 
 
-<section id="play" class="hidden">
+
+<section
+id="play"
+class="hidden">
+
 
 <div class="scene">
 
-<div class="robot" id="robot">
+
+<div
+class="robot"
+id="robot">
+
 🤖
-</div>
-
-<div class="message" id="question"></div>
 
 </div>
 
-<div class="choices" id="choices"></div>
 
-<div class="feedback" id="feedback"></div>
+<div
+class="message"
+id="question">
+
+</div>
+
+
+</div>
+
+
+
+<div
+class="choices"
+id="choices">
+
+</div>
+
+
+<div
+class="feedback"
+id="feedback">
+
+</div>
+
 
 </section>
 
 
-<section id="end" class="hidden">
+
+<section
+id="end"
+class="hidden">
+
 
 <div class="scene">
 
-<div class="robot" id="endRobot">
+
+<div
+class="robot"
+id="endRobot">
+
 🏆🤖
-</div>
-
-<div class="message" id="endText"></div>
 
 </div>
+
+
+<div
+class="message"
+id="endText">
+
+</div>
+
+
+</div>
+
 
 <div class="choices">
 
-<button class="primary" onclick="startGame()">
+
+<button
+class="primary"
+onclick="startGame()">
+
 Play Again
+
 </button>
+
 
 </div>
 
+
 </section>
+
 
 
 <div class="footer">
+
 Emotion Escape • Free Online Robot Emotion Game
+
 </div>
+
 
 </main>
 
+
 </div>
+
 
 
 <script>
 
+
 const levels = [
 
+
 {
-    q: "Your best friend surprises you with a birthday gift. How would Robo probably feel?",
 
-    answers: [
-        "Happy 😄",
-        "Angry 😠",
-        "Afraid 😨",
-        "Disgusted 🤢"
-    ],
+q:
+"Your best friend surprises you with a birthday gift. How would Robo probably feel?",
 
-    correct: 0,
 
-    good: "Correct! Happiness door unlocked.",
+answers:
+[
 
-    emoji: "😄🤖"
+"Happy 😄",
+
+"Angry 😠",
+
+"Afraid 😨",
+
+"Disgusted 🤢"
+
+],
+
+
+correct:
+0,
+
+
+good:
+"Correct! Happiness door unlocked.",
+
+
+emoji:
+"😄🤖"
+
 },
 
+
+
 {
-    q: "Robo hears a loud unknown noise in a dark room. What emotion fits best?",
 
-    answers: [
-        "Surprised 😲",
-        "Happy 😄",
-        "Bored 😐",
-        "Proud 😎"
-    ],
+q:
+"Robo hears a loud unknown noise in a dark room. What emotion fits best?",
 
-    correct: 0,
 
-    good: "Correct! Surprise door unlocked.",
+answers:
+[
 
-    emoji: "😲🤖"
+"Surprised 😲",
+
+"Happy 😄",
+
+"Bored 😐",
+
+"Proud 😎"
+
+],
+
+
+correct:
+0,
+
+
+good:
+"Correct! Surprise door unlocked.",
+
+
+emoji:
+"😲🤖"
+
 },
 
+
+
 {
-    q: "Someone breaks Robo's favorite invention on purpose. What might Robo feel?",
 
-    answers: [
-        "Angry 😠",
-        "Happy 😄",
-        "Relaxed 😌",
-        "Excited 🤩"
-    ],
+q:
+"Someone breaks Robo's favorite invention on purpose. What might Robo feel?",
 
-    correct: 0,
 
-    good: "Correct! Anger door unlocked.",
+answers:
+[
 
-    emoji: "😠🤖"
+"Angry 😠",
+
+"Happy 😄",
+
+"Relaxed 😌",
+
+"Excited 🤩"
+
+],
+
+
+correct:
+0,
+
+
+good:
+"Correct! Anger door unlocked.",
+
+
+emoji:
+"😠🤖"
+
 },
 
+
+
 {
-    q: "Robo loses an important competition after trying very hard. What might Robo feel?",
 
-    answers: [
-        "Sad 😢",
-        "Happy 😄",
-        "Surprised 😲",
-        "Silly 🤪"
-    ],
+q:
+"Robo loses an important competition after trying very hard. What might Robo feel?",
 
-    correct: 0,
 
-    good: "Correct! Sadness door unlocked.",
+answers:
+[
 
-    emoji: "😢🤖"
+"Sad 😢",
+
+"Happy 😄",
+
+"Surprised 😲",
+
+"Silly 🤪"
+
+],
+
+
+correct:
+0,
+
+
+good:
+"Correct! Sadness door unlocked.",
+
+
+emoji:
+"😢🤖"
+
 },
 
+
+
 {
-    q: "FINAL DOOR: Your teammate makes a mistake. What is the best response?",
 
-    answers: [
-        "Shout at them",
-        "Stay calm and help them fix it",
-        "Leave the team",
-        "Make fun of them"
-    ],
+q:
+"FINAL DOOR: Your teammate makes a mistake. What is the best response?",
 
-    correct: 1,
 
-    good: "Excellent choice! The final door is open.",
+answers:
+[
 
-    emoji: "🦾🤖"
+"Shout at them",
+
+"Stay calm and help them fix it",
+
+"Leave the team",
+
+"Make fun of them"
+
+],
+
+
+correct:
+1,
+
+
+good:
+"Excellent choice! The final door is open.",
+
+
+emoji:
+"🦾🤖"
+
 }
+
 
 ];
 
 
-let current = 0;
-let score = 0;
-let lives = 3;
-let locked = false;
+
+let current =
+0;
+
+
+let score =
+0;
+
+
+let lives =
+3;
+
+
+let locked =
+false;
+
 
 
 function startGame() {
 
-    current = 0;
-    score = 0;
-    lives = 3;
-    locked = false;
 
-    document.getElementById("start").classList.add("hidden");
+current =
+0;
 
-    document.getElementById("end").classList.add("hidden");
 
-    document.getElementById("play").classList.remove("hidden");
+score =
+0;
 
-    render();
+
+lives =
+3;
+
+
+locked =
+false;
+
+
+
+/* Tell Google Analytics that someone started the game */
+
+gtag(
+'event',
+'game_start'
+);
+
+
+
+document
+.getElementById(
+"start"
+)
+.classList
+.add(
+"hidden"
+);
+
+
+
+document
+.getElementById(
+"end"
+)
+.classList
+.add(
+"hidden"
+);
+
+
+
+document
+.getElementById(
+"play"
+)
+.classList
+.remove(
+"hidden"
+);
+
+
+
+render();
+
+
 }
+
 
 
 function render() {
 
-    locked = false;
 
-    const item = levels[current];
+locked =
+false;
 
-    document.getElementById("level").textContent =
-    `Level ${current + 1}/${levels.length}`;
 
-    document.getElementById("score").textContent =
-    `Score: ${score}`;
 
-    document.getElementById("lives").textContent =
-    "❤️".repeat(lives) + "🖤".repeat(3-lives);
+const item =
+levels[current];
 
-    document.getElementById("robot").textContent = "🤖";
 
-    document.getElementById("question").textContent =
-    item.q;
 
-    document.getElementById("feedback").textContent = "";
+document
+.getElementById(
+"level"
+)
+.textContent =
+`Level ${current + 1}/${levels.length}`;
 
-    const box =
-    document.getElementById("choices");
 
-    box.innerHTML = "";
 
-    item.answers.forEach((answer,index) => {
+document
+.getElementById(
+"score"
+)
+.textContent =
+`Score: ${score}`;
 
-        const button =
-        document.createElement("button");
 
-        button.textContent = answer;
 
-        button.onclick =
-        () => choose(index);
+document
+.getElementById(
+"lives"
+)
+.textContent =
 
-        box.appendChild(button);
+"❤️".repeat(
+lives
+)
 
-    });
++
+
+"🖤".repeat(
+3 - lives
+);
+
+
+
+document
+.getElementById(
+"robot"
+)
+.textContent =
+"🤖";
+
+
+
+document
+.getElementById(
+"question"
+)
+.textContent =
+item.q;
+
+
+
+document
+.getElementById(
+"feedback"
+)
+.textContent =
+"";
+
+
+
+const box =
+document
+.getElementById(
+"choices"
+);
+
+
+
+box.innerHTML =
+"";
+
+
+
+item
+.answers
+.forEach(
+
+(answer,index) => {
+
+
+const button =
+document
+.createElement(
+"button"
+);
+
+
+button.textContent =
+answer;
+
+
+button.onclick =
+() =>
+choose(
+index
+);
+
+
+box.appendChild(
+button
+);
+
 
 }
+
+);
+
+
+}
+
 
 
 function choose(index) {
 
-    if (locked) return;
 
-    locked = true;
-
-    const item =
-    levels[current];
-
-    const feedback =
-    document.getElementById("feedback");
+if (
+locked
+)
+return;
 
 
-    if (index === item.correct) {
 
-        score += 100;
-
-        document.getElementById("robot").textContent =
-        item.emoji;
-
-        feedback.textContent =
-        "✅ " + item.good;
-
-        setTimeout(() => {
-
-            current++;
-
-            if (current >= levels.length) {
-
-                finish(true);
-
-            } else {
-
-                render();
-
-            }
-
-        },1100);
-
-    }
-
-    else {
-
-        lives--;
-
-        feedback.textContent =
-        "❌ Not quite. Try the situation again.";
-
-        document.getElementById("robot").textContent =
-        "⚠️🤖";
-
-        document.getElementById("lives").textContent =
-        "❤️".repeat(lives) + "🖤".repeat(3-lives);
-
-        if (lives <= 0) {
-
-            setTimeout(
-                () => finish(false),
-                900
-            );
-
-        }
-
-        else {
-
-            setTimeout(() => {
-
-                locked = false;
-
-                feedback.textContent = "";
-
-                document.getElementById("robot").textContent =
-                "🤖";
-
-            },900);
-
-        }
-
-    }
+locked =
+true;
 
 
-    document.getElementById("score").textContent =
-    `Score: ${score}`;
+
+const item =
+levels[current];
+
+
+
+const feedback =
+document
+.getElementById(
+"feedback"
+);
+
+
+
+if (
+index ===
+item.correct
+) {
+
+
+score +=
+100;
+
+
+
+document
+.getElementById(
+"robot"
+)
+.textContent =
+item.emoji;
+
+
+
+feedback.textContent =
+"✅ " +
+item.good;
+
+
+
+/* Send completed level to Analytics */
+
+gtag(
+'event',
+'level_complete',
+{
+
+level_number:
+current + 1
 
 }
+);
+
+
+
+setTimeout(
+() => {
+
+
+current++;
+
+
+
+if (
+current >=
+levels.length
+) {
+
+
+finish(
+true
+);
+
+
+}
+
+
+else {
+
+
+render();
+
+
+}
+
+
+},
+1100
+);
+
+
+}
+
+
+
+else {
+
+
+lives--;
+
+
+
+feedback.textContent =
+"❌ Not quite. Try the situation again.";
+
+
+
+document
+.getElementById(
+"robot"
+)
+.textContent =
+"⚠️🤖";
+
+
+
+document
+.getElementById(
+"lives"
+)
+.textContent =
+
+"❤️".repeat(
+lives
+)
+
++
+
+"🖤".repeat(
+3 - lives
+);
+
+
+
+if (
+lives <=
+0
+) {
+
+
+setTimeout(
+
+() =>
+finish(
+false
+),
+
+900
+
+);
+
+
+}
+
+
+
+else {
+
+
+setTimeout(
+() => {
+
+
+locked =
+false;
+
+
+feedback.textContent =
+"";
+
+
+document
+.getElementById(
+"robot"
+)
+.textContent =
+"🤖";
+
+
+},
+900
+);
+
+
+}
+
+
+}
+
+
+
+document
+.getElementById(
+"score"
+)
+.textContent =
+`Score: ${score}`;
+
+
+}
+
 
 
 function finish(win) {
 
-    document.getElementById("play").classList.add("hidden");
 
-    document.getElementById("end").classList.remove("hidden");
+document
+.getElementById(
+"play"
+)
+.classList
+.add(
+"hidden"
+);
 
-    document.getElementById("endRobot").textContent =
-    win ? "🏆🤖" : "🔒🤖";
 
-    document.getElementById("endText").textContent =
-    win
 
-    ? `You escaped the Emotion Lab! Final score: ${score}.`
+document
+.getElementById(
+"end"
+)
+.classList
+.remove(
+"hidden"
+);
 
-    : `Game over! You reached level ${current + 1}. Try again and unlock every door.`;
+
+
+document
+.getElementById(
+"endRobot"
+)
+.textContent =
+
+win
+?
+
+"🏆🤖"
+
+:
+
+"🔒🤖";
+
+
+
+document
+.getElementById(
+"endText"
+)
+.textContent =
+
+win
+
+?
+
+`You escaped the Emotion Lab! Final score: ${score}.`
+
+:
+
+`Game over! You reached level ${current + 1}. Try again and unlock every door.`;
+
+
+
+/* Send game result to Google Analytics */
+
+gtag(
+'event',
+'game_finish',
+{
+
+result:
+win
+?
+'win'
+:
+'lose',
+
+final_score:
+score
+
+}
+);
+
 
 }
 
+
 </script>
+
 
 </body>
 
