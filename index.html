@@ -1,213 +1,436 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 
 <!-- GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DNR89J5R6"></script>
+
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
+
+function gtag(){
+    dataLayer.push(arguments);
+}
+
 gtag("js", new Date());
 gtag("config", "G-1DNR89J5R6");
 </script>
 
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Emotion Escape - 3D Robot Emotion Game</title>
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1"
+>
+
+<title>
+Emotion Escape - 3D Robot Escape Game
+</title>
 
 <meta
 name="description"
-content="Play Emotion Escape, a 3D robot emotion game with five levels and twenty-five doors."
+content="Play Emotion Escape, a 3D robot emotion game with five levels, twenty-five doors and animated challenges."
 >
 
-<link rel="icon" type="image/png" href="favicon.png">
+<link
+rel="icon"
+type="image/png"
+href="favicon.png"
+>
 
 <style>
 
-* {
+*{
     box-sizing:border-box;
 }
 
-body {
+body{
+
     margin:0;
+
     min-height:100vh;
-    font-family:Arial, Helvetica, sans-serif;
+
     background:
-        linear-gradient(
-            135deg,
-            #020617,
-            #111827,
-            #172554
-        );
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #172554
+    );
+
+    font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
     color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:18px;
+
 }
 
-.game {
-    width:min(1000px,96vw);
-    background:#0f172a;
-    border:2px solid #334155;
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.55);
-}
+.game{
 
-header {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    padding:18px 24px;
-    background:#111827;
-    border-bottom:1px solid #334155;
-}
-
-h1 {
-    margin:0;
-    font-size:25px;
-}
-
-.stats {
-    display:flex;
-    gap:18px;
-    flex-wrap:wrap;
-    font-weight:bold;
-}
-
-main {
-    padding:24px;
-}
-
-.scene {
-    position:relative;
-    height:410px;
-    border-radius:22px;
-    overflow:hidden;
-    background:
-        radial-gradient(
-            circle at top,
-            #1e3a8a,
-            #0f172a 65%
-        );
-}
-
-#robotCanvas {
     width:100%;
-    height:100%;
-    display:block;
-}
 
-.question {
-    text-align:center;
-    font-size:22px;
-    line-height:1.45;
-    margin:22px auto 0;
-    max-width:820px;
-}
+    min-height:100vh;
 
-.choices {
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
-    margin-top:20px;
-}
-
-button {
-    border:none;
-    border-radius:15px;
-    padding:16px 18px;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    background:#e2e8f0;
-    color:#0f172a;
-    transition:.2s;
-}
-
-button:hover {
-    transform:translateY(-2px);
-}
-
-button:disabled {
-    opacity:.6;
-    cursor:not-allowed;
-}
-
-.primary {
-    background:#38bdf8;
-}
-
-.next {
-    background:#22c55e;
-    color:#052e16;
-}
-
-.feedback {
-    text-align:center;
-    font-size:18px;
-    font-weight:bold;
-    min-height:30px;
-    margin-top:14px;
-}
-
-.hidden {
-    display:none !important;
-}
-
-.center-screen {
-    min-height:440px;
     display:flex;
+
     flex-direction:column;
-    justify-content:center;
+
+}
+
+header{
+
+    min-height:70px;
+
+    background:
+    rgba(
+        2,
+        6,
+        23,
+        .94
+    );
+
+    display:flex;
+
+    justify-content:
+    space-between;
+
     align-items:center;
+
+    padding:
+    15px 28px;
+
+    border-bottom:
+    1px solid #334155;
+
+    z-index:20;
+
+}
+
+h1{
+
+    margin:0;
+
+    font-size:25px;
+
+}
+
+.stats{
+
+    display:flex;
+
+    gap:20px;
+
+    font-weight:bold;
+
+    flex-wrap:wrap;
+
+}
+
+#gameArea{
+
+    position:relative;
+
+    flex:1;
+
+    min-height:
+    650px;
+
+}
+
+#gameCanvas{
+
+    width:100%;
+
+    height:100%;
+
+    display:block;
+
+}
+
+
+.question-panel{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:25px;
+
+    transform:
+    translateX(-50%);
+
+    width:
+    min(
+        850px,
+        92%
+    );
+
+    padding:
+    20px;
+
+    border-radius:
+    22px;
+
+    background:
+    rgba(
+        2,
+        6,
+        23,
+        .88
+    );
+
+    backdrop-filter:
+    blur(12px);
+
+    border:
+    1px solid
+    rgba(
+        148,
+        163,
+        184,
+        .35
+    );
+
+    box-shadow:
+    0 20px 50px
+    rgba(
+        0,
+        0,
+        0,
+        .4
+    );
+
+}
+
+.question{
+
     text-align:center;
-    padding:35px;
-}
 
-.big {
-    font-size:72px;
-}
-
-.center-screen h2 {
-    font-size:34px;
-    margin:15px 0 5px;
-}
-
-.center-screen p {
     font-size:20px;
-    color:#cbd5e1;
-    max-width:650px;
+
+    line-height:1.4;
+
+    margin-bottom:16px;
+
 }
 
-.footer {
+.choices{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(
+        2,
+        1fr
+    );
+
+    gap:12px;
+
+}
+
+button{
+
+    border:0;
+
+    border-radius:14px;
+
+    padding:
+    15px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    color:#020617;
+
+    background:#e2e8f0;
+
+    transition:
+    transform .18s,
+    filter .18s;
+
+}
+
+button:hover{
+
+    transform:
+    translateY(-2px);
+
+    filter:
+    brightness(1.04);
+
+}
+
+button:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+}
+
+.feedback{
+
     text-align:center;
-    color:#94a3b8;
-    font-size:13px;
-    margin-top:20px;
+
+    min-height:27px;
+
+    margin-top:12px;
+
+    font-weight:bold;
+
+    font-size:17px;
+
 }
 
-@media(max-width:700px) {
 
-    header {
+.full-screen{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:30;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(30,58,138,.95),
+        rgba(2,6,23,.98)
+    );
+
+    text-align:center;
+
+    padding:30px;
+
+}
+
+.card{
+
+    max-width:
+    650px;
+
+    padding:
+    36px;
+
+    border-radius:
+    28px;
+
+    background:
+    rgba(
+        15,
+        23,
+        42,
+        .92
+    );
+
+    border:
+    1px solid #475569;
+
+    box-shadow:
+    0 25px 70px
+    rgba(
+        0,
+        0,
+        0,
+        .45
+    );
+
+}
+
+.card .icon{
+
+    font-size:
+    75px;
+
+}
+
+.card h2{
+
+    font-size:
+    36px;
+
+    margin:
+    15px 0 8px;
+
+}
+
+.card p{
+
+    color:#cbd5e1;
+
+    font-size:
+    19px;
+
+    line-height:1.5;
+
+}
+
+.primary{
+
+    background:#38bdf8;
+
+}
+
+.next{
+
+    background:#22c55e;
+
+}
+
+.hidden{
+
+    display:none !important;
+
+}
+
+.level-name{
+
+    color:#7dd3fc;
+
+}
+
+@media(max-width:700px){
+
+    header{
+
         flex-direction:column;
+
         align-items:flex-start;
+
+        gap:10px;
+
     }
 
-    .choices {
-        grid-template-columns:1fr;
+    #gameArea{
+
+        min-height:
+        720px;
+
     }
 
-    .scene {
-        height:350px;
+    .choices{
+
+        grid-template-columns:
+        1fr;
+
     }
 
-    .question {
-        font-size:19px;
+    .question{
+
+        font-size:18px;
+
     }
 
 }
@@ -216,13 +439,18 @@ button:disabled {
 
 </head>
 
+
 <body>
 
 <div class="game">
 
+
 <header>
 
-<h1>🤖 Emotion Escape 3D</h1>
+<h1>
+🤖 Emotion Escape 3D
+</h1>
+
 
 <div class="stats">
 
@@ -247,57 +475,17 @@ Score: 0
 </header>
 
 
-<main>
+
+<div id="gameArea">
+
+<canvas id="gameCanvas">
+</canvas>
 
 
-<!-- START SCREEN -->
-
-<section id="startScreen">
-
-<div class="center-screen">
-
-<div class="big">
-🤖🚪
-</div>
-
-<h2>
-Emotion Escape
-</h2>
-
-<p>
-Help the 3D robot understand emotions,
-unlock all 25 doors and escape the Emotion Lab.
-</p>
-
-<p>
-5 Levels • 5 Doors Each
-</p>
-
-<button
-class="primary"
-onclick="startGame()"
+<div
+class="question-panel hidden"
+id="questionPanel"
 >
-Start Game
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- GAME -->
-
-<section
-id="gameScreen"
-class="hidden"
->
-
-<div class="scene">
-
-<canvas id="robotCanvas"></canvas>
-
-</div>
 
 <div
 class="question"
@@ -317,54 +505,97 @@ id="feedback"
 >
 </div>
 
-</section>
+</div>
+
+
+
+<!-- START SCREEN -->
+
+<div
+class="full-screen"
+id="startScreen"
+>
+
+<div class="card">
+
+<div class="icon">
+🤖🚪
+</div>
+
+<h2>
+Emotion Escape 3D
+</h2>
+
+<p>
+Enter the 3D Emotion Lab with Robo.
+Solve emotion challenges,
+open 25 doors
+and escape all five levels.
+</p>
+
+<p>
+<strong>
+5 Levels • 5 Doors Each
+</strong>
+</p>
+
+<button
+class="primary"
+onclick="startGame()"
+>
+Enter the Lab
+</button>
+
+</div>
+
+</div>
 
 
 
 <!-- LEVEL COMPLETE -->
 
-<section
-id="levelCompleteScreen"
-class="hidden"
+<div
+class="full-screen hidden"
+id="levelScreen"
 >
 
-<div class="center-screen">
+<div class="card">
 
-<div class="big">
+<div class="icon">
 🎉🚪
 </div>
 
-<h2 id="levelCompleteTitle">
+<h2 id="levelTitle">
 Level Complete!
 </h2>
 
-<p id="levelCompleteText">
+<p id="levelMessage">
 </p>
 
 <button
 class="next"
 onclick="nextLevel()"
 >
-Next Level ▶
+Enter Next Level ▶
 </button>
 
 </div>
 
-</section>
+</div>
 
 
 
-<!-- END -->
-
-<section
-id="endScreen"
-class="hidden"
->
-
-<div class="center-screen">
+<!-- GAME END -->
 
 <div
-class="big"
+class="full-screen hidden"
+id="endScreen"
+>
+
+<div class="card">
+
+<div
+class="icon"
 id="endIcon"
 >
 🏆🤖
@@ -374,7 +605,7 @@ id="endIcon"
 Emotion Lab Escaped!
 </h2>
 
-<p id="endText">
+<p id="endMessage">
 </p>
 
 <button
@@ -386,19 +617,15 @@ Play Again
 
 </div>
 
-</section>
-
-
-<div class="footer">
-Emotion Escape • 3D Robot • 5 Levels • 25 Doors
 </div>
 
-</main>
+
+</div>
 
 </div>
 
 
-<!-- THREE.JS -->
+
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 
@@ -409,7 +636,6 @@ Emotion Escape • 3D Robot • 5 Levels • 25 Doors
 ========================================================= */
 
 const levels = [
-
 
 {
 name:"Emotion Basics",
@@ -465,7 +691,7 @@ emotion:"sad"
 },
 
 {
-q:"Robo sees spoiled food with a terrible smell. How might Robo feel?",
+q:"Robo smells spoiled food. How might he feel?",
 answers:[
 "Disgusted 🤢",
 "Happy 😄",
@@ -477,8 +703,8 @@ emotion:"disgusted"
 }
 
 ]
-},
 
+},
 
 
 {
@@ -487,7 +713,7 @@ name:"Recognizing Feelings",
 questions:[
 
 {
-q:"Robo is about to speak on a stage for the first time and feels nervous. Which emotion fits best?",
+q:"Robo is about to speak on a stage and feels nervous. What emotion fits best?",
 answers:[
 "Afraid 😨",
 "Happy 😄",
@@ -511,7 +737,7 @@ emotion:"proud"
 },
 
 {
-q:"Robo is sitting quietly after finishing all his work. How does he probably feel?",
+q:"Robo finishes all his work and sits quietly. How does he probably feel?",
 answers:[
 "Calm 😌",
 "Angry 😠",
@@ -523,7 +749,7 @@ emotion:"calm"
 },
 
 {
-q:"Robo opens a box and unexpectedly finds a tiny puppy. What emotion fits best?",
+q:"Robo opens a box and unexpectedly finds a puppy. How does he feel?",
 answers:[
 "Surprised 😲",
 "Angry 😠",
@@ -535,7 +761,7 @@ emotion:"surprised"
 },
 
 {
-q:"Robo's friend thanks him for helping with homework. How might Robo feel?",
+q:"Robo's friend thanks him for helping. How might Robo feel?",
 answers:[
 "Happy 😄",
 "Afraid 😨",
@@ -547,19 +773,19 @@ emotion:"happy"
 }
 
 ]
+
 },
 
 
-
 {
-name:"Choosing Good Reactions",
+name:"Good Reactions",
 
 questions:[
 
 {
-q:"Robo is angry because someone took his pencil. What is the best first reaction?",
+q:"Robo is angry because someone took his pencil. What should he do?",
 answers:[
-"Stay calm and explain the problem",
+"Stay calm and explain",
 "Shout loudly",
 "Break something",
 "Push the person"
@@ -571,8 +797,8 @@ emotion:"calm"
 {
 q:"Robo's friend is sad. What should Robo do?",
 answers:[
-"Listen and try to help",
-"Laugh at them",
+"Listen and help",
+"Laugh",
 "Ignore them",
 "Tell everyone"
 ],
@@ -583,21 +809,21 @@ emotion:"happy"
 {
 q:"Robo feels afraid before a test. What could help?",
 answers:[
-"Take slow breaths and prepare",
+"Breathe slowly and prepare",
 "Run away",
 "Rip the test",
-"Yell at the teacher"
+"Yell"
 ],
 correct:0,
 emotion:"calm"
 },
 
 {
-q:"Robo makes a mistake in a game. What is the best response?",
+q:"Robo makes a mistake. What should he do?",
 answers:[
-"Learn from it and try again",
+"Learn and try again",
 "Blame everyone",
-"Quit immediately",
+"Quit",
 "Get angry"
 ],
 correct:0,
@@ -605,20 +831,20 @@ emotion:"proud"
 },
 
 {
-q:"Robo wins a contest. What should he do?",
+q:"Robo wins a contest. What is the best reaction?",
 answers:[
 "Celebrate kindly",
-"Make fun of everyone",
-"Say he is better than everyone",
-"Refuse to talk"
+"Make fun of others",
+"Boast",
+"Ignore everyone"
 ],
 correct:0,
 emotion:"happy"
 }
 
 ]
-},
 
+},
 
 
 {
@@ -627,7 +853,7 @@ name:"Understanding Others",
 questions:[
 
 {
-q:"A classmate is very quiet after losing something important. What might they feel?",
+q:"A classmate becomes quiet after losing something important. What may they feel?",
 answers:[
 "Sad 😢",
 "Excited 🤩",
@@ -639,7 +865,7 @@ emotion:"sad"
 },
 
 {
-q:"Someone suddenly jumps when a balloon pops. What are they probably feeling?",
+q:"Someone jumps when a balloon suddenly pops. What are they probably feeling?",
 answers:[
 "Surprised 😲",
 "Proud 😎",
@@ -651,7 +877,7 @@ emotion:"surprised"
 },
 
 {
-q:"Your teammate keeps shaking before a competition. What emotion could that show?",
+q:"Your teammate shakes before a competition. What emotion might this show?",
 answers:[
 "Afraid 😨",
 "Disgusted 🤢",
@@ -663,7 +889,7 @@ emotion:"afraid"
 },
 
 {
-q:"A friend smiles after completing something difficult. What could they feel?",
+q:"A friend smiles after completing something difficult. What may they feel?",
 answers:[
 "Proud 😎",
 "Angry 😠",
@@ -675,7 +901,7 @@ emotion:"proud"
 },
 
 {
-q:"Someone moves away from a terrible smell. What emotion might they show?",
+q:"Someone moves away from a terrible smell. What emotion are they showing?",
 answers:[
 "Disgusted 🤢",
 "Happy 😄",
@@ -687,21 +913,21 @@ emotion:"disgusted"
 }
 
 ]
+
 },
 
 
-
 {
-name:"Emotion Master Challenge",
+name:"Emotion Master",
 
 questions:[
 
 {
-q:"Robo is frustrated because a machine will not work. Which response shows emotional control?",
+q:"Robo is frustrated because a machine will not work. What should he do?",
 answers:[
-"Pause, calm down and try another solution",
-"Kick the machine",
-"Yell at everyone",
+"Pause and try another solution",
+"Kick it",
+"Yell",
 "Give up"
 ],
 correct:0,
@@ -711,19 +937,19 @@ emotion:"calm"
 {
 q:"Robo's teammate accidentally makes a mistake. What should Robo do?",
 answers:[
-"Help them fix it calmly",
+"Help calmly",
 "Shout",
 "Leave",
-"Make fun of them"
+"Laugh"
 ],
 correct:0,
 emotion:"calm"
 },
 
 {
-q:"Robo feels jealous because his friend won a prize. What is the healthiest response?",
+q:"Robo feels jealous because his friend won a prize. What should he do?",
 answers:[
-"Congratulate the friend and keep trying",
+"Congratulate the friend",
 "Insult the friend",
 "Take the prize",
 "Stop being friends"
@@ -733,23 +959,23 @@ emotion:"proud"
 },
 
 {
-q:"Robo is very excited but needs to listen to important instructions. What should he do?",
+q:"Robo is excited but needs to hear instructions. What should he do?",
 answers:[
-"Calm down and listen carefully",
+"Calm down and listen",
 "Interrupt",
 "Run around",
-"Ignore everything"
+"Ignore them"
 ],
 correct:0,
 emotion:"calm"
 },
 
 {
-q:"FINAL DOOR: Robo sees someone being left out of a game. What should he do?",
+q:"FINAL DOOR: Someone is being left out of a game. What should Robo do?",
 answers:[
 "Invite them to join",
 "Ignore them",
-"Laugh at them",
+"Laugh",
 "Tell them to leave"
 ],
 correct:0,
@@ -757,6 +983,7 @@ emotion:"happy"
 }
 
 ]
+
 }
 
 ];
@@ -768,75 +995,102 @@ emotion:"happy"
 ========================================================= */
 
 let currentLevel = 0;
+
 let currentDoor = 0;
 
 let score = 0;
+
 let lives = 3;
 
 let locked = false;
 
+let gameRunning = false;
+
 
 
 /* =========================================================
-   THREE.JS
+   THREE.JS SETUP
 ========================================================= */
 
 const canvas =
 document.getElementById(
-"robotCanvas"
+"gameCanvas"
 );
 
 
 const renderer =
 new THREE.WebGLRenderer({
+
 canvas:canvas,
-antialias:true,
-alpha:true
+
+antialias:true
+
 });
 
 
 renderer.setPixelRatio(
+
 Math.min(
 window.devicePixelRatio,
 2
 )
+
 );
+
+
+renderer.shadowMap.enabled =
+true;
+
+
+renderer.shadowMap.type =
+THREE.PCFSoftShadowMap;
+
 
 
 const scene =
 new THREE.Scene();
 
 
+scene.background =
+new THREE.Color(
+0x07111f
+);
+
+
+scene.fog =
+new THREE.Fog(
+0x07111f,
+12,
+32
+);
+
+
+
 const camera =
 new THREE.PerspectiveCamera(
-40,
+52,
 1,
-0.1,
+.1,
 100
 );
 
 
 camera.position.set(
 0,
-1.8,
-7
-);
-
-
-camera.lookAt(
-0,
-1,
-0
+3,
+8
 );
 
 
 
-/* LIGHTS */
+/* =========================================================
+   LIGHTING
+========================================================= */
 
 const ambient =
 new THREE.AmbientLight(
 0xffffff,
-1.8
+.75
 );
 
 scene.add(
@@ -844,52 +1098,55 @@ ambient
 );
 
 
-const keyLight =
+const ceilingLight =
 new THREE.DirectionalLight(
 0xffffff,
-3
+2
 );
 
-keyLight.position.set(
-5,
-7,
-6
+ceilingLight.position.set(
+4,
+9,
+4
 );
+
+ceilingLight.castShadow =
+true;
 
 scene.add(
-keyLight
+ceilingLight
 );
 
 
-const blueLight =
+const cyanLight =
 new THREE.PointLight(
 0x22d3ee,
-30,
-12
+25,
+15
 );
 
-blueLight.position.set(
+cyanLight.position.set(
 -4,
-2,
-3
+3,
+2
 );
 
 scene.add(
-blueLight
+cyanLight
 );
 
 
 const purpleLight =
 new THREE.PointLight(
 0x6366f1,
-22,
-12
+18,
+14
 );
 
 purpleLight.position.set(
 4,
 3,
-2
+1
 );
 
 scene.add(
@@ -898,96 +1155,537 @@ purpleLight
 
 
 
+/* =========================================================
+   MATERIALS
+========================================================= */
+
+const floorMaterial =
+new THREE.MeshStandardMaterial({
+
+color:
+0x172033,
+
+metalness:
+.55,
+
+roughness:
+.4
+
+});
+
+
+const wallMaterial =
+new THREE.MeshStandardMaterial({
+
+color:
+0x111827,
+
+metalness:
+.25,
+
+roughness:
+.7
+
+});
+
+
+const metalMaterial =
+new THREE.MeshStandardMaterial({
+
+color:
+0x94a3b8,
+
+metalness:
+.85,
+
+roughness:
+.22
+
+});
+
+
+const darkMaterial =
+new THREE.MeshStandardMaterial({
+
+color:
+0x020617,
+
+metalness:
+.7,
+
+roughness:
+.25
+
+});
+
+
+const whiteMaterial =
+new THREE.MeshStandardMaterial({
+
+color:
+0xf8fafc,
+
+metalness:
+.55,
+
+roughness:
+.25
+
+});
+
+
+const cyanMaterial =
+new THREE.MeshStandardMaterial({
+
+color:
+0x22d3ee,
+
+emissive:
+0x22d3ee,
+
+emissiveIntensity:
+2.5
+
+});
+
+
+const doorMaterial =
+new THREE.MeshStandardMaterial({
+
+color:
+0x1e40af,
+
+metalness:
+.7,
+
+roughness:
+.25
+
+});
+
+
+const doorGlow =
+new THREE.MeshStandardMaterial({
+
+color:
+0x38bdf8,
+
+emissive:
+0x38bdf8,
+
+emissiveIntensity:
+2
+
+});
+
+
+
+/* =========================================================
+   3D LAB
+========================================================= */
+
+const lab =
+new THREE.Group();
+
+scene.add(
+lab
+);
+
+
 /* FLOOR */
 
 const floor =
 new THREE.Mesh(
 
-new THREE.CircleGeometry(
-4.5,
-64
+new THREE.BoxGeometry(
+12,
+.25,
+20
 ),
 
-new THREE.MeshStandardMaterial({
-color:0x111827,
-roughness:.6,
-metalness:.2
-})
+floorMaterial
 
 );
 
 
-floor.rotation.x =
--Math.PI / 2;
+floor.position.set(
+0,
+-1.55,
+-3
+);
 
+floor.receiveShadow =
+true;
 
-floor.position.y =
--1.45;
-
-
-scene.add(
+lab.add(
 floor
 );
 
 
 
+/* LEFT WALL */
+
+const wallLeft =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+.3,
+7,
+20
+),
+
+wallMaterial
+
+);
+
+
+wallLeft.position.set(
+-6,
+2,
+-3
+);
+
+lab.add(
+wallLeft
+);
+
+
+
+/* RIGHT WALL */
+
+const wallRight =
+wallLeft.clone();
+
+
+wallRight.position.x =
+6;
+
+
+lab.add(
+wallRight
+);
+
+
+
+/* CEILING */
+
+const ceiling =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+12,
+.2,
+20
+),
+
+wallMaterial
+
+);
+
+
+ceiling.position.set(
+0,
+5.4,
+-3
+);
+
+lab.add(
+ceiling
+);
+
+
+
+/* BACK WALL */
+
+const backWall =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+12,
+7,
+.3
+),
+
+wallMaterial
+
+);
+
+
+backWall.position.set(
+0,
+2,
+-12
+);
+
+lab.add(
+backWall
+);
+
+
+
+/* FLOOR LIGHT STRIPS */
+
+for(
+let z = 5;
+z > -12;
+z -= 2.5
+){
+
+const stripLeft =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+.12,
+.03,
+1.4
+),
+
+doorGlow
+
+);
+
+
+stripLeft.position.set(
+-4.3,
+-1.4,
+z
+);
+
+
+lab.add(
+stripLeft
+);
+
+
+const stripRight =
+stripLeft.clone();
+
+
+stripRight.position.x =
+4.3;
+
+
+lab.add(
+stripRight
+);
+
+}
+
+
+
 /* =========================================================
-   BUILD 3D ROBOT
+   3D DOOR
+========================================================= */
+
+const doorGroup =
+new THREE.Group();
+
+
+doorGroup.position.set(
+0,
+.55,
+-4
+);
+
+
+scene.add(
+doorGroup
+);
+
+
+
+const doorFrameLeft =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+.35,
+4.5,
+.5
+),
+
+metalMaterial
+
+);
+
+
+doorFrameLeft.position.set(
+-1.7,
+0,
+0
+);
+
+
+doorGroup.add(
+doorFrameLeft
+);
+
+
+
+const doorFrameRight =
+doorFrameLeft.clone();
+
+
+doorFrameRight.position.x =
+1.7;
+
+
+doorGroup.add(
+doorFrameRight
+);
+
+
+
+const doorFrameTop =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+3.75,
+.35,
+.5
+),
+
+metalMaterial
+
+);
+
+
+doorFrameTop.position.set(
+0,
+2.1,
+0
+);
+
+
+doorGroup.add(
+doorFrameTop
+);
+
+
+
+const doorLeft =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+1.55,
+3.85,
+.3
+),
+
+doorMaterial
+
+);
+
+
+doorLeft.position.set(
+-.8,
+0,
+0
+);
+
+
+doorLeft.castShadow =
+true;
+
+
+doorGroup.add(
+doorLeft
+);
+
+
+
+const doorRight =
+doorLeft.clone();
+
+
+doorRight.position.x =
+.8;
+
+
+doorGroup.add(
+doorRight
+);
+
+
+
+const doorCenterLight =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+.12,
+3.2,
+.36
+),
+
+doorGlow
+
+);
+
+
+doorCenterLight.position.z =
+.05;
+
+
+doorGroup.add(
+doorCenterLight
+);
+
+
+
+/* DOOR NUMBER */
+
+const doorNumberBoard =
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+1.3,
+.55,
+.15
+),
+
+darkMaterial
+
+);
+
+
+doorNumberBoard.position.set(
+0,
+1.55,
+.3
+);
+
+
+doorGroup.add(
+doorNumberBoard
+);
+
+
+
+/* =========================================================
+   ROBOT
 ========================================================= */
 
 const robot =
 new THREE.Group();
+
+
+robot.position.set(
+0,
+-.15,
+1.2
+);
+
 
 scene.add(
 robot
 );
 
 
-const white =
-new THREE.MeshStandardMaterial({
-color:0xf8fafc,
-metalness:.55,
-roughness:.25
-});
-
-
-const dark =
-new THREE.MeshStandardMaterial({
-color:0x020617,
-metalness:.65,
-roughness:.2
-});
-
-
-const cyan =
-new THREE.MeshStandardMaterial({
-color:0x22d3ee,
-emissive:0x22d3ee,
-emissiveIntensity:2
-});
-
-
-const blue =
-new THREE.MeshStandardMaterial({
-color:0x3b82f6,
-emissive:0x1d4ed8,
-emissiveIntensity:.8
-});
-
-
-const joints =
-new THREE.MeshStandardMaterial({
-color:0x475569,
-metalness:.8,
-roughness:.25
-});
+const robotParts =
+[];
 
 
 
-const robotParts = [];
-
-
-function registerPart(
+function part(
 mesh,
 name
 ){
@@ -996,12 +1694,9 @@ mesh.userData.name =
 name;
 
 
-mesh.userData.homePosition =
-mesh.position.clone();
-
-
-mesh.userData.homeRotation =
-mesh.rotation.clone();
+robot.add(
+mesh
+);
 
 
 robotParts.push(
@@ -1018,17 +1713,17 @@ return mesh;
 /* BODY */
 
 const body =
-registerPart(
+part(
 
 new THREE.Mesh(
 
 new THREE.BoxGeometry(
-1.45,
-1.35,
+1.4,
+1.3,
 .85
 ),
 
-white
+whiteMaterial
 
 ),
 
@@ -1041,68 +1736,21 @@ body.position.y =
 0;
 
 
-robot.add(
-body
-);
-
-
-
-/* CHEST */
-
-const chest =
-registerPart(
-
-new THREE.Mesh(
-
-new THREE.SphereGeometry(
-.22,
-24,
-24
-),
-
-cyan
-
-),
-
-"chest"
-
-);
-
-
-chest.scale.set(
-1,
-1,
-.35
-);
-
-
-chest.position.set(
-0,
-.05,
-.48
-);
-
-
-robot.add(
-chest
-);
-
-
 
 /* HEAD */
 
 const head =
-registerPart(
+part(
 
 new THREE.Mesh(
 
 new THREE.BoxGeometry(
-1.8,
-1.15,
+1.75,
+1.1,
 1
 ),
 
-white
+whiteMaterial
 
 ),
 
@@ -1112,29 +1760,24 @@ white
 
 
 head.position.y =
-1.55;
-
-
-robot.add(
-head
-);
+1.48;
 
 
 
-/* FACE SCREEN */
+/* FACE */
 
 const face =
-registerPart(
+part(
 
 new THREE.Mesh(
 
 new THREE.BoxGeometry(
-1.48,
-.75,
+1.45,
+.72,
 .08
 ),
 
-dark
+darkMaterial
 
 ),
 
@@ -1145,21 +1788,16 @@ dark
 
 face.position.set(
 0,
-1.55,
+1.48,
 .54
-);
-
-
-robot.add(
-face
 );
 
 
 
 /* EYES */
 
-const eyeLeft =
-registerPart(
+const eyeL =
+part(
 
 new THREE.Mesh(
 
@@ -1169,65 +1807,56 @@ new THREE.SphereGeometry(
 20
 ),
 
-cyan
+cyanMaterial
 
 ),
 
-"eyeLeft"
+"eyeL"
 
 );
 
 
-eyeLeft.scale.y =
-1.35;
+eyeL.scale.y =
+1.4;
 
 
-eyeLeft.position.set(
--.38,
-1.68,
+eyeL.position.set(
+-.36,
+1.6,
 .61
 );
 
 
-robot.add(
-eyeLeft
-);
 
+const eyeR =
+part(
 
-const eyeRight =
-registerPart(
+eyeL.clone(),
 
-eyeLeft.clone(),
-
-"eyeRight"
+"eyeR"
 
 );
 
 
-eyeRight.position.x =
-.38;
-
-
-robot.add(
-eyeRight
-);
+eyeR.position.x =
+.36;
 
 
 
 /* MOUTH */
 
 const mouth =
-registerPart(
+part(
 
 new THREE.Mesh(
 
 new THREE.BoxGeometry(
-.5,
-.08,
+.46,
+.07,
 .08
 ),
 
-cyan
+cyanMaterial
 
 ),
 
@@ -1238,250 +1867,201 @@ cyan
 
 mouth.position.set(
 0,
-1.32,
+1.28,
 .61
 );
 
 
-robot.add(
-mouth
+
+/* HEART */
+
+const heart =
+part(
+
+new THREE.Mesh(
+
+new THREE.SphereGeometry(
+.2,
+20,
+20
+),
+
+cyanMaterial
+
+),
+
+"heart"
+
+);
+
+
+heart.scale.set(
+1,
+1,
+.4
+);
+
+
+heart.position.set(
+0,
+.08,
+.48
 );
 
 
 
 /* ARMS */
 
-const armLeft =
-registerPart(
+const armL =
+part(
 
 new THREE.Mesh(
 
 new THREE.CapsuleGeometry(
-.22,
-.8,
+.2,
+.72,
 8,
 16
 ),
 
-white
+whiteMaterial
 
 ),
 
-"armLeft"
+"armL"
 
 );
 
 
-armLeft.position.set(
--1.05,
--.05,
+armL.position.set(
+-1,
+0,
 0
 );
 
 
-robot.add(
-armLeft
-);
 
+const armR =
+part(
 
-const armRight =
-registerPart(
+armL.clone(),
 
-armLeft.clone(),
-
-"armRight"
+"armR"
 
 );
 
 
-armRight.position.x =
-1.05;
-
-
-robot.add(
-armRight
-);
-
-
-
-/* HANDS */
-
-const handLeft =
-registerPart(
-
-new THREE.Mesh(
-
-new THREE.SphereGeometry(
-.27,
-20,
-20
-),
-
-joints
-
-),
-
-"handLeft"
-
-);
-
-
-handLeft.position.set(
--1.05,
--.7,
-0
-);
-
-
-robot.add(
-handLeft
-);
-
-
-const handRight =
-registerPart(
-
-handLeft.clone(),
-
-"handRight"
-
-);
-
-
-handRight.position.x =
-1.05;
-
-
-robot.add(
-handRight
-);
+armR.position.x =
+1;
 
 
 
 /* LEGS */
 
-const legLeft =
-registerPart(
+const legL =
+part(
 
 new THREE.Mesh(
 
 new THREE.CapsuleGeometry(
-.25,
-.55,
+.22,
+.52,
 8,
 16
 ),
 
-white
+whiteMaterial
 
 ),
 
-"legLeft"
+"legL"
 
 );
 
 
-legLeft.position.set(
--.42,
+legL.position.set(
+-.38,
 -1,
 0
 );
 
 
-robot.add(
-legLeft
-);
 
+const legR =
+part(
 
-const legRight =
-registerPart(
+legL.clone(),
 
-legLeft.clone(),
-
-"legRight"
+"legR"
 
 );
 
 
-legRight.position.x =
-.42;
-
-
-robot.add(
-legRight
-);
+legR.position.x =
+.38;
 
 
 
 /* FEET */
 
-const footLeft =
-registerPart(
+const footL =
+part(
 
 new THREE.Mesh(
 
 new THREE.BoxGeometry(
-.6,
-.25,
-.85
+.56,
+.22,
+.75
 ),
 
-joints
+metalMaterial
 
 ),
 
-"footLeft"
+"footL"
 
 );
 
 
-footLeft.position.set(
--.42,
--1.43,
-.12
+footL.position.set(
+-.38,
+-1.42,
+.1
 );
 
 
-robot.add(
-footLeft
-);
 
+const footR =
+part(
 
-const footRight =
-registerPart(
+footL.clone(),
 
-footLeft.clone(),
-
-"footRight"
+"footR"
 
 );
 
 
-footRight.position.x =
-.42;
-
-
-robot.add(
-footRight
-);
+footR.position.x =
+.38;
 
 
 
 /* ANTENNA */
 
 const antenna =
-registerPart(
+part(
 
 new THREE.Mesh(
 
 new THREE.CylinderGeometry(
 .05,
 .05,
-.55,
+.5,
 16
 ),
 
-joints
+metalMaterial
 
 ),
 
@@ -1492,28 +2072,24 @@ joints
 
 antenna.position.set(
 0,
-2.42,
+2.35,
 0
 );
 
 
-robot.add(
-antenna
-);
-
 
 const antennaBall =
-registerPart(
+part(
 
 new THREE.Mesh(
 
 new THREE.SphereGeometry(
-.14,
+.13,
 20,
 20
 ),
 
-cyan
+cyanMaterial
 
 ),
 
@@ -1524,24 +2100,54 @@ cyan
 
 antennaBall.position.set(
 0,
-2.72,
+2.64,
 0
 );
 
 
-robot.add(
-antennaBall
+
+robotParts.forEach(
+p => {
+
+p.castShadow =
+true;
+
+
+p.userData.homePosition =
+p.position.clone();
+
+
+p.userData.homeRotation =
+p.rotation.clone();
+
+}
 );
 
 
 
-robot.rotation.y =
--.12;
+/* =========================================================
+   CAMERA TARGETS
+========================================================= */
+
+let cameraTargetPosition =
+new THREE.Vector3(
+0,
+2.4,
+8
+);
+
+
+let cameraLookTarget =
+new THREE.Vector3(
+0,
+.5,
+-1
+);
 
 
 
 /* =========================================================
-   3D ANIMATION
+   ANIMATION STATES
 ========================================================= */
 
 let emotion =
@@ -1552,19 +2158,35 @@ let emotionStart =
 0;
 
 
-let exploding =
+let exploded =
 false;
 
 
-const explosion =
+let explosionParts =
 [];
 
 
+let doorOpening =
+false;
+
+
+let doorOpenAmount =
+0;
+
+
+
+/* =========================================================
+   RESET ROBOT
+========================================================= */
 
 function resetRobot(){
 
-exploding =
+exploded =
 false;
+
+
+explosionParts =
+[];
 
 
 emotion =
@@ -1573,14 +2195,14 @@ emotion =
 
 robot.position.set(
 0,
-0,
-0
+-.15,
+1.2
 );
 
 
 robot.rotation.set(
 0,
--.12,
+0,
 0
 );
 
@@ -1593,35 +2215,35 @@ robot.scale.set(
 
 
 robotParts.forEach(
-part => {
+p => {
 
-part.position.copy(
-part.userData.homePosition
+p.position.copy(
+p.userData.homePosition
 );
 
 
-part.rotation.copy(
-part.userData.homeRotation
+p.rotation.copy(
+p.userData.homeRotation
 );
 
 
-part.visible =
+p.visible =
 true;
 
 }
 );
 
 
-eyeLeft.scale.set(
+eyeL.scale.set(
 1,
-1.35,
+1.4,
 1
 );
 
 
-eyeRight.scale.set(
+eyeR.scale.set(
 1,
-1.35,
+1.4,
 1
 );
 
@@ -1632,11 +2254,18 @@ mouth.scale.set(
 1
 );
 
+
+cyanLight.color.set(
+0x22d3ee
+);
+
 }
 
 
 
-/* EMOTION */
+/* =========================================================
+   EMOTION ANIMATION
+========================================================= */
 
 function playEmotion(
 type
@@ -1651,61 +2280,6 @@ type;
 
 emotionStart =
 performance.now();
-
-}
-
-
-
-/* EXPLOSION */
-
-function explodeRobot(){
-
-resetRobot();
-
-
-exploding =
-true;
-
-
-explosion.length =
-0;
-
-
-robotParts.forEach(
-part => {
-
-
-explosion.push({
-
-part:part,
-
-velocity:
-new THREE.Vector3(
-
-( Math.random() - .5 ) * .08,
-
-Math.random() * .06 + .03,
-
-( Math.random() - .5 ) * .05
-
-),
-
-rotation:
-new THREE.Vector3(
-
-Math.random() * .12,
-
-Math.random() * .12,
-
-Math.random() * .12
-
-)
-
-});
-
-
-}
-);
 
 }
 
@@ -1727,7 +2301,7 @@ const t =
 time -
 emotionStart
 )
-/ 1000;
+/1000;
 
 
 
@@ -1737,39 +2311,30 @@ emotion ===
 ){
 
 robot.position.y =
+-.15 +
 Math.abs(
 Math.sin(
-t * 8
+t * 7
 )
 )
 *
 .55;
 
 
+armL.rotation.z =
+-.8;
+
+
+armR.rotation.z =
+.8;
+
+
 robot.rotation.z =
 Math.sin(
-t * 9
+t * 8
 )
 *
 .12;
-
-
-armLeft.rotation.z =
--.7 -
-Math.sin(
-t * 7
-)
-*
-.25;
-
-
-armRight.rotation.z =
-.7 +
-Math.sin(
-t * 7
-)
-*
-.25;
 
 }
 
@@ -1785,32 +2350,28 @@ Math.sin(
 t * 35
 )
 *
-.12;
+.11;
 
 
 robot.rotation.z =
 Math.sin(
-t * 30
+t * 32
 )
 *
-.05;
+.06;
 
 
-eyeLeft.rotation.z =
+cyanLight.color.set(
+0xef4444
+);
+
+
+eyeL.rotation.z =
 -.35;
 
 
-eyeRight.rotation.z =
+eyeR.rotation.z =
 .35;
-
-
-mouth.rotation.z =
-Math.PI;
-
-
-blueLight.color.set(
-0xff0000
-);
 
 }
 
@@ -1830,11 +2391,12 @@ t * 45
 
 
 robot.position.y =
+-.15 +
 Math.sin(
-t * 35
+t * 40
 )
 *
-.05;
+.04;
 
 
 robot.scale.set(
@@ -1852,7 +2414,7 @@ emotion ===
 "surprised"
 ){
 
-const size =
+const s =
 1 +
 Math.abs(
 Math.sin(
@@ -1860,33 +2422,33 @@ t * 6
 )
 )
 *
-.22;
+.2;
 
 
 robot.scale.set(
-size,
-size,
-size
+s,
+s,
+s
 );
 
 
-eyeLeft.scale.set(
-1.4,
-1.8,
-1.4
+eyeL.scale.set(
+1.5,
+1.9,
+1.5
 );
 
 
-eyeRight.scale.set(
-1.4,
-1.8,
-1.4
+eyeR.scale.set(
+1.5,
+1.9,
+1.5
 );
 
 
 mouth.scale.set(
 .45,
-2.2,
+2,
 1
 );
 
@@ -1900,18 +2462,18 @@ emotion ===
 ){
 
 robot.position.y =
--.18;
+-.35;
 
 
 head.rotation.z =
 -.12;
 
 
-armLeft.rotation.z =
+armL.rotation.z =
 .25;
 
 
-armRight.rotation.z =
+armR.rotation.z =
 -.25;
 
 
@@ -1932,10 +2494,10 @@ robot.rotation.z =
 
 
 head.rotation.y =
--.45;
+-.4;
 
 
-blueLight.color.set(
+cyanLight.color.set(
 0x22c55e
 );
 
@@ -1949,19 +2511,12 @@ emotion ===
 ){
 
 robot.position.y =
+-.15 +
 Math.sin(
 t * 2
 )
 *
-.04;
-
-
-robot.rotation.z =
-Math.sin(
-t * 1.8
-)
-*
-.02;
+.03;
 
 }
 
@@ -1973,11 +2528,10 @@ emotion ===
 ){
 
 robot.position.y =
-.1;
+-.05;
 
 
 robot.rotation.y =
--.12 +
 Math.sin(
 t * 2
 )
@@ -1985,12 +2539,12 @@ t * 2
 .15;
 
 
-armLeft.rotation.z =
--.5;
+armL.rotation.z =
+-.55;
 
 
-armRight.rotation.z =
-.5;
+armR.rotation.z =
+.55;
 
 
 robot.scale.set(
@@ -2005,22 +2559,95 @@ robot.scale.set(
 
 
 
-/* EXPLOSION PHYSICS */
+/* =========================================================
+   ROBOT EXPLOSION
+========================================================= */
+
+function explodeRobot(){
+
+resetRobot();
+
+
+exploded =
+true;
+
+
+explosionParts =
+[];
+
+
+robotParts.forEach(
+p => {
+
+explosionParts.push({
+
+part:p,
+
+velocity:
+new THREE.Vector3(
+
+(
+Math.random()
+-
+.5
+)
+*
+.1,
+
+Math.random()
+*
+.08
++
+.03,
+
+(
+Math.random()
+-
+.5
+)
+*
+.08
+
+),
+
+spin:
+new THREE.Vector3(
+
+Math.random()
+*
+.18,
+
+Math.random()
+*
+.18,
+
+Math.random()
+*
+.18
+
+)
+
+});
+
+});
+
+}
+
+
 
 function updateExplosion(){
 
 if(
-!exploding
+!exploded
 )
 return;
 
 
-explosion.forEach(
+explosionParts.forEach(
 item => {
 
-
 item.velocity.y -=
-.0025;
+.003;
 
 
 item.part.position.add(
@@ -2029,18 +2656,141 @@ item.velocity
 
 
 item.part.rotation.x +=
-item.rotation.x;
+item.spin.x;
 
 
 item.part.rotation.y +=
-item.rotation.y;
+item.spin.y;
 
 
 item.part.rotation.z +=
-item.rotation.z;
+item.spin.z;
 
+});
 
 }
+
+
+
+/* =========================================================
+   DOOR ANIMATION
+========================================================= */
+
+function resetDoor(){
+
+doorOpening =
+false;
+
+
+doorOpenAmount =
+0;
+
+
+doorLeft.rotation.y =
+0;
+
+
+doorRight.rotation.y =
+0;
+
+
+doorLeft.position.x =
+-.8;
+
+
+doorRight.position.x =
+.8;
+
+}
+
+
+
+function openDoor(){
+
+doorOpening =
+true;
+
+
+doorOpenAmount =
+0;
+
+}
+
+
+
+function updateDoor(){
+
+if(
+!doorOpening
+)
+return;
+
+
+doorOpenAmount +=
+.025;
+
+
+doorLeft.rotation.y =
+-Math.min(
+doorOpenAmount,
+1.35
+);
+
+
+doorRight.rotation.y =
+Math.min(
+doorOpenAmount,
+1.35
+);
+
+
+doorLeft.position.x =
+-.8 -
+Math.min(
+doorOpenAmount,
+1
+)
+*
+.45;
+
+
+doorRight.position.x =
+.8 +
+Math.min(
+doorOpenAmount,
+1
+)
+*
+.45;
+
+}
+
+
+
+/* =========================================================
+   CAMERA WALK
+========================================================= */
+
+function walkForward(){
+
+cameraTargetPosition.set(
+0,
+2.2,
+4.8
+);
+
+
+setTimeout(
+() => {
+
+cameraTargetPosition.set(
+0,
+2.4,
+8
+);
+
+},
+900
 );
 
 }
@@ -2051,7 +2801,7 @@ item.rotation.z;
    RENDER LOOP
 ========================================================= */
 
-function resizeRenderer(){
+function resize(){
 
 const box =
 canvas.getBoundingClientRect();
@@ -2084,25 +2834,29 @@ animate
 );
 
 
-resizeRenderer();
+resize();
 
 
-if(
-!exploding
-){
+camera.position.lerp(
+cameraTargetPosition,
+.045
+);
+
+
+camera.lookAt(
+cameraLookTarget
+);
+
 
 updateEmotion(
 time
 );
 
-}
-
 
 updateExplosion();
 
 
-robot.rotation.y +=
-0.001;
+updateDoor();
 
 
 renderer.render(
@@ -2120,12 +2874,12 @@ animate
 
 
 /* =========================================================
-   GAME FUNCTIONS
+   ANALYTICS
 ========================================================= */
 
 function track(
-name,
-parameters={}
+event,
+params={}
 ){
 
 if(
@@ -2135,8 +2889,8 @@ typeof gtag ===
 
 gtag(
 "event",
-name,
-parameters
+event,
+params
 );
 
 }
@@ -2144,6 +2898,10 @@ parameters
 }
 
 
+
+/* =========================================================
+   GAME
+========================================================= */
 
 function startGame(){
 
@@ -2163,13 +2921,23 @@ lives =
 3;
 
 
-locked =
-false;
+gameRunning =
+true;
 
 
 document
 .getElementById(
 "startScreen"
+)
+.classList
+.add(
+"hidden"
+);
+
+
+document
+.getElementById(
+"levelScreen"
 )
 .classList
 .add(
@@ -2189,17 +2957,7 @@ document
 
 document
 .getElementById(
-"levelCompleteScreen"
-)
-.classList
-.add(
-"hidden"
-);
-
-
-document
-.getElementById(
-"gameScreen"
+"questionPanel"
 )
 .classList
 .remove(
@@ -2212,13 +2970,13 @@ track(
 );
 
 
-renderDoor();
+loadDoor();
 
 }
 
 
 
-function renderDoor(){
+function loadDoor(){
 
 locked =
 false;
@@ -2227,19 +2985,21 @@ false;
 resetRobot();
 
 
-blueLight.color.set(
-0x22d3ee
+resetDoor();
+
+
+cameraTargetPosition.set(
+0,
+2.4,
+8
 );
 
 
-const level =
+const item =
 levels[
 currentLevel
-];
-
-
-const item =
-level.questions[
+]
+.questions[
 currentDoor
 ];
 
@@ -2298,20 +3058,19 @@ document
 "";
 
 
-const choices =
+const choiceBox =
 document
 .getElementById(
 "choices"
 );
 
 
-choices.innerHTML =
+choiceBox.innerHTML =
 "";
 
 
 item.answers.forEach(
 (answer,index) => {
-
 
 const button =
 document.createElement(
@@ -2330,20 +3089,18 @@ index
 );
 
 
-choices.appendChild(
+choiceBox.appendChild(
 button
 );
 
-
-}
-);
+});
 
 }
 
 
 
 function disableButtons(
-value
+state
 ){
 
 document
@@ -2351,10 +3108,12 @@ document
 "#choices button"
 )
 .forEach(
-button =>
+button => {
+
 button.disabled =
-value
-);
+state;
+
+});
 
 }
 
@@ -2395,6 +3154,9 @@ document
 );
 
 
+
+/* CORRECT */
+
 if(
 index ===
 item.correct
@@ -2410,7 +3172,7 @@ item.emotion
 
 
 feedback.textContent =
-"✅ Correct!";
+"✅ Correct! Door unlocked!";
 
 
 track(
@@ -2441,11 +3203,25 @@ document
 setTimeout(
 () => {
 
+openDoor();
 
-blueLight.color.set(
-0x22d3ee
+},
+800
 );
 
+
+setTimeout(
+() => {
+
+walkForward();
+
+},
+1300
+);
+
+
+setTimeout(
+() => {
 
 currentDoor++;
 
@@ -2455,23 +3231,25 @@ currentDoor >=
 5
 ){
 
-levelFinished();
+completeLevel();
 
 }
 
 else{
 
-renderDoor();
+loadDoor();
 
 }
 
-
 },
-1800
+2400
 );
 
 }
 
+
+
+/* WRONG */
 
 else
 {
@@ -2480,7 +3258,7 @@ lives--;
 
 
 feedback.textContent =
-"💥 Wrong answer! Robo broke apart!";
+"💥 Wrong! Robo broke into pieces!";
 
 
 document
@@ -2520,11 +3298,14 @@ lives <=
 ){
 
 setTimeout(
-() =>
+() => {
+
 finishGame(
 false
-),
-1900
+);
+
+},
+2000
 );
 
 }
@@ -2534,7 +3315,6 @@ else
 
 setTimeout(
 () => {
-
 
 resetRobot();
 
@@ -2551,9 +3331,8 @@ false
 locked =
 false;
 
-
 },
-1800
+1900
 );
 
 }
@@ -2564,11 +3343,15 @@ false;
 
 
 
-function levelFinished(){
+/* =========================================================
+   LEVEL COMPLETE
+========================================================= */
+
+function completeLevel(){
 
 document
 .getElementById(
-"gameScreen"
+"questionPanel"
 )
 .classList
 .add(
@@ -2578,7 +3361,7 @@ document
 
 if(
 currentLevel ===
-levels.length - 1
+4
 ){
 
 finishGame(
@@ -2593,7 +3376,7 @@ return;
 
 document
 .getElementById(
-"levelCompleteScreen"
+"levelScreen"
 )
 .classList
 .remove(
@@ -2603,7 +3386,7 @@ document
 
 document
 .getElementById(
-"levelCompleteTitle"
+"levelTitle"
 )
 .textContent =
 `Level ${currentLevel + 1} Complete!`;
@@ -2611,10 +3394,17 @@ document
 
 document
 .getElementById(
-"levelCompleteText"
+"levelMessage"
 )
-.textContent =
-`You unlocked all five doors in ${levels[currentLevel].name}. Now continue to Level ${currentLevel + 2}!`;
+.innerHTML =
+`
+You unlocked all five doors in
+<span class="level-name">
+${levels[currentLevel].name}
+</span>.
+<br><br>
+Now enter Level ${currentLevel + 2}.
+`;
 
 
 track(
@@ -2631,6 +3421,10 @@ currentLevel + 1
 
 
 
+/* =========================================================
+   NEXT LEVEL
+========================================================= */
+
 function nextLevel(){
 
 currentLevel++;
@@ -2642,7 +3436,7 @@ currentDoor =
 
 document
 .getElementById(
-"levelCompleteScreen"
+"levelScreen"
 )
 .classList
 .add(
@@ -2652,7 +3446,7 @@ document
 
 document
 .getElementById(
-"gameScreen"
+"questionPanel"
 )
 .classList
 .remove(
@@ -2660,11 +3454,15 @@ document
 );
 
 
-renderDoor();
+loadDoor();
 
 }
 
 
+
+/* =========================================================
+   END GAME
+========================================================= */
 
 function finishGame(
 win
@@ -2672,7 +3470,7 @@ win
 
 document
 .getElementById(
-"gameScreen"
+"questionPanel"
 )
 .classList
 .add(
@@ -2682,7 +3480,7 @@ document
 
 document
 .getElementById(
-"levelCompleteScreen"
+"levelScreen"
 )
 .classList
 .add(
@@ -2726,13 +3524,17 @@ win
 
 document
 .getElementById(
-"endText"
+"endMessage"
 )
 .textContent =
 win
+
 ?
-`Amazing! You completed all 5 levels and unlocked all 25 doors. Final score: ${score}.`
+
+`You completed all five levels and unlocked all 25 doors! Final score: ${score}.`
+
 :
+
 `Robo ran out of lives at Level ${currentLevel + 1}, Door ${currentDoor + 1}. Final score: ${score}.`;
 
 
@@ -2748,7 +3550,10 @@ win
 "lose",
 
 score:
-score
+score,
+
+level:
+currentLevel + 1
 
 }
 );
@@ -2759,4 +3564,5 @@ score
 </script>
 
 </body>
+
 </html>
