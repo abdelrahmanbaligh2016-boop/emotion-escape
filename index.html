@@ -1,1583 +1,213 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 
-<!-- Google Analytics -->
+<!-- GOOGLE ANALYTICS -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DNR89J5R6"></script>
-
 <script>
 window.dataLayer = window.dataLayer || [];
-
-function gtag() {
-    dataLayer.push(arguments);
-}
-
-gtag('js', new Date());
-gtag('config', 'G-1DNR89J5R6');
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-1DNR89J5R6");
 </script>
 
-
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1"
->
-
-<title>
-Emotion Escape - Free Online Robot Emotion Game
-</title>
+<title>Emotion Escape - 3D Robot Emotion Game</title>
 
 <meta
 name="description"
-content="Play Emotion Escape, a fun online game where you help Robo understand emotions, unlock doors, complete five levels, and escape the Emotion Lab."
+content="Play Emotion Escape, a 3D robot emotion game with five levels and twenty-five doors."
 >
 
-<link
-rel="icon"
-type="image/png"
-href="favicon.png"
->
-
+<link rel="icon" type="image/png" href="favicon.png">
 
 <style>
 
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
-
 
 body {
-
-    margin: 0;
-
-    min-height: 100vh;
-
-    font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
-
-    color: white;
-
+    margin:0;
+    min-height:100vh;
+    font-family:Arial, Helvetica, sans-serif;
     background:
-    linear-gradient(
-        135deg,
-        #0f172a,
-        #1e293b,
-        #1e3a8a
-    );
-
-    display: grid;
-
-    place-items: center;
-
-    padding: 20px;
-
+        linear-gradient(
+            135deg,
+            #020617,
+            #111827,
+            #172554
+        );
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:18px;
 }
-
 
 .game {
-
-    width:
-    min(
-        980px,
-        96vw
-    );
-
-    min-height:
-    680px;
-
-    background:
-    #0f172a;
-
-    border:
-    2px solid #334155;
-
-    border-radius:
-    26px;
-
-    overflow:
-    hidden;
-
+    width:min(1000px,96vw);
+    background:#0f172a;
+    border:2px solid #334155;
+    border-radius:25px;
+    overflow:hidden;
     box-shadow:
-    0 22px 70px
-    rgba(
-        0,
-        0,
-        0,
-        .45
-    );
-
+        0 25px 80px rgba(0,0,0,.55);
 }
-
 
 header {
-
-    display:
-    flex;
-
-    justify-content:
-    space-between;
-
-    align-items:
-    center;
-
-    gap:
-    16px;
-
-    padding:
-    18px 24px;
-
-    border-bottom:
-    1px solid #334155;
-
-    background:
-    #111827;
-
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:18px 24px;
+    background:#111827;
+    border-bottom:1px solid #334155;
 }
-
 
 h1 {
-
-    margin:
-    0;
-
-    font-size:
-    26px;
-
+    margin:0;
+    font-size:25px;
 }
-
 
 .stats {
-
-    display:
-    flex;
-
-    gap:
-    18px;
-
-    flex-wrap:
-    wrap;
-
-    font-weight:
-    bold;
-
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    font-weight:bold;
 }
-
 
 main {
-
-    padding:
-    26px;
-
+    padding:24px;
 }
-
 
 .scene {
-
-    min-height:
-    345px;
-
-    border-radius:
-    22px;
-
+    position:relative;
+    height:410px;
+    border-radius:22px;
+    overflow:hidden;
     background:
-    radial-gradient(
-        circle at top,
-        #334155,
-        #1e293b 55%,
-        #172033
-    );
-
-    display:
-    flex;
-
-    flex-direction:
-    column;
-
-    align-items:
-    center;
-
-    justify-content:
-    center;
-
-    text-align:
-    center;
-
-    padding:
-    28px;
-
-    overflow:
-    hidden;
-
+        radial-gradient(
+            circle at top,
+            #1e3a8a,
+            #0f172a 65%
+        );
 }
 
-
-.message {
-
-    font-size:
-    22px;
-
-    line-height:
-    1.45;
-
-    max-width:
-    760px;
-
-    margin-top:
-    22px;
-
+#robotCanvas {
+    width:100%;
+    height:100%;
+    display:block;
 }
 
-
-.submessage {
-
-    color:
-    #cbd5e1;
-
-    font-size:
-    16px;
-
-    margin-top:
-    8px;
-
+.question {
+    text-align:center;
+    font-size:22px;
+    line-height:1.45;
+    margin:22px auto 0;
+    max-width:820px;
 }
-
 
 .choices {
-
-    display:
-    grid;
-
-    grid-template-columns:
-    repeat(
-        2,
-        1fr
-    );
-
-    gap:
-    14px;
-
-    margin-top:
-    22px;
-
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+    margin-top:20px;
 }
-
 
 button {
-
-    border:
-    0;
-
-    border-radius:
-    15px;
-
-    padding:
-    16px 18px;
-
-    font-size:
-    17px;
-
-    font-weight:
-    bold;
-
-    cursor:
-    pointer;
-
-    background:
-    #e2e8f0;
-
-    color:
-    #0f172a;
-
-    transition:
-    transform .18s,
-    filter .18s;
-
+    border:none;
+    border-radius:15px;
+    padding:16px 18px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    background:#e2e8f0;
+    color:#0f172a;
+    transition:.2s;
 }
-
 
 button:hover {
-
-    transform:
-    translateY(
-        -2px
-    );
-
-    filter:
-    brightness(
-        1.03
-    );
-
+    transform:translateY(-2px);
 }
-
 
 button:disabled {
-
-    cursor:
-    not-allowed;
-
-    opacity:
-    .65;
-
+    opacity:.6;
+    cursor:not-allowed;
 }
-
 
 .primary {
-
-    background:
-    #38bdf8;
-
+    background:#38bdf8;
 }
 
-
-.next-level {
-
-    background:
-    #22c55e;
-
-    color:
-    #052e16;
-
+.next {
+    background:#22c55e;
+    color:#052e16;
 }
-
 
 .feedback {
-
-    min-height:
-    36px;
-
-    text-align:
-    center;
-
-    margin-top:
-    16px;
-
-    font-size:
-    18px;
-
-    font-weight:
-    bold;
-
+    text-align:center;
+    font-size:18px;
+    font-weight:bold;
+    min-height:30px;
+    margin-top:14px;
 }
-
-
-.footer {
-
-    text-align:
-    center;
-
-    color:
-    #94a3b8;
-
-    font-size:
-    13px;
-
-    margin-top:
-    18px;
-
-}
-
 
 .hidden {
-
-    display:
-    none !important;
-
+    display:none !important;
 }
 
-
-
-/* ROBOT */
-
-.robot-wrap {
-
-    position:
-    relative;
-
-    width:
-    180px;
-
-    height:
-    190px;
-
-    margin:
-    5px auto 0;
-
-    filter:
-    drop-shadow(
-        0 12px 14px
-        rgba(
-            0,
-            0,
-            0,
-            .28
-        )
-    );
-
-    transform-origin:
-    center;
-
+.center-screen {
+    min-height:440px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:35px;
 }
 
-
-.robot-part {
-
-    position:
-    absolute;
-
+.big {
+    font-size:72px;
 }
 
-
-.antenna {
-
-    width:
-    10px;
-
-    height:
-    34px;
-
-    background:
-    #cbd5e1;
-
-    left:
-    85px;
-
-    top:
-    0;
-
-    border-radius:
-    8px;
-
-    transform-origin:
-    bottom;
-
+.center-screen h2 {
+    font-size:34px;
+    margin:15px 0 5px;
 }
 
-
-.antenna::before {
-
-    content:
-    "";
-
-    position:
-    absolute;
-
-    width:
-    22px;
-
-    height:
-    22px;
-
-    border-radius:
-    50%;
-
-    background:
-    #38bdf8;
-
-    left:
-    -6px;
-
-    top:
-    -10px;
-
-    border:
-    4px solid #0f172a;
-
+.center-screen p {
+    font-size:20px;
+    color:#cbd5e1;
+    max-width:650px;
 }
 
-
-.head {
-
-    width:
-    136px;
-
-    height:
-    92px;
-
-    left:
-    22px;
-
-    top:
-    34px;
-
-    border-radius:
-    34px;
-
-    background:
-    linear-gradient(
-        #f8fafc,
-        #cbd5e1
-    );
-
-    border:
-    5px solid #0f172a;
-
+.footer {
+    text-align:center;
+    color:#94a3b8;
+    font-size:13px;
+    margin-top:20px;
 }
 
-
-.face {
-
-    position:
-    absolute;
-
-    width:
-    104px;
-
-    height:
-    58px;
-
-    left:
-    11px;
-
-    top:
-    12px;
-
-    border-radius:
-    22px;
-
-    background:
-    #020617;
-
-}
-
-
-.eye {
-
-    position:
-    absolute;
-
-    width:
-    18px;
-
-    height:
-    23px;
-
-    top:
-    15px;
-
-    border-radius:
-    50%;
-
-    background:
-    #22d3ee;
-
-    box-shadow:
-    0 0 10px #22d3ee;
-
-}
-
-
-.eye.left {
-
-    left:
-    23px;
-
-}
-
-
-.eye.right {
-
-    right:
-    23px;
-
-}
-
-
-.mouth {
-
-    position:
-    absolute;
-
-    width:
-    38px;
-
-    height:
-    12px;
-
-    left:
-    33px;
-
-    top:
-    39px;
-
-    border-bottom:
-    6px solid #22d3ee;
-
-    border-radius:
-    0 0 30px 30px;
-
-}
-
-
-.body {
-
-    width:
-    94px;
-
-    height:
-    68px;
-
-    left:
-    43px;
-
-    top:
-    116px;
-
-    border-radius:
-    18px 18px 26px 26px;
-
-    background:
-    linear-gradient(
-        #f8fafc,
-        #cbd5e1
-    );
-
-    border:
-    5px solid #0f172a;
-
-}
-
-
-.heart {
-
-    position:
-    absolute;
-
-    left:
-    28px;
-
-    top:
-    15px;
-
-    font-size:
-    30px;
-
-}
-
-
-.arm {
-
-    width:
-    34px;
-
-    height:
-    62px;
-
-    top:
-    121px;
-
-    border-radius:
-    18px;
-
-    background:
-    linear-gradient(
-        #f8fafc,
-        #94a3b8
-    );
-
-    border:
-    5px solid #0f172a;
-
-    transform-origin:
-    top center;
-
-}
-
-
-.arm.left {
-
-    left:
-    9px;
-
-}
-
-
-.arm.right {
-
-    right:
-    9px;
-
-}
-
-
-.foot {
-
-    width:
-    40px;
-
-    height:
-    18px;
-
-    top:
-    174px;
-
-    border-radius:
-    14px;
-
-    background:
-    #64748b;
-
-    border:
-    4px solid #0f172a;
-
-}
-
-
-.foot.left {
-
-    left:
-    48px;
-
-}
-
-
-.foot.right {
-
-    right:
-    48px;
-
-}
-
-
-
-/* EMOTION FACES */
-
-.robot-wrap.happy .mouth {
-
-    width:
-    42px;
-
-    height:
-    18px;
-
-    left:
-    31px;
-
-    top:
-    34px;
-
-    border-bottom:
-    7px solid #22d3ee;
-
-    border-radius:
-    0 0 40px 40px;
-
-}
-
-
-.robot-wrap.angry .eye.left {
-
-    transform:
-    rotate(
-        18deg
-    );
-
-}
-
-
-.robot-wrap.angry .eye.right {
-
-    transform:
-    rotate(
-        -18deg
-    );
-
-}
-
-
-.robot-wrap.angry .mouth {
-
-    width:
-    38px;
-
-    height:
-    12px;
-
-    left:
-    33px;
-
-    top:
-    42px;
-
-    border-bottom:
-    0;
-
-    border-top:
-    6px solid #fb7185;
-
-    border-radius:
-    30px 30px 0 0;
-
-}
-
-
-.robot-wrap.afraid .eye {
-
-    width:
-    23px;
-
-    height:
-    30px;
-
-    top:
-    11px;
-
-}
-
-
-.robot-wrap.afraid .mouth {
-
-    width:
-    22px;
-
-    height:
-    22px;
-
-    left:
-    41px;
-
-    top:
-    34px;
-
-    border:
-    5px solid #22d3ee;
-
-    border-radius:
-    50%;
-
-}
-
-
-.robot-wrap.disgusted .mouth {
-
-    width:
-    38px;
-
-    height:
-    11px;
-
-    left:
-    33px;
-
-    top:
-    43px;
-
-    border-bottom:
-    0;
-
-    border-top:
-    6px solid #4ade80;
-
-    transform:
-    rotate(
-        -12deg
-    );
-
-}
-
-
-.robot-wrap.surprised .eye {
-
-    width:
-    24px;
-
-    height:
-    30px;
-
-    top:
-    11px;
-
-}
-
-
-.robot-wrap.surprised .mouth {
-
-    width:
-    22px;
-
-    height:
-    22px;
-
-    left:
-    41px;
-
-    top:
-    34px;
-
-    border:
-    5px solid #22d3ee;
-
-    border-radius:
-    50%;
-
-}
-
-
-.robot-wrap.sad .mouth {
-
-    width:
-    38px;
-
-    height:
-    11px;
-
-    left:
-    33px;
-
-    top:
-    43px;
-
-    border-bottom:
-    0;
-
-    border-top:
-    6px solid #60a5fa;
-
-    border-radius:
-    30px 30px 0 0;
-
-}
-
-
-
-/* CORRECT ANSWER ANIMATIONS */
-
-.robot-wrap.anim-happy {
-
-    animation:
-    happy .25s ease-in-out 5;
-
-}
-
-
-@keyframes happy {
-
-    0%,
-    100% {
-
-        transform:
-        translateY(
-            0
-        )
-        rotate(
-            0
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        translateY(
-            -25px
-        )
-        rotate(
-            7deg
-        );
-
-    }
-
-}
-
-
-.robot-wrap.anim-angry {
-
-    animation:
-    angry .1s linear 12;
-
-    filter:
-    drop-shadow(
-        0 0 18px #ef4444
-    );
-
-}
-
-
-@keyframes angry {
-
-    0% {
-
-        transform:
-        translateX(
-            -9px
-        )
-        rotate(
-            -5deg
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        translateX(
-            9px
-        )
-        rotate(
-            5deg
-        );
-
-    }
-
-
-    100% {
-
-        transform:
-        translateX(
-            -9px
-        )
-        rotate(
-            -5deg
-        );
-
-    }
-
-}
-
-
-.robot-wrap.anim-afraid {
-
-    animation:
-    afraid .08s linear 14;
-
-}
-
-
-@keyframes afraid {
-
-    0% {
-
-        transform:
-        translate(
-            -5px,
-            0
-        )
-        scale(
-            .96
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        translate(
-            5px,
-            -3px
-        )
-        scale(
-            .9
-        );
-
-    }
-
-
-    100% {
-
-        transform:
-        translate(
-            -5px,
-            0
-        )
-        scale(
-            .96
-        );
-
-    }
-
-}
-
-
-.robot-wrap.anim-disgusted {
-
-    animation:
-    disgusted .3s ease-in-out 4;
-
-    filter:
-    drop-shadow(
-        0 0 16px #22c55e
-    );
-
-}
-
-
-@keyframes disgusted {
-
-    0%,
-    100% {
-
-        transform:
-        rotate(
-            0
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        translateX(
-            -15px
-        )
-        rotate(
-            -15deg
-        );
-
-    }
-
-}
-
-
-.robot-wrap.anim-surprised {
-
-    animation:
-    surprised .32s ease 4;
-
-}
-
-
-@keyframes surprised {
-
-    0%,
-    100% {
-
-        transform:
-        scale(
-            1
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        scale(
-            1.25
-        )
-        translateY(
-            -10px
-        );
-
-    }
-
-}
-
-
-.robot-wrap.anim-sad {
-
-    animation:
-    sad .75s ease-in-out 2;
-
-}
-
-
-@keyframes sad {
-
-    0%,
-    100% {
-
-        transform:
-        translateY(
-            0
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        translateY(
-            22px
-        )
-        rotate(
-            -8deg
-        )
-        scale(
-            .92
-        );
-
-    }
-
-}
-
-
-.robot-wrap.anim-calm {
-
-    animation:
-    calm 1s ease-in-out 2;
-
-}
-
-
-@keyframes calm {
-
-    0%,
-    100% {
-
-        transform:
-        scale(
-            1
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        scale(
-            .96
-        );
-
-    }
-
-}
-
-
-.robot-wrap.anim-proud {
-
-    animation:
-    proud .45s ease 3;
-
-}
-
-
-@keyframes proud {
-
-    0%,
-    100% {
-
-        transform:
-        scale(
-            1
-        )
-        rotate(
-            0
-        );
-
-    }
-
-
-    50% {
-
-        transform:
-        scale(
-            1.15
-        )
-        rotate(
-            3deg
-        );
-
-    }
-
-}
-
-
-
-/* WRONG ANSWER - ROBOT FALLS APART */
-
-.robot-wrap.breaking .head {
-
-    animation:
-    fallHead .95s ease-in forwards;
-
-}
-
-
-.robot-wrap.breaking .body {
-
-    animation:
-    fallBody .95s ease-in forwards;
-
-}
-
-
-.robot-wrap.breaking .arm.left {
-
-    animation:
-    fallLeft .95s ease-in forwards;
-
-}
-
-
-.robot-wrap.breaking .arm.right {
-
-    animation:
-    fallRight .95s ease-in forwards;
-
-}
-
-
-.robot-wrap.breaking .antenna {
-
-    animation:
-    fallAntenna .95s ease-in forwards;
-
-}
-
-
-.robot-wrap.breaking .foot.left {
-
-    animation:
-    fallFootLeft .95s ease-in forwards;
-
-}
-
-
-.robot-wrap.breaking .foot.right {
-
-    animation:
-    fallFootRight .95s ease-in forwards;
-
-}
-
-
-@keyframes fallHead {
-
-    to {
-
-        transform:
-        translate(
-            -48px,
-            150px
-        )
-        rotate(
-            -75deg
-        );
-
-        opacity:
-        .12;
-
-    }
-
-}
-
-
-@keyframes fallBody {
-
-    to {
-
-        transform:
-        translate(
-            20px,
-            170px
-        )
-        rotate(
-            25deg
-        );
-
-        opacity:
-        .12;
-
-    }
-
-}
-
-
-@keyframes fallLeft {
-
-    to {
-
-        transform:
-        translate(
-            -75px,
-            150px
-        )
-        rotate(
-            -120deg
-        );
-
-        opacity:
-        .12;
-
-    }
-
-}
-
-
-@keyframes fallRight {
-
-    to {
-
-        transform:
-        translate(
-            75px,
-            150px
-        )
-        rotate(
-            120deg
-        );
-
-        opacity:
-        .12;
-
-    }
-
-}
-
-
-@keyframes fallAntenna {
-
-    to {
-
-        transform:
-        translate(
-            85px,
-            135px
-        )
-        rotate(
-            150deg
-        );
-
-        opacity:
-        .12;
-
-    }
-
-}
-
-
-@keyframes fallFootLeft {
-
-    to {
-
-        transform:
-        translate(
-            -45px,
-            105px
-        )
-        rotate(
-            -55deg
-        );
-
-        opacity:
-        .12;
-
-    }
-
-}
-
-
-@keyframes fallFootRight {
-
-    to {
-
-        transform:
-        translate(
-            45px,
-            105px
-        )
-        rotate(
-            55deg
-        );
-
-        opacity:
-        .12;
-
-    }
-
-}
-
-
-.level-card {
-
-    max-width:
-    620px;
-
-    width:
-    100%;
-
-    margin:
-    auto;
-
-    padding:
-    28px;
-
-    border-radius:
-    22px;
-
-    background:
-    rgba(
-        15,
-        23,
-        42,
-        .72
-    );
-
-    border:
-    1px solid #475569;
-
-}
-
-
-.level-card h2 {
-
-    font-size:
-    34px;
-
-    margin:
-    0 0 10px;
-
-}
-
-
-.level-card p {
-
-    font-size:
-    19px;
-
-    color:
-    #cbd5e1;
-
-}
-
-
-.big-icon {
-
-    font-size:
-    76px;
-
-    margin-bottom:
-    8px;
-
-}
-
-
-@media(max-width:680px) {
+@media(max-width:700px) {
 
     header {
-
-        align-items:
-        flex-start;
-
-        flex-direction:
-        column;
-
+        flex-direction:column;
+        align-items:flex-start;
     }
-
 
     .choices {
-
-        grid-template-columns:
-        1fr;
-
+        grid-template-columns:1fr;
     }
 
+    .scene {
+        height:350px;
+    }
 
-    .message {
-
-        font-size:
-        19px;
-
+    .question {
+        font-size:19px;
     }
 
 }
@@ -1586,19 +216,13 @@ button:disabled {
 
 </head>
 
-
 <body>
-
 
 <div class="game">
 
-
 <header>
 
-<h1>
-🤖 Emotion Escape
-</h1>
-
+<h1>🤖 Emotion Escape 3D</h1>
 
 <div class="stats">
 
@@ -1623,136 +247,63 @@ Score: 0
 </header>
 
 
-
 <main>
 
 
+<!-- START SCREEN -->
 
 <section id="startScreen">
 
+<div class="center-screen">
 
-<div class="scene">
-
-
-<div class="big-icon">
+<div class="big">
 🤖🚪
 </div>
 
+<h2>
+Emotion Escape
+</h2>
 
-<div class="message">
+<p>
+Help the 3D robot understand emotions,
+unlock all 25 doors and escape the Emotion Lab.
+</p>
 
-The Emotion Lab has locked down.
-
-Help Robo understand emotions,
-unlock all 25 doors,
-and escape!
-
-</div>
-
-
-<div class="submessage">
-
-5 levels • 5 doors in each level
-
-</div>
-
-
-</div>
-
-
-<div class="choices">
+<p>
+5 Levels • 5 Doors Each
+</p>
 
 <button
 class="primary"
 onclick="startGame()"
 >
-
 Start Game
-
 </button>
 
 </div>
 
-
 </section>
 
 
+
+<!-- GAME -->
 
 <section
 id="gameScreen"
 class="hidden"
 >
 
-
 <div class="scene">
 
+<canvas id="robotCanvas"></canvas>
+
+</div>
 
 <div
-class="robot-wrap"
-id="robot"
->
-
-
-<div class="robot-part antenna">
-</div>
-
-
-<div class="robot-part head">
-
-<div class="face">
-
-<div class="eye left">
-</div>
-
-<div class="eye right">
-</div>
-
-<div class="mouth">
-</div>
-
-</div>
-
-</div>
-
-
-<div class="robot-part arm left">
-</div>
-
-
-<div class="robot-part arm right">
-</div>
-
-
-<div class="robot-part body">
-
-<div class="heart">
-💙
-</div>
-
-</div>
-
-
-<div class="robot-part foot left">
-</div>
-
-
-<div class="robot-part foot right">
-</div>
-
-
-</div>
-
-
-<div
-class="message"
+class="question"
 id="question"
 >
 </div>
-
-
-</div>
-
-
 
 <div
 class="choices"
@@ -1760,920 +311,1841 @@ id="choices"
 >
 </div>
 
-
 <div
 class="feedback"
 id="feedback"
 >
 </div>
 
-
 </section>
 
 
+
+<!-- LEVEL COMPLETE -->
 
 <section
 id="levelCompleteScreen"
 class="hidden"
 >
 
+<div class="center-screen">
 
-<div class="scene">
-
-
-<div class="level-card">
-
-
-<div class="big-icon">
+<div class="big">
 🎉🚪
 </div>
 
-
 <h2 id="levelCompleteTitle">
-
 Level Complete!
-
 </h2>
-
 
 <p id="levelCompleteText">
 </p>
 
-
 <button
-class="next-level"
+class="next"
 onclick="nextLevel()"
 >
-
 Next Level ▶
-
 </button>
 
-
 </div>
-
-
-</div>
-
 
 </section>
 
 
+
+<!-- END -->
 
 <section
 id="endScreen"
 class="hidden"
 >
 
-
-<div class="scene">
-
-
-<div class="level-card">
-
+<div class="center-screen">
 
 <div
-class="big-icon"
+class="big"
 id="endIcon"
 >
-
 🏆🤖
-
 </div>
 
-
 <h2 id="endTitle">
-
 Emotion Lab Escaped!
-
 </h2>
-
 
 <p id="endText">
 </p>
-
 
 <button
 class="primary"
 onclick="startGame()"
 >
-
 Play Again
-
 </button>
 
-
 </div>
-
-
-</div>
-
 
 </section>
 
 
-
 <div class="footer">
-
-Emotion Escape • 5 Levels • 25 Doors • Robot Emotion Challenge
-
+Emotion Escape • 3D Robot • 5 Levels • 25 Doors
 </div>
-
 
 </main>
 
-
 </div>
 
+
+<!-- THREE.JS -->
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 
 <script>
 
+/* =========================================================
+   QUESTIONS
+========================================================= */
 
 const levels = [
 
 
 {
+name:"Emotion Basics",
 
-name:
-"Emotion Basics",
-
-
-questions: [
-
+questions:[
 
 {
-
-q:
-"Your best friend surprises you with a birthday gift. How would Robo probably feel?",
-
-answers:
-[
+q:"Your best friend surprises you with a birthday gift. How would Robo probably feel?",
+answers:[
 "Happy 😄",
 "Angry 😠",
 "Afraid 😨",
 "Disgusted 🤢"
 ],
-
-correct:
-0,
-
-emotion:
-"happy",
-
-good:
-"Correct! Robo feels happy!"
-
+correct:0,
+emotion:"happy"
 },
 
-
 {
-
-q:
-"Robo hears a loud unknown noise in a dark room. What emotion fits best?",
-
-answers:
-[
+q:"Robo hears a loud unknown noise in a dark room. What emotion fits best?",
+answers:[
 "Surprised 😲",
 "Happy 😄",
 "Calm 😌",
 "Proud 😎"
 ],
-
-correct:
-0,
-
-emotion:
-"surprised",
-
-good:
-"Correct! Robo is surprised!"
-
+correct:0,
+emotion:"surprised"
 },
 
-
 {
-
-q:
-"Someone breaks Robo's favorite invention on purpose. How might Robo feel?",
-
-answers:
-[
+q:"Someone breaks Robo's favorite invention on purpose. How might Robo feel?",
+answers:[
 "Angry 😠",
 "Happy 😄",
-"Relaxed 😌",
+"Calm 😌",
 "Excited 🤩"
 ],
-
-correct:
-0,
-
-emotion:
-"angry",
-
-good:
-"Correct! Robo feels angry!"
-
+correct:0,
+emotion:"angry"
 },
 
-
 {
-
-q:
-"Robo loses an important competition after trying very hard. How might Robo feel?",
-
-answers:
-[
+q:"Robo loses an important competition after trying very hard. How might Robo feel?",
+answers:[
 "Sad 😢",
 "Happy 😄",
 "Surprised 😲",
 "Proud 😎"
 ],
-
-correct:
-0,
-
-emotion:
-"sad",
-
-good:
-"Correct! Robo feels sad."
-
+correct:0,
+emotion:"sad"
 },
 
-
 {
-
-q:
-"Robo sees spoiled food with a terrible smell. How might Robo feel?",
-
-answers:
-[
+q:"Robo sees spoiled food with a terrible smell. How might Robo feel?",
+answers:[
 "Disgusted 🤢",
 "Happy 😄",
 "Proud 😎",
 "Excited 🤩"
 ],
-
-correct:
-0,
-
-emotion:
-"disgusted",
-
-good:
-"Correct! Robo feels disgusted!"
-
+correct:0,
+emotion:"disgusted"
 }
 
-
 ]
-
 },
 
 
 
 {
+name:"Recognizing Feelings",
 
-name:
-"Recognizing Feelings",
-
-
-questions: [
-
+questions:[
 
 {
-
-q:
-"Robo is about to speak on a stage for the first time and feels nervous. Which emotion fits best?",
-
-answers:
-[
+q:"Robo is about to speak on a stage for the first time and feels nervous. Which emotion fits best?",
+answers:[
 "Afraid 😨",
 "Happy 😄",
 "Disgusted 🤢",
 "Proud 😎"
 ],
-
-correct:
-0,
-
-emotion:
-"afraid",
-
-good:
-"Correct! Robo feels afraid."
-
+correct:0,
+emotion:"afraid"
 },
 
-
 {
-
-q:
-"Robo finishes a difficult project by himself. How might he feel?",
-
-answers:
-[
+q:"Robo finishes a difficult project by himself. How might he feel?",
+answers:[
 "Proud 😎",
 "Sad 😢",
 "Angry 😠",
 "Afraid 😨"
 ],
-
-correct:
-0,
-
-emotion:
-"proud",
-
-good:
-"Correct! Robo feels proud!"
-
+correct:0,
+emotion:"proud"
 },
 
-
 {
-
-q:
-"Robo is sitting quietly after finishing all his work. How does he probably feel?",
-
-answers:
-[
+q:"Robo is sitting quietly after finishing all his work. How does he probably feel?",
+answers:[
 "Calm 😌",
 "Angry 😠",
 "Afraid 😨",
 "Disgusted 🤢"
 ],
-
-correct:
-0,
-
-emotion:
-"calm",
-
-good:
-"Correct! Robo feels calm."
-
+correct:0,
+emotion:"calm"
 },
 
-
 {
-
-q:
-"Robo opens a box and unexpectedly finds a tiny puppy inside. What emotion fits best?",
-
-answers:
-[
+q:"Robo opens a box and unexpectedly finds a tiny puppy. What emotion fits best?",
+answers:[
 "Surprised 😲",
 "Angry 😠",
 "Sad 😢",
 "Disgusted 🤢"
 ],
-
-correct:
-0,
-
-emotion:
-"surprised",
-
-good:
-"Correct! What a surprise!"
-
+correct:0,
+emotion:"surprised"
 },
 
-
 {
-
-q:
-"Robo's friend thanks him for helping with homework. How might Robo feel?",
-
-answers:
-[
+q:"Robo's friend thanks him for helping with homework. How might Robo feel?",
+answers:[
 "Happy 😄",
 "Afraid 😨",
 "Angry 😠",
 "Disgusted 🤢"
 ],
-
-correct:
-0,
-
-emotion:
-"happy",
-
-good:
-"Correct! Robo feels happy."
-
+correct:0,
+emotion:"happy"
 }
 
-
 ]
-
 },
 
 
 
 {
+name:"Choosing Good Reactions",
 
-name:
-"Choosing Good Reactions",
-
-
-questions: [
-
+questions:[
 
 {
-
-q:
-"Robo is angry because someone took his pencil. What is the best first reaction?",
-
-answers:
-[
+q:"Robo is angry because someone took his pencil. What is the best first reaction?",
+answers:[
 "Stay calm and explain the problem",
 "Shout loudly",
 "Break something",
 "Push the person"
 ],
-
-correct:
-0,
-
-emotion:
-"calm",
-
-good:
-"Great choice! Calm communication is better."
-
+correct:0,
+emotion:"calm"
 },
 
-
 {
-
-q:
-"Robo's friend is sad. What should Robo do?",
-
-answers:
-[
+q:"Robo's friend is sad. What should Robo do?",
+answers:[
 "Listen and try to help",
 "Laugh at them",
 "Ignore them",
 "Tell everyone"
 ],
-
-correct:
-0,
-
-emotion:
-"happy",
-
-good:
-"Correct! Listening is a kind response."
-
+correct:0,
+emotion:"happy"
 },
 
-
 {
-
-q:
-"Robo feels afraid before a test. What could help?",
-
-answers:
-[
+q:"Robo feels afraid before a test. What could help?",
+answers:[
 "Take slow breaths and prepare",
-"Run away forever",
+"Run away",
 "Rip the test",
 "Yell at the teacher"
 ],
-
-correct:
-0,
-
-emotion:
-"calm",
-
-good:
-"Correct! Calm breathing and preparation can help."
-
+correct:0,
+emotion:"calm"
 },
 
-
 {
-
-q:
-"Robo makes a mistake in a game. What is the best response?",
-
-answers:
-[
+q:"Robo makes a mistake in a game. What is the best response?",
+answers:[
 "Learn from it and try again",
 "Blame everyone",
 "Quit immediately",
-"Get angry at a friend"
+"Get angry"
 ],
-
-correct:
-0,
-
-emotion:
-"proud",
-
-good:
-"Correct! Trying again is a strong response."
-
+correct:0,
+emotion:"proud"
 },
 
-
 {
-
-q:
-"Robo wins a contest. What should he do?",
-
-answers:
-[
-"Celebrate without making others feel bad",
+q:"Robo wins a contest. What should he do?",
+answers:[
+"Celebrate kindly",
 "Make fun of everyone",
 "Say he is better than everyone",
-"Refuse to talk to anyone"
+"Refuse to talk"
 ],
-
-correct:
-0,
-
-emotion:
-"happy",
-
-good:
-"Correct! Celebrate kindly."
-
+correct:0,
+emotion:"happy"
 }
 
-
 ]
-
 },
 
 
 
 {
+name:"Understanding Others",
 
-name:
-"Understanding Others",
-
-
-questions: [
-
+questions:[
 
 {
-
-q:
-"A classmate is very quiet after losing something important. What might they be feeling?",
-
-answers:
-[
+q:"A classmate is very quiet after losing something important. What might they feel?",
+answers:[
 "Sad 😢",
 "Excited 🤩",
 "Proud 😎",
 "Disgusted 🤢"
 ],
-
-correct:
-0,
-
-emotion:
-"sad",
-
-good:
-"Correct! They may be feeling sad."
-
+correct:0,
+emotion:"sad"
 },
 
-
 {
-
-q:
-"Someone suddenly jumps when a balloon pops. What are they probably feeling?",
-
-answers:
-[
+q:"Someone suddenly jumps when a balloon pops. What are they probably feeling?",
+answers:[
 "Surprised 😲",
 "Proud 😎",
 "Happy 😄",
 "Calm 😌"
 ],
-
-correct:
-0,
-
-emotion:
-"surprised",
-
-good:
-"Correct! They were surprised."
-
+correct:0,
+emotion:"surprised"
 },
 
-
 {
-
-q:
-"Your teammate keeps shaking before a competition. What emotion could that show?",
-
-answers:
-[
+q:"Your teammate keeps shaking before a competition. What emotion could that show?",
+answers:[
 "Afraid 😨",
 "Disgusted 🤢",
 "Happy 😄",
 "Proud 😎"
 ],
-
-correct:
-0,
-
-emotion:
-"afraid",
-
-good:
-"Correct! They may be nervous or afraid."
-
+correct:0,
+emotion:"afraid"
 },
 
-
 {
-
-q:
-"A friend smiles after completing something difficult. What could they be feeling?",
-
-answers:
-[
+q:"A friend smiles after completing something difficult. What could they feel?",
+answers:[
 "Proud 😎",
 "Angry 😠",
 "Sad 😢",
 "Disgusted 🤢"
 ],
-
-correct:
-0,
-
-emotion:
-"proud",
-
-good:
-"Correct! They may feel proud."
-
+correct:0,
+emotion:"proud"
 },
 
-
 {
-
-q:
-"Someone moves away from a very bad smell. What emotion might they be showing?",
-
-answers:
-[
+q:"Someone moves away from a terrible smell. What emotion might they show?",
+answers:[
 "Disgusted 🤢",
 "Happy 😄",
 "Proud 😎",
 "Calm 😌"
 ],
-
-correct:
-0,
-
-emotion:
-"disgusted",
-
-good:
-"Correct! They may feel disgusted."
-
+correct:0,
+emotion:"disgusted"
 }
 
-
 ]
-
 },
 
 
 
 {
+name:"Emotion Master Challenge",
 
-name:
-"Emotion Master Challenge",
-
-
-questions: [
-
+questions:[
 
 {
-
-q:
-"Robo is frustrated because a machine will not work. Which response shows emotional control?",
-
-answers:
-[
-"Pause, calm down, and try another solution",
+q:"Robo is frustrated because a machine will not work. Which response shows emotional control?",
+answers:[
+"Pause, calm down and try another solution",
 "Kick the machine",
 "Yell at everyone",
-"Give up immediately"
+"Give up"
 ],
-
-correct:
-0,
-
-emotion:
-"calm",
-
-good:
-"Excellent! Robo controlled his frustration."
-
+correct:0,
+emotion:"calm"
 },
 
-
 {
-
-q:
-"Robo's teammate makes an accidental mistake. What is the best response?",
-
-answers:
-[
+q:"Robo's teammate accidentally makes a mistake. What should Robo do?",
+answers:[
 "Help them fix it calmly",
-"Shout at them",
-"Leave the team",
+"Shout",
+"Leave",
 "Make fun of them"
 ],
-
-correct:
-0,
-
-emotion:
-"calm",
-
-good:
-"Excellent! Teamwork unlocked the door."
-
+correct:0,
+emotion:"calm"
 },
 
-
 {
-
-q:
-"Robo feels jealous because his friend won a prize. What is the healthiest response?",
-
-answers:
-[
-"Congratulate the friend and keep working toward his own goal",
+q:"Robo feels jealous because his friend won a prize. What is the healthiest response?",
+answers:[
+"Congratulate the friend and keep trying",
 "Insult the friend",
 "Take the prize",
 "Stop being friends"
 ],
-
-correct:
-0,
-
-emotion:
-"proud",
-
-good:
-"Excellent! Robo chose a mature response."
-
+correct:0,
+emotion:"proud"
 },
 
-
 {
-
-q:
-"Robo is very excited but needs to listen to important instructions. What should he do?",
-
-answers:
-[
-"Calm himself and listen carefully",
-"Interrupt constantly",
-"Run around the room",
-"Ignore the instructions"
+q:"Robo is very excited but needs to listen to important instructions. What should he do?",
+answers:[
+"Calm down and listen carefully",
+"Interrupt",
+"Run around",
+"Ignore everything"
 ],
-
-correct:
-0,
-
-emotion:
-"calm",
-
-good:
-"Excellent! Robo managed his excitement."
-
+correct:0,
+emotion:"calm"
 },
 
-
 {
-
-q:
-"FINAL DOOR: Robo sees someone being left out of a game. What should he do?",
-
-answers:
-[
+q:"FINAL DOOR: Robo sees someone being left out of a game. What should he do?",
+answers:[
 "Invite them to join",
 "Ignore them",
 "Laugh at them",
 "Tell them to leave"
 ],
-
-correct:
-0,
-
-emotion:
-"happy",
-
-good:
-"Perfect! Kindness opened the final door!"
-
+correct:0,
+emotion:"happy"
 }
-
 
 ]
-
 }
-
 
 ];
 
 
 
-let currentLevel =
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+let currentLevel = 0;
+let currentDoor = 0;
+
+let score = 0;
+let lives = 3;
+
+let locked = false;
+
+
+
+/* =========================================================
+   THREE.JS
+========================================================= */
+
+const canvas =
+document.getElementById(
+"robotCanvas"
+);
+
+
+const renderer =
+new THREE.WebGLRenderer({
+canvas:canvas,
+antialias:true,
+alpha:true
+});
+
+
+renderer.setPixelRatio(
+Math.min(
+window.devicePixelRatio,
+2
+)
+);
+
+
+const scene =
+new THREE.Scene();
+
+
+const camera =
+new THREE.PerspectiveCamera(
+40,
+1,
+0.1,
+100
+);
+
+
+camera.position.set(
+0,
+1.8,
+7
+);
+
+
+camera.lookAt(
+0,
+1,
+0
+);
+
+
+
+/* LIGHTS */
+
+const ambient =
+new THREE.AmbientLight(
+0xffffff,
+1.8
+);
+
+scene.add(
+ambient
+);
+
+
+const keyLight =
+new THREE.DirectionalLight(
+0xffffff,
+3
+);
+
+keyLight.position.set(
+5,
+7,
+6
+);
+
+scene.add(
+keyLight
+);
+
+
+const blueLight =
+new THREE.PointLight(
+0x22d3ee,
+30,
+12
+);
+
+blueLight.position.set(
+-4,
+2,
+3
+);
+
+scene.add(
+blueLight
+);
+
+
+const purpleLight =
+new THREE.PointLight(
+0x6366f1,
+22,
+12
+);
+
+purpleLight.position.set(
+4,
+3,
+2
+);
+
+scene.add(
+purpleLight
+);
+
+
+
+/* FLOOR */
+
+const floor =
+new THREE.Mesh(
+
+new THREE.CircleGeometry(
+4.5,
+64
+),
+
+new THREE.MeshStandardMaterial({
+color:0x111827,
+roughness:.6,
+metalness:.2
+})
+
+);
+
+
+floor.rotation.x =
+-Math.PI / 2;
+
+
+floor.position.y =
+-1.45;
+
+
+scene.add(
+floor
+);
+
+
+
+/* =========================================================
+   BUILD 3D ROBOT
+========================================================= */
+
+const robot =
+new THREE.Group();
+
+scene.add(
+robot
+);
+
+
+const white =
+new THREE.MeshStandardMaterial({
+color:0xf8fafc,
+metalness:.55,
+roughness:.25
+});
+
+
+const dark =
+new THREE.MeshStandardMaterial({
+color:0x020617,
+metalness:.65,
+roughness:.2
+});
+
+
+const cyan =
+new THREE.MeshStandardMaterial({
+color:0x22d3ee,
+emissive:0x22d3ee,
+emissiveIntensity:2
+});
+
+
+const blue =
+new THREE.MeshStandardMaterial({
+color:0x3b82f6,
+emissive:0x1d4ed8,
+emissiveIntensity:.8
+});
+
+
+const joints =
+new THREE.MeshStandardMaterial({
+color:0x475569,
+metalness:.8,
+roughness:.25
+});
+
+
+
+const robotParts = [];
+
+
+function registerPart(
+mesh,
+name
+){
+
+mesh.userData.name =
+name;
+
+
+mesh.userData.homePosition =
+mesh.position.clone();
+
+
+mesh.userData.homeRotation =
+mesh.rotation.clone();
+
+
+robotParts.push(
+mesh
+);
+
+
+return mesh;
+
+}
+
+
+
+/* BODY */
+
+const body =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+1.45,
+1.35,
+.85
+),
+
+white
+
+),
+
+"body"
+
+);
+
+
+body.position.y =
 0;
 
 
-let currentDoor =
+robot.add(
+body
+);
+
+
+
+/* CHEST */
+
+const chest =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.SphereGeometry(
+.22,
+24,
+24
+),
+
+cyan
+
+),
+
+"chest"
+
+);
+
+
+chest.scale.set(
+1,
+1,
+.35
+);
+
+
+chest.position.set(
+0,
+.05,
+.48
+);
+
+
+robot.add(
+chest
+);
+
+
+
+/* HEAD */
+
+const head =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+1.8,
+1.15,
+1
+),
+
+white
+
+),
+
+"head"
+
+);
+
+
+head.position.y =
+1.55;
+
+
+robot.add(
+head
+);
+
+
+
+/* FACE SCREEN */
+
+const face =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+1.48,
+.75,
+.08
+),
+
+dark
+
+),
+
+"face"
+
+);
+
+
+face.position.set(
+0,
+1.55,
+.54
+);
+
+
+robot.add(
+face
+);
+
+
+
+/* EYES */
+
+const eyeLeft =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.SphereGeometry(
+.13,
+20,
+20
+),
+
+cyan
+
+),
+
+"eyeLeft"
+
+);
+
+
+eyeLeft.scale.y =
+1.35;
+
+
+eyeLeft.position.set(
+-.38,
+1.68,
+.61
+);
+
+
+robot.add(
+eyeLeft
+);
+
+
+const eyeRight =
+registerPart(
+
+eyeLeft.clone(),
+
+"eyeRight"
+
+);
+
+
+eyeRight.position.x =
+.38;
+
+
+robot.add(
+eyeRight
+);
+
+
+
+/* MOUTH */
+
+const mouth =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+.5,
+.08,
+.08
+),
+
+cyan
+
+),
+
+"mouth"
+
+);
+
+
+mouth.position.set(
+0,
+1.32,
+.61
+);
+
+
+robot.add(
+mouth
+);
+
+
+
+/* ARMS */
+
+const armLeft =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.CapsuleGeometry(
+.22,
+.8,
+8,
+16
+),
+
+white
+
+),
+
+"armLeft"
+
+);
+
+
+armLeft.position.set(
+-1.05,
+-.05,
+0
+);
+
+
+robot.add(
+armLeft
+);
+
+
+const armRight =
+registerPart(
+
+armLeft.clone(),
+
+"armRight"
+
+);
+
+
+armRight.position.x =
+1.05;
+
+
+robot.add(
+armRight
+);
+
+
+
+/* HANDS */
+
+const handLeft =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.SphereGeometry(
+.27,
+20,
+20
+),
+
+joints
+
+),
+
+"handLeft"
+
+);
+
+
+handLeft.position.set(
+-1.05,
+-.7,
+0
+);
+
+
+robot.add(
+handLeft
+);
+
+
+const handRight =
+registerPart(
+
+handLeft.clone(),
+
+"handRight"
+
+);
+
+
+handRight.position.x =
+1.05;
+
+
+robot.add(
+handRight
+);
+
+
+
+/* LEGS */
+
+const legLeft =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.CapsuleGeometry(
+.25,
+.55,
+8,
+16
+),
+
+white
+
+),
+
+"legLeft"
+
+);
+
+
+legLeft.position.set(
+-.42,
+-1,
+0
+);
+
+
+robot.add(
+legLeft
+);
+
+
+const legRight =
+registerPart(
+
+legLeft.clone(),
+
+"legRight"
+
+);
+
+
+legRight.position.x =
+.42;
+
+
+robot.add(
+legRight
+);
+
+
+
+/* FEET */
+
+const footLeft =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.BoxGeometry(
+.6,
+.25,
+.85
+),
+
+joints
+
+),
+
+"footLeft"
+
+);
+
+
+footLeft.position.set(
+-.42,
+-1.43,
+.12
+);
+
+
+robot.add(
+footLeft
+);
+
+
+const footRight =
+registerPart(
+
+footLeft.clone(),
+
+"footRight"
+
+);
+
+
+footRight.position.x =
+.42;
+
+
+robot.add(
+footRight
+);
+
+
+
+/* ANTENNA */
+
+const antenna =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.CylinderGeometry(
+.05,
+.05,
+.55,
+16
+),
+
+joints
+
+),
+
+"antenna"
+
+);
+
+
+antenna.position.set(
+0,
+2.42,
+0
+);
+
+
+robot.add(
+antenna
+);
+
+
+const antennaBall =
+registerPart(
+
+new THREE.Mesh(
+
+new THREE.SphereGeometry(
+.14,
+20,
+20
+),
+
+cyan
+
+),
+
+"antennaBall"
+
+);
+
+
+antennaBall.position.set(
+0,
+2.72,
+0
+);
+
+
+robot.add(
+antennaBall
+);
+
+
+
+robot.rotation.y =
+-.12;
+
+
+
+/* =========================================================
+   3D ANIMATION
+========================================================= */
+
+let emotion =
+"normal";
+
+
+let emotionStart =
 0;
 
 
-let score =
-0;
-
-
-let lives =
-3;
-
-
-let locked =
+let exploding =
 false;
 
 
+const explosion =
+[];
 
-const startScreen =
-document
-.getElementById(
-"startScreen"
+
+
+function resetRobot(){
+
+exploding =
+false;
+
+
+emotion =
+"normal";
+
+
+robot.position.set(
+0,
+0,
+0
 );
 
 
-const gameScreen =
-document
-.getElementById(
-"gameScreen"
+robot.rotation.set(
+0,
+-.12,
+0
 );
 
 
-const levelCompleteScreen =
-document
-.getElementById(
-"levelCompleteScreen"
+robot.scale.set(
+1,
+1,
+1
 );
 
 
-const endScreen =
-document
-.getElementById(
-"endScreen"
+robotParts.forEach(
+part => {
+
+part.position.copy(
+part.userData.homePosition
+);
+
+
+part.rotation.copy(
+part.userData.homeRotation
+);
+
+
+part.visible =
+true;
+
+}
+);
+
+
+eyeLeft.scale.set(
+1,
+1.35,
+1
+);
+
+
+eyeRight.scale.set(
+1,
+1.35,
+1
+);
+
+
+mouth.scale.set(
+1,
+1,
+1
+);
+
+}
+
+
+
+/* EMOTION */
+
+function playEmotion(
+type
+){
+
+resetRobot();
+
+
+emotion =
+type;
+
+
+emotionStart =
+performance.now();
+
+}
+
+
+
+/* EXPLOSION */
+
+function explodeRobot(){
+
+resetRobot();
+
+
+exploding =
+true;
+
+
+explosion.length =
+0;
+
+
+robotParts.forEach(
+part => {
+
+
+explosion.push({
+
+part:part,
+
+velocity:
+new THREE.Vector3(
+
+( Math.random() - .5 ) * .08,
+
+Math.random() * .06 + .03,
+
+( Math.random() - .5 ) * .05
+
+),
+
+rotation:
+new THREE.Vector3(
+
+Math.random() * .12,
+
+Math.random() * .12,
+
+Math.random() * .12
+
+)
+
+});
+
+
+}
+);
+
+}
+
+
+
+function updateEmotion(
+time
+){
+
+if(
+emotion ===
+"normal"
+)
+return;
+
+
+const t =
+(
+time -
+emotionStart
+)
+/ 1000;
+
+
+
+if(
+emotion ===
+"happy"
+){
+
+robot.position.y =
+Math.abs(
+Math.sin(
+t * 8
+)
+)
+*
+.55;
+
+
+robot.rotation.z =
+Math.sin(
+t * 9
+)
+*
+.12;
+
+
+armLeft.rotation.z =
+-.7 -
+Math.sin(
+t * 7
+)
+*
+.25;
+
+
+armRight.rotation.z =
+.7 +
+Math.sin(
+t * 7
+)
+*
+.25;
+
+}
+
+
+
+if(
+emotion ===
+"angry"
+){
+
+robot.position.x =
+Math.sin(
+t * 35
+)
+*
+.12;
+
+
+robot.rotation.z =
+Math.sin(
+t * 30
+)
+*
+.05;
+
+
+eyeLeft.rotation.z =
+-.35;
+
+
+eyeRight.rotation.z =
+.35;
+
+
+mouth.rotation.z =
+Math.PI;
+
+
+blueLight.color.set(
+0xff0000
+);
+
+}
+
+
+
+if(
+emotion ===
+"afraid"
+){
+
+robot.position.x =
+Math.sin(
+t * 45
+)
+*
+.07;
+
+
+robot.position.y =
+Math.sin(
+t * 35
+)
+*
+.05;
+
+
+robot.scale.set(
+.92,
+.92,
+.92
+);
+
+}
+
+
+
+if(
+emotion ===
+"surprised"
+){
+
+const size =
+1 +
+Math.abs(
+Math.sin(
+t * 6
+)
+)
+*
+.22;
+
+
+robot.scale.set(
+size,
+size,
+size
+);
+
+
+eyeLeft.scale.set(
+1.4,
+1.8,
+1.4
+);
+
+
+eyeRight.scale.set(
+1.4,
+1.8,
+1.4
+);
+
+
+mouth.scale.set(
+.45,
+2.2,
+1
+);
+
+}
+
+
+
+if(
+emotion ===
+"sad"
+){
+
+robot.position.y =
+-.18;
+
+
+head.rotation.z =
+-.12;
+
+
+armLeft.rotation.z =
+.25;
+
+
+armRight.rotation.z =
+-.25;
+
+
+mouth.rotation.z =
+Math.PI;
+
+}
+
+
+
+if(
+emotion ===
+"disgusted"
+){
+
+robot.rotation.z =
+-.18;
+
+
+head.rotation.y =
+-.45;
+
+
+blueLight.color.set(
+0x22c55e
+);
+
+}
+
+
+
+if(
+emotion ===
+"calm"
+){
+
+robot.position.y =
+Math.sin(
+t * 2
+)
+*
+.04;
+
+
+robot.rotation.z =
+Math.sin(
+t * 1.8
+)
+*
+.02;
+
+}
+
+
+
+if(
+emotion ===
+"proud"
+){
+
+robot.position.y =
+.1;
+
+
+robot.rotation.y =
+-.12 +
+Math.sin(
+t * 2
+)
+*
+.15;
+
+
+armLeft.rotation.z =
+-.5;
+
+
+armRight.rotation.z =
+.5;
+
+
+robot.scale.set(
+1.08,
+1.08,
+1.08
+);
+
+}
+
+}
+
+
+
+/* EXPLOSION PHYSICS */
+
+function updateExplosion(){
+
+if(
+!exploding
+)
+return;
+
+
+explosion.forEach(
+item => {
+
+
+item.velocity.y -=
+.0025;
+
+
+item.part.position.add(
+item.velocity
+);
+
+
+item.part.rotation.x +=
+item.rotation.x;
+
+
+item.part.rotation.y +=
+item.rotation.y;
+
+
+item.part.rotation.z +=
+item.rotation.z;
+
+
+}
+);
+
+}
+
+
+
+/* =========================================================
+   RENDER LOOP
+========================================================= */
+
+function resizeRenderer(){
+
+const box =
+canvas.getBoundingClientRect();
+
+
+renderer.setSize(
+box.width,
+box.height,
+false
+);
+
+
+camera.aspect =
+box.width /
+box.height;
+
+
+camera.updateProjectionMatrix();
+
+}
+
+
+
+function animate(
+time
+){
+
+requestAnimationFrame(
+animate
+);
+
+
+resizeRenderer();
+
+
+if(
+!exploding
+){
+
+updateEmotion(
+time
+);
+
+}
+
+
+updateExplosion();
+
+
+robot.rotation.y +=
+0.001;
+
+
+renderer.render(
+scene,
+camera
+);
+
+}
+
+
+requestAnimationFrame(
+animate
 );
 
 
 
-function safeTrack(
-eventName,
-params = {}
-) {
+/* =========================================================
+   GAME FUNCTIONS
+========================================================= */
 
+function track(
+name,
+parameters={}
+){
 
-if (
+if(
 typeof gtag ===
 "function"
-) {
-
+){
 
 gtag(
 "event",
-eventName,
-params
+name,
+parameters
 );
 
+}
 
 }
 
 
-}
 
-
-
-function startGame() {
-
+function startGame(){
 
 currentLevel =
 0;
@@ -2695,223 +2167,69 @@ locked =
 false;
 
 
-
-startScreen
+document
+.getElementById(
+"startScreen"
+)
 .classList
 .add(
 "hidden"
 );
 
 
-
-levelCompleteScreen
+document
+.getElementById(
+"endScreen"
+)
 .classList
 .add(
 "hidden"
 );
 
 
-
-endScreen
+document
+.getElementById(
+"levelCompleteScreen"
+)
 .classList
 .add(
 "hidden"
 );
 
 
-
-gameScreen
+document
+.getElementById(
+"gameScreen"
+)
 .classList
 .remove(
 "hidden"
 );
 
 
-
-safeTrack(
+track(
 "game_start"
 );
 
 
-
 renderDoor();
 
-
 }
 
 
 
-function resetRobot() {
-
-
-const robot =
-document
-.getElementById(
-"robot"
-);
-
-
-
-robot.className =
-"robot-wrap";
-
-
-
-const parts =
-robot
-.querySelectorAll(
-".robot-part"
-);
-
-
-
-parts.forEach(
-part => {
-
-
-part.style.opacity =
-"";
-
-
-part.style.transform =
-"";
-
-
-}
-);
-
-
-
-void robot.offsetWidth;
-
-
-}
-
-
-
-function setEmotion(
-emotion
-) {
-
-
-const robot =
-document
-.getElementById(
-"robot"
-);
-
-
-
-robot
-.classList
-.add(
-emotion
-);
-
-
-}
-
-
-
-function animateCorrect(
-emotion
-) {
-
-
-const robot =
-document
-.getElementById(
-"robot"
-);
-
-
-
-resetRobot();
-
-
-
-setEmotion(
-emotion
-);
-
-
-
-const supported =
-[
-"happy",
-"angry",
-"afraid",
-"disgusted",
-"surprised",
-"sad",
-"calm",
-"proud"
-];
-
-
-
-const name =
-supported.includes(
-emotion
-)
-?
-emotion
-:
-"happy";
-
-
-
-robot
-.classList
-.add(
-"anim-" + name
-);
-
-
-}
-
-
-
-function breakRobot() {
-
-
-const robot =
-document
-.getElementById(
-"robot"
-);
-
-
-
-resetRobot();
-
-
-
-void robot.offsetWidth;
-
-
-
-robot
-.classList
-.add(
-"breaking"
-);
-
-
-}
-
-
-
-function renderDoor() {
-
+function renderDoor(){
 
 locked =
 false;
 
 
-
 resetRobot();
 
+
+blueLight.color.set(
+0x22d3ee
+);
 
 
 const level =
@@ -2920,12 +2238,10 @@ currentLevel
 ];
 
 
-
 const item =
 level.questions[
 currentDoor
 ];
-
 
 
 document
@@ -2936,14 +2252,12 @@ document
 `Level ${currentLevel + 1}`;
 
 
-
 document
 .getElementById(
 "doorLabel"
 )
 .textContent =
 `Door ${currentDoor + 1}/5`;
-
 
 
 document
@@ -2954,23 +2268,18 @@ document
 `Score: ${score}`;
 
 
-
 document
 .getElementById(
 "livesLabel"
 )
 .textContent =
-
 "❤️".repeat(
 lives
 )
-
 +
-
 "🖤".repeat(
-3 - lives
+3-lives
 );
-
 
 
 document
@@ -2981,14 +2290,12 @@ document
 item.q;
 
 
-
 document
 .getElementById(
 "feedback"
 )
 .textContent =
 "";
-
 
 
 const choices =
@@ -2998,10 +2305,8 @@ document
 );
 
 
-
 choices.innerHTML =
 "";
-
 
 
 item.answers.forEach(
@@ -3009,24 +2314,20 @@ item.answers.forEach(
 
 
 const button =
-document
-.createElement(
+document.createElement(
 "button"
 );
-
 
 
 button.textContent =
 answer;
 
 
-
 button.onclick =
 () =>
-chooseAnswer(
+answerQuestion(
 index
 );
-
 
 
 choices.appendChild(
@@ -3037,71 +2338,54 @@ button
 }
 );
 
-
 }
 
 
 
-function setButtonsDisabled(
-disabled
-) {
-
+function disableButtons(
+value
+){
 
 document
 .querySelectorAll(
 "#choices button"
 )
 .forEach(
-button => {
-
-
+button =>
 button.disabled =
-disabled;
-
-
-}
+value
 );
 
-
 }
 
 
 
-function chooseAnswer(
+function answerQuestion(
 index
-) {
+){
 
-
-if (
+if(
 locked
 )
 return;
-
 
 
 locked =
 true;
 
 
-
-setButtonsDisabled(
+disableButtons(
 true
 );
 
 
-
-const level =
+const item =
 levels[
 currentLevel
-];
-
-
-
-const item =
-level.questions[
+]
+.questions[
 currentDoor
 ];
-
 
 
 const feedback =
@@ -3111,31 +2395,25 @@ document
 );
 
 
-
-if (
+if(
 index ===
 item.correct
-) {
-
+){
 
 score +=
 100;
 
 
-
-animateCorrect(
+playEmotion(
 item.emotion
 );
 
 
-
 feedback.textContent =
-"✅ " +
-item.good;
+"✅ Correct!";
 
 
-
-safeTrack(
+track(
 "door_complete",
 {
 
@@ -3152,7 +2430,6 @@ item.emotion
 );
 
 
-
 document
 .getElementById(
 "scoreLabel"
@@ -3161,55 +2438,49 @@ document
 `Score: ${score}`;
 
 
-
 setTimeout(
 () => {
+
+
+blueLight.color.set(
+0x22d3ee
+);
 
 
 currentDoor++;
 
 
-
-if (
+if(
 currentDoor >=
 5
-) {
+){
 
-
-showLevelComplete();
-
+levelFinished();
 
 }
 
-
-else {
-
+else{
 
 renderDoor();
-
 
 }
 
 
 },
-1500
+1800
 );
-
 
 }
 
 
-
-else {
-
+else
+{
 
 lives--;
 
 
-
 feedback.textContent =
-"💥 Wrong answer! Robo fell apart!";
-
+"💥 Wrong answer! Robo broke apart!";
 
 
 document
@@ -3217,20 +2488,19 @@ document
 "livesLabel"
 )
 .textContent =
-
 "❤️".repeat(
 lives
 )
-
 +
-
 "🖤".repeat(
-3 - lives
+3-lives
 );
 
 
+explodeRobot();
 
-safeTrack(
+
+track(
 "wrong_answer",
 {
 
@@ -3244,31 +2514,23 @@ currentDoor + 1
 );
 
 
-
-breakRobot();
-
-
-
-if (
+if(
 lives <=
 0
-) {
-
+){
 
 setTimeout(
 () =>
 finishGame(
 false
 ),
-1600
+1900
 );
-
 
 }
 
-
-else {
-
+else
+{
 
 setTimeout(
 () => {
@@ -3277,16 +2539,13 @@ setTimeout(
 resetRobot();
 
 
-
 feedback.textContent =
 "🔧 Robo rebuilt himself. Try again!";
 
 
-
-setButtonsDisabled(
+disableButtons(
 false
 );
-
 
 
 locked =
@@ -3294,36 +2553,33 @@ false;
 
 
 },
-1500
+1800
 );
 
+}
+
+}
 
 }
 
 
-}
 
+function levelFinished(){
 
-}
-
-
-
-function showLevelComplete() {
-
-
-gameScreen
+document
+.getElementById(
+"gameScreen"
+)
 .classList
 .add(
 "hidden"
 );
 
 
-
-if (
+if(
 currentLevel ===
 levels.length - 1
-) {
-
+){
 
 finishGame(
 true
@@ -3332,17 +2588,17 @@ true
 
 return;
 
-
 }
 
 
-
-levelCompleteScreen
+document
+.getElementById(
+"levelCompleteScreen"
+)
 .classList
 .remove(
 "hidden"
 );
-
 
 
 document
@@ -3353,17 +2609,15 @@ document
 `Level ${currentLevel + 1} Complete!`;
 
 
-
 document
 .getElementById(
 "levelCompleteText"
 )
 .textContent =
-`You unlocked all 5 doors in "${levels[currentLevel].name}". Now go to the next level!`;
+`You unlocked all five doors in ${levels[currentLevel].name}. Now continue to Level ${currentLevel + 2}!`;
 
 
-
-safeTrack(
+track(
 "level_complete",
 {
 
@@ -3373,41 +2627,40 @@ currentLevel + 1
 }
 );
 
-
 }
 
 
 
-function nextLevel() {
-
-
-levelCompleteScreen
-.classList
-.add(
-"hidden"
-);
-
-
+function nextLevel(){
 
 currentLevel++;
-
 
 
 currentDoor =
 0;
 
 
+document
+.getElementById(
+"levelCompleteScreen"
+)
+.classList
+.add(
+"hidden"
+);
 
-gameScreen
+
+document
+.getElementById(
+"gameScreen"
+)
 .classList
 .remove(
 "hidden"
 );
 
 
-
 renderDoor();
-
 
 }
 
@@ -3415,31 +2668,36 @@ renderDoor();
 
 function finishGame(
 win
-) {
+){
 
-
-gameScreen
+document
+.getElementById(
+"gameScreen"
+)
 .classList
 .add(
 "hidden"
 );
 
 
-
-levelCompleteScreen
+document
+.getElementById(
+"levelCompleteScreen"
+)
 .classList
 .add(
 "hidden"
 );
 
 
-
-endScreen
+document
+.getElementById(
+"endScreen"
+)
 .classList
 .remove(
 "hidden"
 );
-
 
 
 document
@@ -3451,8 +2709,7 @@ win
 ?
 "🏆🤖🚪"
 :
-"🔒💥🤖";
-
+"💥🤖";
 
 
 document
@@ -3467,7 +2724,6 @@ win
 "Game Over";
 
 
-
 document
 .getElementById(
 "endText"
@@ -3475,13 +2731,12 @@ document
 .textContent =
 win
 ?
-`Amazing! You completed all 5 levels, unlocked all 25 doors, and scored ${score} points!`
+`Amazing! You completed all 5 levels and unlocked all 25 doors. Final score: ${score}.`
 :
-`Robo ran out of lives at Level ${currentLevel + 1}, Door ${currentDoor + 1}. Your score was ${score}. Try again!`;
+`Robo ran out of lives at Level ${currentLevel + 1}, Door ${currentDoor + 1}. Final score: ${score}.`;
 
 
-
-safeTrack(
+track(
 "game_finish",
 {
 
@@ -3492,25 +2747,16 @@ win
 :
 "lose",
 
-final_score:
-score,
-
-level_reached:
-currentLevel + 1,
-
-door_reached:
-currentDoor + 1
+score:
+score
 
 }
 );
-
 
 }
 
 
 </script>
 
-
 </body>
-
 </html>
