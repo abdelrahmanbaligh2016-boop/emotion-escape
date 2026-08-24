@@ -1,233 +1,211 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 
-<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DNR89J5R6"></script>
-
 <script>
 window.dataLayer = window.dataLayer || [];
-
-function gtag() {
-    dataLayer.push(arguments);
-}
-
+function gtag(){ dataLayer.push(arguments); }
 gtag("js", new Date());
 gtag("config", "G-1DNR89J5R6");
 </script>
 
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1"
->
-
-<title>
-Emotion Escape - 3D Robot Escape Game
-</title>
+<title>Emotion Escape - 3D Robot Game</title>
 
 <meta
 name="description"
 content="Play Emotion Escape, a 3D robot emotion game with five levels and twenty-five doors."
 >
 
-<link
-rel="icon"
-type="image/png"
-href="favicon.png"
->
+<link rel="icon" type="image/png" href="favicon.png">
 
 <style>
 
-* {
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #020617;
-    color: white;
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#020617;
+    color:white;
 }
 
-.game {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+.game{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
 }
 
-header {
-    min-height: 70px;
-    padding: 15px 28px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    background: rgba(2, 6, 23, 0.96);
-    border-bottom: 1px solid #334155;
-    z-index: 20;
+header{
+    min-height:70px;
+    padding:15px 28px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    background:rgba(2,6,23,.96);
+    border-bottom:1px solid #334155;
+    z-index:20;
 }
 
-h1 {
-    margin: 0;
-    font-size: 25px;
+h1{
+    margin:0;
+    font-size:25px;
 }
 
-.stats {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-    font-weight: bold;
+.stats{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    font-weight:bold;
 }
 
-#gameArea {
-    position: relative;
-    flex: 1;
-    min-height: 650px;
+#gameArea{
+    position:relative;
+    flex:1;
+    min-height:680px;
 }
 
-#gameCanvas {
-    width: 100%;
-    height: 100%;
-    display: block;
+#gameCanvas{
+    width:100%;
+    height:100%;
+    display:block;
 }
 
-.question-panel {
-    position: absolute;
-    left: 50%;
-    bottom: 22px;
-    transform: translateX(-50%);
-    width: min(850px, 92%);
-    padding: 19px;
-    border-radius: 22px;
-    background: rgba(2, 6, 23, 0.9);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(148, 163, 184, 0.35);
-    box-shadow: 0 20px 50px rgba(0,0,0,.4);
+.question-panel{
+    position:absolute;
+    left:50%;
+    bottom:22px;
+    transform:translateX(-50%);
+    width:min(850px,92%);
+    padding:19px;
+    border-radius:22px;
+    background:rgba(2,6,23,.9);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(148,163,184,.35);
 }
 
-.question {
-    text-align: center;
-    font-size: 20px;
-    line-height: 1.4;
-    margin-bottom: 15px;
+.question{
+    text-align:center;
+    font-size:20px;
+    line-height:1.4;
+    margin-bottom:15px;
 }
 
-.choices {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+.choices{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
-button {
-    border: 0;
-    border-radius: 14px;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #020617;
-    background: #e2e8f0;
-    transition: transform .18s, filter .18s;
+button{
+    border:0;
+    border-radius:14px;
+    padding:15px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    color:#020617;
+    background:#e2e8f0;
 }
 
-button:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.04);
+button:hover{
+    transform:translateY(-2px);
 }
 
-button:disabled {
-    opacity: .55;
-    cursor: not-allowed;
+button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
 }
 
-.feedback {
-    min-height: 28px;
-    margin-top: 12px;
-    text-align: center;
-    font-size: 17px;
-    font-weight: bold;
+.feedback{
+    min-height:28px;
+    margin-top:12px;
+    text-align:center;
+    font-size:17px;
+    font-weight:bold;
 }
 
-.full-screen {
-    position: absolute;
-    inset: 0;
-    z-index: 30;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 30px;
-    text-align: center;
+.full-screen{
+    position:absolute;
+    inset:0;
+    z-index:30;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+    text-align:center;
     background:
-        radial-gradient(
-            circle,
-            rgba(30,58,138,.97),
-            rgba(2,6,23,.99)
-        );
+    radial-gradient(
+        circle,
+        rgba(30,58,138,.97),
+        rgba(2,6,23,.99)
+    );
 }
 
-.card {
-    width: min(650px, 95%);
-    padding: 36px;
-    border-radius: 28px;
-    background: rgba(15,23,42,.94);
-    border: 1px solid #475569;
-    box-shadow: 0 25px 70px rgba(0,0,0,.45);
+.card{
+    width:min(650px,95%);
+    padding:36px;
+    border-radius:28px;
+    background:rgba(15,23,42,.94);
+    border:1px solid #475569;
 }
 
-.card .icon {
-    font-size: 75px;
+.card .icon{
+    font-size:75px;
 }
 
-.card h2 {
-    margin: 15px 0 8px;
-    font-size: 36px;
+.card h2{
+    margin:15px 0 8px;
+    font-size:36px;
 }
 
-.card p {
-    color: #cbd5e1;
-    font-size: 19px;
-    line-height: 1.5;
+.card p{
+    color:#cbd5e1;
+    font-size:19px;
+    line-height:1.5;
 }
 
-.primary {
-    background: #38bdf8;
+.primary{
+    background:#38bdf8;
 }
 
-.next {
-    background: #22c55e;
+.next{
+    background:#22c55e;
 }
 
-.hidden {
-    display: none !important;
+.hidden{
+    display:none!important;
 }
 
-@media(max-width:700px) {
+@media(max-width:700px){
 
-    header {
-        flex-direction: column;
-        align-items: flex-start;
+    header{
+        flex-direction:column;
+        align-items:flex-start;
     }
 
-    #gameArea {
-        min-height: 720px;
+    #gameArea{
+        min-height:760px;
     }
 
-    .choices {
-        grid-template-columns: 1fr;
+    .choices{
+        grid-template-columns:1fr;
     }
 
-    .question {
-        font-size: 18px;
+    .question{
+        font-size:18px;
     }
 }
 
 </style>
-
 </head>
 
 <body>
@@ -236,28 +214,13 @@ button:disabled {
 
 <header>
 
-<h1>
-🤖 Emotion Escape 3D
-</h1>
+<h1>🤖 Emotion Escape 3D</h1>
 
 <div class="stats">
-
-<span id="levelLabel">
-Level 1
-</span>
-
-<span id="doorLabel">
-Door 1/5
-</span>
-
-<span id="scoreLabel">
-Score: 0
-</span>
-
-<span id="livesLabel">
-❤️❤️❤️
-</span>
-
+<span id="levelLabel">Level 1</span>
+<span id="doorLabel">Door 1/5</span>
+<span id="scoreLabel">Score: 0</span>
+<span id="livesLabel">❤️❤️❤️</span>
 </div>
 
 </header>
@@ -274,20 +237,17 @@ class="question-panel hidden"
 <div
 id="question"
 class="question"
->
-</div>
+></div>
 
 <div
 id="choices"
 class="choices"
->
-</div>
+></div>
 
 <div
 id="feedback"
 class="feedback"
->
-</div>
+></div>
 
 </div>
 
@@ -298,25 +258,18 @@ class="full-screen"
 
 <div class="card">
 
-<div class="icon">
-🤖🚪
-</div>
+<div class="icon">🤖🚪</div>
 
-<h2>
-Emotion Escape 3D
-</h2>
+<h2>Emotion Escape 3D</h2>
 
 <p>
-Enter the 3D Emotion Lab.
 Help Robo understand emotions,
-unlock all 25 doors,
-and escape.
+walk through 25 doors,
+and escape the 3D Emotion Lab.
 </p>
 
 <p>
-<strong>
-5 Levels • 5 Doors Each
-</strong>
+<strong>5 Levels • 5 Doors Each</strong>
 </p>
 
 <button
@@ -337,16 +290,13 @@ class="full-screen hidden"
 
 <div class="card">
 
-<div class="icon">
-🎉🚪
-</div>
+<div class="icon">🎉🚪</div>
 
 <h2 id="levelTitle">
 Level Complete!
 </h2>
 
-<p id="levelMessage">
-</p>
+<p id="levelMessage"></p>
 
 <button
 class="next"
@@ -377,8 +327,7 @@ class="icon"
 Emotion Lab Escaped!
 </h2>
 
-<p id="endMessage">
-</p>
+<p id="endMessage"></p>
 
 <button
 class="primary"
@@ -395,446 +344,398 @@ Play Again
 
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
 
 <script>
 
-/* ================================
+/* =========================
    QUESTIONS
-================================ */
+========================= */
 
 const levels = [
 
 {
-    name: "Emotion Basics",
+name:"Emotion Basics",
 
-    questions: [
+questions:[
 
-        {
-            q: "Your best friend surprises you with a birthday gift. How would Robo probably feel?",
-
-            answers: [
-                "Happy 😄",
-                "Angry 😠",
-                "Afraid 😨",
-                "Disgusted 🤢"
-            ],
-
-            correct: 0,
-            emotion: "happy"
-        },
-
-        {
-            q: "Robo hears a loud unknown noise in a dark room. What emotion fits best?",
-
-            answers: [
-                "Surprised 😲",
-                "Happy 😄",
-                "Calm 😌",
-                "Proud 😎"
-            ],
-
-            correct: 0,
-            emotion: "surprised"
-        },
-
-        {
-            q: "Someone breaks Robo's favorite invention on purpose. How might Robo feel?",
-
-            answers: [
-                "Angry 😠",
-                "Happy 😄",
-                "Calm 😌",
-                "Excited 🤩"
-            ],
-
-            correct: 0,
-            emotion: "angry"
-        },
-
-        {
-            q: "Robo loses an important competition after trying very hard. How might Robo feel?",
-
-            answers: [
-                "Sad 😢",
-                "Happy 😄",
-                "Surprised 😲",
-                "Proud 😎"
-            ],
-
-            correct: 0,
-            emotion: "sad"
-        },
-
-        {
-            q: "Robo smells spoiled food. How might he feel?",
-
-            answers: [
-                "Disgusted 🤢",
-                "Happy 😄",
-                "Proud 😎",
-                "Excited 🤩"
-            ],
-
-            correct: 0,
-            emotion: "disgusted"
-        }
-
-    ]
+{
+q:"Your best friend surprises you with a birthday gift. How would Robo probably feel?",
+answers:[
+"Happy 😄",
+"Angry 😠",
+"Afraid 😨",
+"Disgusted 🤢"
+],
+correct:0,
+emotion:"happy"
 },
 
 {
-    name: "Recognizing Feelings",
-
-    questions: [
-
-        {
-            q: "Robo is about to speak on a stage and feels nervous. What emotion fits best?",
-
-            answers: [
-                "Afraid 😨",
-                "Happy 😄",
-                "Disgusted 🤢",
-                "Proud 😎"
-            ],
-
-            correct: 0,
-            emotion: "afraid"
-        },
-
-        {
-            q: "Robo finishes a difficult project by himself. How might he feel?",
-
-            answers: [
-                "Proud 😎",
-                "Sad 😢",
-                "Angry 😠",
-                "Afraid 😨"
-            ],
-
-            correct: 0,
-            emotion: "proud"
-        },
-
-        {
-            q: "Robo finishes all his work and sits quietly. How does he probably feel?",
-
-            answers: [
-                "Calm 😌",
-                "Angry 😠",
-                "Afraid 😨",
-                "Disgusted 🤢"
-            ],
-
-            correct: 0,
-            emotion: "calm"
-        },
-
-        {
-            q: "Robo opens a box and unexpectedly finds a puppy. How does he feel?",
-
-            answers: [
-                "Surprised 😲",
-                "Angry 😠",
-                "Sad 😢",
-                "Disgusted 🤢"
-            ],
-
-            correct: 0,
-            emotion: "surprised"
-        },
-
-        {
-            q: "Robo's friend thanks him for helping. How might Robo feel?",
-
-            answers: [
-                "Happy 😄",
-                "Afraid 😨",
-                "Angry 😠",
-                "Disgusted 🤢"
-            ],
-
-            correct: 0,
-            emotion: "happy"
-        }
-
-    ]
+q:"Robo hears a loud unknown noise in a dark room. What emotion fits best?",
+answers:[
+"Surprised 😲",
+"Happy 😄",
+"Calm 😌",
+"Proud 😎"
+],
+correct:0,
+emotion:"surprised"
 },
 
 {
-    name: "Good Reactions",
-
-    questions: [
-
-        {
-            q: "Robo is angry because someone took his pencil. What should he do?",
-
-            answers: [
-                "Stay calm and explain",
-                "Shout loudly",
-                "Break something",
-                "Push the person"
-            ],
-
-            correct: 0,
-            emotion: "calm"
-        },
-
-        {
-            q: "Robo's friend is sad. What should Robo do?",
-
-            answers: [
-                "Listen and help",
-                "Laugh",
-                "Ignore them",
-                "Tell everyone"
-            ],
-
-            correct: 0,
-            emotion: "happy"
-        },
-
-        {
-            q: "Robo feels afraid before a test. What could help?",
-
-            answers: [
-                "Breathe slowly and prepare",
-                "Run away",
-                "Rip the test",
-                "Yell"
-            ],
-
-            correct: 0,
-            emotion: "calm"
-        },
-
-        {
-            q: "Robo makes a mistake. What should he do?",
-
-            answers: [
-                "Learn and try again",
-                "Blame everyone",
-                "Quit",
-                "Get angry"
-            ],
-
-            correct: 0,
-            emotion: "proud"
-        },
-
-        {
-            q: "Robo wins a contest. What is the best reaction?",
-
-            answers: [
-                "Celebrate kindly",
-                "Make fun of others",
-                "Boast",
-                "Ignore everyone"
-            ],
-
-            correct: 0,
-            emotion: "happy"
-        }
-
-    ]
+q:"Someone breaks Robo's favorite invention on purpose. How might Robo feel?",
+answers:[
+"Angry 😠",
+"Happy 😄",
+"Calm 😌",
+"Excited 🤩"
+],
+correct:0,
+emotion:"angry"
 },
 
 {
-    name: "Understanding Others",
-
-    questions: [
-
-        {
-            q: "A classmate becomes quiet after losing something important. What may they feel?",
-
-            answers: [
-                "Sad 😢",
-                "Excited 🤩",
-                "Proud 😎",
-                "Disgusted 🤢"
-            ],
-
-            correct: 0,
-            emotion: "sad"
-        },
-
-        {
-            q: "Someone jumps when a balloon suddenly pops. What are they probably feeling?",
-
-            answers: [
-                "Surprised 😲",
-                "Proud 😎",
-                "Happy 😄",
-                "Calm 😌"
-            ],
-
-            correct: 0,
-            emotion: "surprised"
-        },
-
-        {
-            q: "Your teammate shakes before a competition. What emotion might this show?",
-
-            answers: [
-                "Afraid 😨",
-                "Disgusted 🤢",
-                "Happy 😄",
-                "Proud 😎"
-            ],
-
-            correct: 0,
-            emotion: "afraid"
-        },
-
-        {
-            q: "A friend smiles after completing something difficult. What may they feel?",
-
-            answers: [
-                "Proud 😎",
-                "Angry 😠",
-                "Sad 😢",
-                "Disgusted 🤢"
-            ],
-
-            correct: 0,
-            emotion: "proud"
-        },
-
-        {
-            q: "Someone moves away from a terrible smell. What emotion are they showing?",
-
-            answers: [
-                "Disgusted 🤢",
-                "Happy 😄",
-                "Proud 😎",
-                "Calm 😌"
-            ],
-
-            correct: 0,
-            emotion: "disgusted"
-        }
-
-    ]
+q:"Robo loses an important competition after trying very hard. How might Robo feel?",
+answers:[
+"Sad 😢",
+"Happy 😄",
+"Surprised 😲",
+"Proud 😎"
+],
+correct:0,
+emotion:"sad"
 },
 
 {
-    name: "Emotion Master",
+q:"Robo smells spoiled food. How might he feel?",
+answers:[
+"Disgusted 🤢",
+"Happy 😄",
+"Proud 😎",
+"Excited 🤩"
+],
+correct:0,
+emotion:"disgusted"
+}
 
-    questions: [
+]
+},
 
-        {
-            q: "Robo is frustrated because a machine will not work. What should he do?",
+{
+name:"Recognizing Feelings",
 
-            answers: [
-                "Pause and try another solution",
-                "Kick it",
-                "Yell",
-                "Give up"
-            ],
+questions:[
 
-            correct: 0,
-            emotion: "calm"
-        },
+{
+q:"Robo is about to speak on a stage and feels nervous. What emotion fits best?",
+answers:[
+"Afraid 😨",
+"Happy 😄",
+"Disgusted 🤢",
+"Proud 😎"
+],
+correct:0,
+emotion:"afraid"
+},
 
-        {
-            q: "Robo's teammate accidentally makes a mistake. What should Robo do?",
+{
+q:"Robo finishes a difficult project by himself. How might he feel?",
+answers:[
+"Proud 😎",
+"Sad 😢",
+"Angry 😠",
+"Afraid 😨"
+],
+correct:0,
+emotion:"proud"
+},
 
-            answers: [
-                "Help calmly",
-                "Shout",
-                "Leave",
-                "Laugh"
-            ],
+{
+q:"Robo finishes all his work and sits quietly. How does he probably feel?",
+answers:[
+"Calm 😌",
+"Angry 😠",
+"Afraid 😨",
+"Disgusted 🤢"
+],
+correct:0,
+emotion:"calm"
+},
 
-            correct: 0,
-            emotion: "calm"
-        },
+{
+q:"Robo opens a box and unexpectedly finds a puppy. How does he feel?",
+answers:[
+"Surprised 😲",
+"Angry 😠",
+"Sad 😢",
+"Disgusted 🤢"
+],
+correct:0,
+emotion:"surprised"
+},
 
-        {
-            q: "Robo feels jealous because his friend won a prize. What should he do?",
+{
+q:"Robo's friend thanks him for helping. How might Robo feel?",
+answers:[
+"Happy 😄",
+"Afraid 😨",
+"Angry 😠",
+"Disgusted 🤢"
+],
+correct:0,
+emotion:"happy"
+}
 
-            answers: [
-                "Congratulate the friend",
-                "Insult the friend",
-                "Take the prize",
-                "Stop being friends"
-            ],
+]
+},
 
-            correct: 0,
-            emotion: "proud"
-        },
+{
+name:"Good Reactions",
 
-        {
-            q: "Robo is excited but needs to hear instructions. What should he do?",
+questions:[
 
-            answers: [
-                "Calm down and listen",
-                "Interrupt",
-                "Run around",
-                "Ignore them"
-            ],
+{
+q:"Robo is angry because someone took his pencil. What should he do?",
+answers:[
+"Stay calm and explain",
+"Shout loudly",
+"Break something",
+"Push the person"
+],
+correct:0,
+emotion:"calm"
+},
 
-            correct: 0,
-            emotion: "calm"
-        },
+{
+q:"Robo's friend is sad. What should Robo do?",
+answers:[
+"Listen and help",
+"Laugh",
+"Ignore them",
+"Tell everyone"
+],
+correct:0,
+emotion:"happy"
+},
 
-        {
-            q: "FINAL DOOR: Someone is being left out of a game. What should Robo do?",
+{
+q:"Robo feels afraid before a test. What could help?",
+answers:[
+"Breathe slowly and prepare",
+"Run away",
+"Rip the test",
+"Yell"
+],
+correct:0,
+emotion:"calm"
+},
 
-            answers: [
-                "Invite them to join",
-                "Ignore them",
-                "Laugh",
-                "Tell them to leave"
-            ],
+{
+q:"Robo makes a mistake. What should he do?",
+answers:[
+"Learn and try again",
+"Blame everyone",
+"Quit",
+"Get angry"
+],
+correct:0,
+emotion:"proud"
+},
 
-            correct: 0,
-            emotion: "happy"
-        }
+{
+q:"Robo wins a contest. What is the best reaction?",
+answers:[
+"Celebrate kindly",
+"Make fun of others",
+"Boast",
+"Ignore everyone"
+],
+correct:0,
+emotion:"happy"
+}
 
-    ]
+]
+},
+
+{
+name:"Understanding Others",
+
+questions:[
+
+{
+q:"A classmate becomes quiet after losing something important. What may they feel?",
+answers:[
+"Sad 😢",
+"Excited 🤩",
+"Proud 😎",
+"Disgusted 🤢"
+],
+correct:0,
+emotion:"sad"
+},
+
+{
+q:"Someone jumps when a balloon suddenly pops. What are they probably feeling?",
+answers:[
+"Surprised 😲",
+"Proud 😎",
+"Happy 😄",
+"Calm 😌"
+],
+correct:0,
+emotion:"surprised"
+},
+
+{
+q:"Your teammate shakes before a competition. What emotion might this show?",
+answers:[
+"Afraid 😨",
+"Disgusted 🤢",
+"Happy 😄",
+"Proud 😎"
+],
+correct:0,
+emotion:"afraid"
+},
+
+{
+q:"A friend smiles after completing something difficult. What may they feel?",
+answers:[
+"Proud 😎",
+"Angry 😠",
+"Sad 😢",
+"Disgusted 🤢"
+],
+correct:0,
+emotion:"proud"
+},
+
+{
+q:"Someone moves away from a terrible smell. What emotion are they showing?",
+answers:[
+"Disgusted 🤢",
+"Happy 😄",
+"Proud 😎",
+"Calm 😌"
+],
+correct:0,
+emotion:"disgusted"
+}
+
+]
+},
+
+{
+name:"Emotion Master",
+
+questions:[
+
+{
+q:"Robo is frustrated because a machine will not work. What should he do?",
+answers:[
+"Pause and try another solution",
+"Kick it",
+"Yell",
+"Give up"
+],
+correct:0,
+emotion:"calm"
+},
+
+{
+q:"Robo's teammate accidentally makes a mistake. What should Robo do?",
+answers:[
+"Help calmly",
+"Shout",
+"Leave",
+"Laugh"
+],
+correct:0,
+emotion:"calm"
+},
+
+{
+q:"Robo feels jealous because his friend won a prize. What should he do?",
+answers:[
+"Congratulate the friend",
+"Insult the friend",
+"Take the prize",
+"Stop being friends"
+],
+correct:0,
+emotion:"proud"
+},
+
+{
+q:"Robo is excited but needs to hear instructions. What should he do?",
+answers:[
+"Calm down and listen",
+"Interrupt",
+"Run around",
+"Ignore them"
+],
+correct:0,
+emotion:"calm"
+},
+
+{
+q:"FINAL DOOR: Someone is being left out of a game. What should Robo do?",
+answers:[
+"Invite them to join",
+"Ignore them",
+"Laugh",
+"Tell them to leave"
+],
+correct:0,
+emotion:"happy"
+}
+
+]
 }
 
 ];
 
 
-/* ================================
+/* =========================
    GAME VARIABLES
-================================ */
+========================= */
 
 let currentLevel = 0;
 let currentDoor = 0;
-
 let score = 0;
 let lives = 3;
-
 let locked = false;
 
 
-/* ================================
-   THREE.JS
-================================ */
+/* =========================
+   THREE.JS SETUP
+========================= */
 
 const canvas =
-document.getElementById("gameCanvas");
+document.getElementById(
+"gameCanvas"
+);
 
 
 const renderer =
 new THREE.WebGLRenderer({
-    canvas: canvas,
-    antialias: true
+canvas:canvas,
+antialias:true
 });
 
 
 renderer.setPixelRatio(
-    Math.min(
-        window.devicePixelRatio,
-        2
-    )
+Math.min(
+window.devicePixelRatio,
+2
+)
 );
 
 
-renderer.shadowMap.enabled = true;
+renderer.shadowMap.enabled =
+true;
 
 
 const scene =
@@ -843,541 +744,507 @@ new THREE.Scene();
 
 scene.background =
 new THREE.Color(
-    0x07111f
+0x07111f
 );
 
 
 scene.fog =
 new THREE.Fog(
-    0x07111f,
-    12,
-    35
+0x07111f,
+12,
+35
 );
 
 
 const camera =
 new THREE.PerspectiveCamera(
-    52,
-    1,
-    0.1,
-    100
+52,
+1,
+.1,
+100
 );
 
 
 camera.position.set(
-    0,
-    2.5,
-    8
+0,
+2.5,
+8
 );
 
 
-/* ================================
+/* =========================
    LIGHTS
-================================ */
+========================= */
 
 const ambient =
 new THREE.AmbientLight(
-    0xffffff,
-    1
+0xffffff,
+1
 );
-
 
 scene.add(
-    ambient
+ambient
 );
 
 
-const ceilingLight =
+const mainLight =
 new THREE.DirectionalLight(
-    0xffffff,
-    2
+0xffffff,
+2
 );
 
-
-ceilingLight.position.set(
-    4,
-    9,
-    5
+mainLight.position.set(
+4,
+9,
+5
 );
-
 
 scene.add(
-    ceilingLight
+mainLight
 );
 
 
 const cyanLight =
 new THREE.PointLight(
-    0x22d3ee,
-    24,
-    15
+0x22d3ee,
+24,
+15
 );
-
 
 cyanLight.position.set(
-    -4,
-    3,
-    2
+-4,
+3,
+2
 );
 
-
 scene.add(
-    cyanLight
+cyanLight
 );
 
 
 const purpleLight =
 new THREE.PointLight(
-    0x6366f1,
-    18,
-    15
+0x6366f1,
+18,
+15
 );
-
 
 purpleLight.position.set(
-    4,
-    3,
-    2
+4,
+3,
+2
 );
-
 
 scene.add(
-    purpleLight
+purpleLight
 );
 
 
-/* ================================
+/* =========================
    MATERIALS
-================================ */
+========================= */
 
 const whiteMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0xf8fafc,
-    metalness: .55,
-    roughness: .25
+color:0xf8fafc,
+metalness:.55,
+roughness:.25
 });
 
 
 const darkMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0x020617,
-    metalness: .7,
-    roughness: .25
+color:0x020617,
+metalness:.7,
+roughness:.25
 });
 
 
 const metalMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0x94a3b8,
-    metalness: .85,
-    roughness: .22
+color:0x94a3b8,
+metalness:.85,
+roughness:.22
 });
 
 
 const cyanMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0x22d3ee,
-    emissive: 0x22d3ee,
-    emissiveIntensity: 2.5
+color:0x22d3ee,
+emissive:0x22d3ee,
+emissiveIntensity:2.5
 });
 
 
 const wallMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0x111827,
-    metalness: .25,
-    roughness: .65
+color:0x111827,
+metalness:.25,
+roughness:.65
 });
 
 
 const floorMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0x172033,
-    metalness: .5,
-    roughness: .4
+color:0x172033,
+metalness:.5,
+roughness:.4
 });
 
 
 const doorMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0x1d4ed8,
-    metalness: .7,
-    roughness: .25
+color:0x1d4ed8,
+metalness:.7,
+roughness:.25
 });
 
 
 const glowMaterial =
 new THREE.MeshStandardMaterial({
-    color: 0x38bdf8,
-    emissive: 0x38bdf8,
-    emissiveIntensity: 2
+color:0x38bdf8,
+emissive:0x38bdf8,
+emissiveIntensity:2
 });
 
 
-/* ================================
-   LAB
-================================ */
+/* =========================
+   3D LAB
+========================= */
 
 const floor =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        12,
-        .25,
-        25
-    ),
+new THREE.BoxGeometry(
+12,
+.25,
+25
+),
 
-    floorMaterial
+floorMaterial
+
 );
-
 
 floor.position.set(
-    0,
-    -1.55,
-    -5
+0,
+-1.55,
+-5
 );
 
-
 scene.add(
-    floor
+floor
 );
 
 
 const leftWall =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        .3,
-        7,
-        25
-    ),
+new THREE.BoxGeometry(
+.3,
+7,
+25
+),
 
-    wallMaterial
+wallMaterial
+
 );
-
 
 leftWall.position.set(
-    -6,
-    2,
-    -5
+-6,
+2,
+-5
 );
 
-
 scene.add(
-    leftWall
+leftWall
 );
 
 
 const rightWall =
 leftWall.clone();
 
-
 rightWall.position.x =
 6;
 
-
 scene.add(
-    rightWall
+rightWall
 );
 
 
 const ceiling =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        12,
-        .2,
-        25
-    ),
+new THREE.BoxGeometry(
+12,
+.2,
+25
+),
 
-    wallMaterial
+wallMaterial
+
 );
-
 
 ceiling.position.set(
-    0,
-    5.4,
-    -5
+0,
+5.4,
+-5
 );
 
-
 scene.add(
-    ceiling
+ceiling
 );
 
 
 const backWall =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        12,
-        7,
-        .3
-    ),
+new THREE.BoxGeometry(
+12,
+7,
+.3
+),
 
-    wallMaterial
+wallMaterial
+
 );
-
 
 backWall.position.set(
-    0,
-    2,
-    -14
+0,
+2,
+-14
 );
-
 
 scene.add(
-    backWall
+backWall
 );
 
 
-/* FLOOR LIGHTS */
+/* floor lights */
 
 for(
-    let z = 5;
-    z > -14;
-    z -= 2.5
+let z = 5;
+z > -14;
+z -= 2.5
 ){
 
-    const strip1 =
-    new THREE.Mesh(
+const strip1 =
+new THREE.Mesh(
 
-        new THREE.BoxGeometry(
-            .12,
-            .03,
-            1.4
-        ),
+new THREE.BoxGeometry(
+.12,
+.03,
+1.4
+),
 
-        glowMaterial
-    );
+glowMaterial
 
+);
 
-    strip1.position.set(
-        -4.3,
-        -1.4,
-        z
-    );
+strip1.position.set(
+-4.3,
+-1.4,
+z
+);
 
-
-    scene.add(
-        strip1
-    );
-
-
-    const strip2 =
-    strip1.clone();
+scene.add(
+strip1
+);
 
 
-    strip2.position.x =
-    4.3;
+const strip2 =
+strip1.clone();
 
+strip2.position.x =
+4.3;
 
-    scene.add(
-        strip2
-    );
+scene.add(
+strip2
+);
+
 }
 
 
-/* ================================
-   REAL HINGED 3D DOOR
-================================ */
+/* =========================
+   3D DOOR
+========================= */
 
 const doorGroup =
 new THREE.Group();
 
 
 doorGroup.position.set(
-    0,
-    .55,
-    -4
+0,
+.55,
+-4
 );
 
 
 scene.add(
-    doorGroup
+doorGroup
 );
 
-
-/* FRAME */
 
 const frameLeft =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        .35,
-        4.5,
-        .5
-    ),
+new THREE.BoxGeometry(
+.35,
+4.5,
+.5
+),
 
-    metalMaterial
+metalMaterial
+
 );
-
 
 frameLeft.position.x =
 -1.7;
 
-
 doorGroup.add(
-    frameLeft
+frameLeft
 );
 
 
 const frameRight =
 frameLeft.clone();
 
-
 frameRight.position.x =
 1.7;
 
-
 doorGroup.add(
-    frameRight
+frameRight
 );
 
 
 const frameTop =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        3.75,
-        .35,
-        .5
-    ),
+new THREE.BoxGeometry(
+3.75,
+.35,
+.5
+),
 
-    metalMaterial
+metalMaterial
+
 );
-
 
 frameTop.position.y =
 2.1;
 
-
 doorGroup.add(
-    frameTop
+frameTop
 );
 
-
-/* LEFT HINGE */
 
 const leftDoorPivot =
 new THREE.Group();
 
-
 leftDoorPivot.position.set(
-    -1.6,
-    0,
-    0
+-1.6,
+0,
+0
 );
 
-
 doorGroup.add(
-    leftDoorPivot
+leftDoorPivot
 );
 
 
 const doorLeft =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        1.55,
-        3.85,
-        .3
-    ),
+new THREE.BoxGeometry(
+1.55,
+3.85,
+.3
+),
 
-    doorMaterial
+doorMaterial
+
 );
-
 
 doorLeft.position.x =
 .775;
 
-
 leftDoorPivot.add(
-    doorLeft
+doorLeft
 );
 
-
-/* RIGHT HINGE */
 
 const rightDoorPivot =
 new THREE.Group();
 
-
 rightDoorPivot.position.set(
-    1.6,
-    0,
-    0
+1.6,
+0,
+0
 );
 
-
 doorGroup.add(
-    rightDoorPivot
+rightDoorPivot
 );
 
 
 const doorRight =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        1.55,
-        3.85,
-        .3
-    ),
+new THREE.BoxGeometry(
+1.55,
+3.85,
+.3
+),
 
-    doorMaterial
+doorMaterial
+
 );
-
 
 doorRight.position.x =
 -.775;
 
-
 rightDoorPivot.add(
-    doorRight
+doorRight
 );
 
-
-/* DOOR LIGHT */
 
 const doorLight =
 new THREE.Mesh(
 
-    new THREE.BoxGeometry(
-        .12,
-        3.2,
-        .36
-    ),
+new THREE.BoxGeometry(
+.12,
+3.2,
+.36
+),
 
-    glowMaterial
+glowMaterial
+
 );
-
 
 doorLight.position.z =
 .1;
 
-
 doorGroup.add(
-    doorLight
+doorLight
 );
 
 
-/* ================================
+/* =========================
    ROBOT
-================================ */
+========================= */
 
 const robot =
 new THREE.Group();
 
 
 robot.position.set(
-    0,
-    -.15,
-    1.2
+0,
+-.15,
+1.2
 );
 
 
 scene.add(
-    robot
+robot
 );
 
 
@@ -1386,1878 +1253,1914 @@ const robotParts =
 
 
 function addRobotPart(
-    mesh,
-    name
+mesh,
+name
 ){
 
-    mesh.userData.name =
-    name;
+mesh.userData.name =
+name;
 
+robot.add(
+mesh
+);
 
-    robot.add(
-        mesh
-    );
+robotParts.push(
+mesh
+);
 
+return mesh;
 
-    robotParts.push(
-        mesh
-    );
-
-
-    return mesh;
 }
 
-
-/* BODY */
 
 const body =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.BoxGeometry(
-            1.4,
-            1.3,
-            .85
-        ),
+new THREE.BoxGeometry(
+1.4,
+1.3,
+.85
+),
 
-        whiteMaterial
-    ),
+whiteMaterial
 
-    "body"
+),
+
+"body"
+
 );
-
 
 body.position.y =
 0;
 
 
-/* HEAD */
-
 const head =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.BoxGeometry(
-            1.75,
-            1.1,
-            1
-        ),
+new THREE.BoxGeometry(
+1.75,
+1.1,
+1
+),
 
-        whiteMaterial
-    ),
+whiteMaterial
 
-    "head"
+),
+
+"head"
+
 );
-
 
 head.position.y =
 1.48;
 
 
-/* FACE */
-
 const face =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.BoxGeometry(
-            1.45,
-            .72,
-            .08
-        ),
+new THREE.BoxGeometry(
+1.45,
+.72,
+.08
+),
 
-        darkMaterial
-    ),
+darkMaterial
 
-    "face"
+),
+
+"face"
+
 );
-
 
 face.position.set(
-    0,
-    1.48,
-    .54
+0,
+1.48,
+.54
 );
 
-
-/* EYES */
 
 const eyeL =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.SphereGeometry(
-            .13,
-            20,
-            20
-        ),
+new THREE.SphereGeometry(
+.13,
+20,
+20
+),
 
-        cyanMaterial
-    ),
+cyanMaterial
 
-    "eyeL"
+),
+
+"eyeL"
+
 );
-
 
 eyeL.scale.y =
 1.4;
 
-
 eyeL.position.set(
-    -.36,
-    1.6,
-    .61
+-.36,
+1.6,
+.61
 );
 
 
 const eyeR =
 addRobotPart(
 
-    eyeL.clone(),
+eyeL.clone(),
 
-    "eyeR"
+"eyeR"
+
 );
-
 
 eyeR.position.x =
 .36;
 
 
-/* MOUTH */
-
 const mouth =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.BoxGeometry(
-            .46,
-            .07,
-            .08
-        ),
+new THREE.BoxGeometry(
+.46,
+.07,
+.08
+),
 
-        cyanMaterial
-    ),
+cyanMaterial
 
-    "mouth"
+),
+
+"mouth"
+
 );
-
 
 mouth.position.set(
-    0,
-    1.28,
-    .61
+0,
+1.28,
+.61
 );
 
-
-/* HEART */
 
 const heart =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.SphereGeometry(
-            .2,
-            20,
-            20
-        ),
+new THREE.SphereGeometry(
+.2,
+20,
+20
+),
 
-        cyanMaterial
-    ),
+cyanMaterial
 
-    "heart"
+),
+
+"heart"
+
 );
-
 
 heart.scale.set(
-    1,
-    1,
-    .4
+1,
+1,
+.4
 );
-
 
 heart.position.set(
-    0,
-    .08,
-    .48
+0,
+.08,
+.48
 );
 
-
-/* ARMS */
 
 const armL =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.CapsuleGeometry(
-            .2,
-            .72,
-            8,
-            16
-        ),
+new THREE.CapsuleGeometry(
+.2,
+.72,
+8,
+16
+),
 
-        whiteMaterial
-    ),
+whiteMaterial
 
-    "armL"
+),
+
+"armL"
+
 );
 
-
 armL.position.set(
-    -1,
-    0,
-    0
+-1,
+0,
+0
 );
 
 
 const armR =
 addRobotPart(
 
-    armL.clone(),
+armL.clone(),
 
-    "armR"
+"armR"
+
 );
-
 
 armR.position.x =
 1;
 
 
-/* LEGS */
-
 const legL =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.CapsuleGeometry(
-            .22,
-            .52,
-            8,
-            16
-        ),
+new THREE.CapsuleGeometry(
+.22,
+.52,
+8,
+16
+),
 
-        whiteMaterial
-    ),
+whiteMaterial
 
-    "legL"
+),
+
+"legL"
+
 );
 
-
 legL.position.set(
-    -.38,
-    -1,
-    0
+-.38,
+-1,
+0
 );
 
 
 const legR =
 addRobotPart(
 
-    legL.clone(),
+legL.clone(),
 
-    "legR"
+"legR"
+
 );
-
 
 legR.position.x =
 .38;
 
 
-/* FEET */
-
 const footL =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.BoxGeometry(
-            .56,
-            .22,
-            .75
-        ),
+new THREE.BoxGeometry(
+.56,
+.22,
+.75
+),
 
-        metalMaterial
-    ),
+metalMaterial
 
-    "footL"
+),
+
+"footL"
+
 );
 
-
 footL.position.set(
-    -.38,
-    -1.42,
-    .1
+-.38,
+-1.42,
+.1
 );
 
 
 const footR =
 addRobotPart(
 
-    footL.clone(),
+footL.clone(),
 
-    "footR"
+"footR"
+
 );
-
 
 footR.position.x =
 .38;
 
 
-/* ANTENNA */
-
 const antenna =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.CylinderGeometry(
-            .05,
-            .05,
-            .5,
-            16
-        ),
+new THREE.CylinderGeometry(
+.05,
+.05,
+.5,
+16
+),
 
-        metalMaterial
-    ),
+metalMaterial
 
-    "antenna"
+),
+
+"antenna"
+
 );
 
-
 antenna.position.set(
-    0,
-    2.35,
-    0
+0,
+2.35,
+0
 );
 
 
 const antennaBall =
 addRobotPart(
 
-    new THREE.Mesh(
+new THREE.Mesh(
 
-        new THREE.SphereGeometry(
-            .13,
-            20,
-            20
-        ),
+new THREE.SphereGeometry(
+.13,
+20,
+20
+),
 
-        cyanMaterial
-    ),
+cyanMaterial
 
-    "antennaBall"
+),
+
+"antennaBall"
+
 );
-
 
 antennaBall.position.set(
-    0,
-    2.64,
-    0
+0,
+2.64,
+0
 );
 
-
-/* SAVE ORIGINAL POSITIONS */
 
 robotParts.forEach(
-    part => {
+part => {
 
-        part.userData.homePosition =
-        part.position.clone();
+part.userData.homePosition =
+part.position.clone();
 
+part.userData.homeRotation =
+part.rotation.clone();
 
-        part.userData.homeRotation =
-        part.rotation.clone();
-
-    }
+}
 );
 
 
-/* ================================
-   ANIMATION VARIABLES
-================================ */
+/* =========================
+   ANIMATION STATE
+========================= */
 
 let emotion =
 "normal";
 
-
 let emotionStart =
 0;
-
 
 let exploded =
 false;
 
-
 let explosionParts =
 [];
-
 
 let doorOpening =
 false;
 
-
 let doorOpenAmount =
 0;
 
+let robotTurning =
+false;
 
-let roboWalking =
+let turnProgress =
+0;
+
+let robotWalking =
+false;
+
+let walkProgress =
+0;
+
+let cameraFollowing =
 false;
 
 
-let roboWalkProgress =
-0;
-
-
-/* ================================
+/* =========================
    RESET ROBOT
-================================ */
+========================= */
 
 function resetRobot(){
 
-    exploded =
-    false;
+exploded =
+false;
+
+explosionParts =
+[];
+
+emotion =
+"normal";
+
+robotTurning =
+false;
+
+turnProgress =
+0;
+
+robotWalking =
+false;
+
+walkProgress =
+0;
+
+cameraFollowing =
+false;
 
 
-    explosionParts =
-    [];
+robot.position.set(
+0,
+-.15,
+1.2
+);
 
 
-    emotion =
-    "normal";
+robot.rotation.set(
+0,
+0,
+0
+);
 
 
-    roboWalking =
-    false;
+robot.scale.set(
+1,
+1,
+1
+);
 
 
-    roboWalkProgress =
-    0;
+robotParts.forEach(
+part => {
+
+part.position.copy(
+part.userData.homePosition
+);
+
+part.rotation.copy(
+part.userData.homeRotation
+);
+
+}
+);
 
 
-    robot.position.set(
-        0,
-        -.15,
-        1.2
-    );
+eyeL.scale.set(
+1,
+1.4,
+1
+);
 
 
-    robot.rotation.set(
-        0,
-        0,
-        0
-    );
+eyeR.scale.set(
+1,
+1.4,
+1
+);
 
 
-    robot.scale.set(
-        1,
-        1,
-        1
-    );
+mouth.scale.set(
+1,
+1,
+1
+);
 
 
-    robotParts.forEach(
-        part => {
+cyanLight.color.set(
+0x22d3ee
+);
 
-            part.position.copy(
-                part.userData.homePosition
-            );
-
-
-            part.rotation.copy(
-                part.userData.homeRotation
-            );
-
-        }
-    );
-
-
-    eyeL.scale.set(
-        1,
-        1.4,
-        1
-    );
-
-
-    eyeR.scale.set(
-        1,
-        1.4,
-        1
-    );
-
-
-    mouth.scale.set(
-        1,
-        1,
-        1
-    );
-
-
-    cyanLight.color.set(
-        0x22d3ee
-    );
 }
 
 
-/* ================================
-   EMOTION
-================================ */
+/* =========================
+   EMOTIONS
+========================= */
 
 function playEmotion(
-    type
+type
 ){
 
-    resetRobot();
+resetRobot();
 
+emotion =
+type;
 
-    emotion =
-    type;
+emotionStart =
+performance.now();
 
-
-    emotionStart =
-    performance.now();
 }
 
 
 function updateEmotion(
-    time
+time
 ){
 
-    if(
-        emotion ===
-        "normal"
-    ){
-        return;
-    }
-
-
-    if(
-        roboWalking
-    ){
-        return;
-    }
-
-
-    const t =
-    (
-        time -
-        emotionStart
-    )
-    /
-    1000;
-
-
-    if(
-        emotion ===
-        "happy"
-    ){
-
-        robot.position.y =
-        -.15 +
-        Math.abs(
-            Math.sin(
-                t * 7
-            )
-        )
-        *
-        .5;
-
-
-        armL.rotation.z =
-        -.8;
-
-
-        armR.rotation.z =
-        .8;
-
-    }
-
-
-    if(
-        emotion ===
-        "angry"
-    ){
-
-        robot.position.x =
-        Math.sin(
-            t * 35
-        )
-        *
-        .1;
-
-
-        robot.rotation.z =
-        Math.sin(
-            t * 30
-        )
-        *
-        .05;
-
-
-        cyanLight.color.set(
-            0xef4444
-        );
-
-    }
-
-
-    if(
-        emotion ===
-        "afraid"
-    ){
-
-        robot.position.x =
-        Math.sin(
-            t * 45
-        )
-        *
-        .07;
-
-
-        robot.position.y =
-        -.15 +
-        Math.sin(
-            t * 40
-        )
-        *
-        .04;
-
-    }
-
-
-    if(
-        emotion ===
-        "surprised"
-    ){
-
-        const s =
-        1 +
-        Math.abs(
-            Math.sin(
-                t * 6
-            )
-        )
-        *
-        .2;
-
-
-        robot.scale.set(
-            s,
-            s,
-            s
-        );
-
-
-        eyeL.scale.set(
-            1.5,
-            1.9,
-            1.5
-        );
-
-
-        eyeR.scale.set(
-            1.5,
-            1.9,
-            1.5
-        );
-
-    }
-
-
-    if(
-        emotion ===
-        "sad"
-    ){
-
-        robot.position.y =
-        -.35;
-
-
-        head.rotation.z =
-        -.12;
-
-
-        armL.rotation.z =
-        .25;
-
-
-        armR.rotation.z =
-        -.25;
-
-    }
-
-
-    if(
-        emotion ===
-        "disgusted"
-    ){
-
-        robot.rotation.z =
-        -.18;
-
-
-        head.rotation.y =
-        -.4;
-
-
-        cyanLight.color.set(
-            0x22c55e
-        );
-
-    }
-
-
-    if(
-        emotion ===
-        "calm"
-    ){
-
-        robot.position.y =
-        -.15 +
-        Math.sin(
-            t * 2
-        )
-        *
-        .03;
-
-    }
-
-
-    if(
-        emotion ===
-        "proud"
-    ){
-
-        armL.rotation.z =
-        -.55;
-
-
-        armR.rotation.z =
-        .55;
-
-
-        robot.scale.set(
-            1.08,
-            1.08,
-            1.08
-        );
-
-    }
+if(
+emotion ===
+"normal"
+)
+return;
+
+
+if(
+robotTurning ||
+robotWalking
+)
+return;
+
+
+const t =
+(
+time -
+emotionStart
+)
+/1000;
+
+
+if(
+emotion ===
+"happy"
+){
+
+robot.position.y =
+-.15 +
+Math.abs(
+Math.sin(
+t * 7
+)
+)
+*
+.5;
+
+armL.rotation.z =
+-.8;
+
+armR.rotation.z =
+.8;
 
 }
 
 
-/* ================================
-   WRONG ANSWER EXPLOSION
-================================ */
+if(
+emotion ===
+"angry"
+){
+
+robot.position.x =
+Math.sin(
+t * 35
+)
+*
+.1;
+
+robot.rotation.z =
+Math.sin(
+t * 30
+)
+*
+.05;
+
+cyanLight.color.set(
+0xef4444
+);
+
+}
+
+
+if(
+emotion ===
+"afraid"
+){
+
+robot.position.x =
+Math.sin(
+t * 45
+)
+*
+.07;
+
+robot.position.y =
+-.15 +
+Math.sin(
+t * 40
+)
+*
+.04;
+
+}
+
+
+if(
+emotion ===
+"surprised"
+){
+
+const s =
+1 +
+Math.abs(
+Math.sin(
+t * 6
+)
+)
+*
+.2;
+
+robot.scale.set(
+s,
+s,
+s
+);
+
+eyeL.scale.set(
+1.5,
+1.9,
+1.5
+);
+
+eyeR.scale.set(
+1.5,
+1.9,
+1.5
+);
+
+}
+
+
+if(
+emotion ===
+"sad"
+){
+
+robot.position.y =
+-.35;
+
+head.rotation.z =
+-.12;
+
+armL.rotation.z =
+.25;
+
+armR.rotation.z =
+-.25;
+
+}
+
+
+if(
+emotion ===
+"disgusted"
+){
+
+robot.rotation.z =
+-.18;
+
+head.rotation.y =
+-.4;
+
+cyanLight.color.set(
+0x22c55e
+);
+
+}
+
+
+if(
+emotion ===
+"calm"
+){
+
+robot.position.y =
+-.15 +
+Math.sin(
+t * 2
+)
+*
+.03;
+
+}
+
+
+if(
+emotion ===
+"proud"
+){
+
+armL.rotation.z =
+-.55;
+
+armR.rotation.z =
+.55;
+
+robot.scale.set(
+1.08,
+1.08,
+1.08
+);
+
+}
+
+}
+
+
+/* =========================
+   WRONG ANSWER
+========================= */
 
 function explodeRobot(){
 
-    resetRobot();
+resetRobot();
+
+exploded =
+true;
+
+explosionParts =
+[];
 
 
-    exploded =
-    true;
+robotParts.forEach(
+part => {
 
+explosionParts.push({
 
-    explosionParts =
-    [];
+part:part,
 
+velocity:
+new THREE.Vector3(
 
-    robotParts.forEach(
-        part => {
+(
+Math.random()
+-
+.5
+)
+*
+.1,
 
-            explosionParts.push({
+Math.random()
+*
+.08
++
+.03,
 
-                part: part,
+(
+Math.random()
+-
+.5
+)
+*
+.08
 
-                velocity:
-                new THREE.Vector3(
+),
 
-                    (
-                        Math.random()
-                        -
-                        .5
-                    )
-                    *
-                    .1,
+spin:
+new THREE.Vector3(
 
-                    Math.random()
-                    *
-                    .08
-                    +
-                    .03,
+Math.random()
+*
+.18,
 
-                    (
-                        Math.random()
-                        -
-                        .5
-                    )
-                    *
-                    .08
-                ),
+Math.random()
+*
+.18,
 
-                spin:
-                new THREE.Vector3(
+Math.random()
+*
+.18
 
-                    Math.random()
-                    *
-                    .18,
+)
 
-                    Math.random()
-                    *
-                    .18,
+});
 
-                    Math.random()
-                    *
-                    .18
-                )
+}
+);
 
-            });
-
-        }
-    );
 }
 
 
 function updateExplosion(){
 
-    if(
-        !exploded
-    ){
-        return;
-    }
+if(
+!exploded
+)
+return;
 
 
-    explosionParts.forEach(
-        item => {
+explosionParts.forEach(
+item => {
 
-            item.velocity.y -=
-            .003;
+item.velocity.y -=
+.003;
 
+item.part.position.add(
+item.velocity
+);
 
-            item.part.position.add(
-                item.velocity
-            );
+item.part.rotation.x +=
+item.spin.x;
 
+item.part.rotation.y +=
+item.spin.y;
 
-            item.part.rotation.x +=
-            item.spin.x;
+item.part.rotation.z +=
+item.spin.z;
 
+}
+);
 
-            item.part.rotation.y +=
-            item.spin.y;
-
-
-            item.part.rotation.z +=
-            item.spin.z;
-
-        }
-    );
 }
 
 
-/* ================================
-   REAL DOOR OPENING
-================================ */
+/* =========================
+   DOOR
+========================= */
 
 function resetDoor(){
 
-    doorOpening =
-    false;
+doorOpening =
+false;
 
+doorOpenAmount =
+0;
 
-    doorOpenAmount =
-    0;
+leftDoorPivot.rotation.y =
+0;
 
+rightDoorPivot.rotation.y =
+0;
 
-    leftDoorPivot.rotation.y =
-    0;
-
-
-    rightDoorPivot.rotation.y =
-    0;
 }
 
 
 function openDoor(){
 
-    doorOpening =
-    true;
+doorOpening =
+true;
 
+doorOpenAmount =
+0;
 
-    doorOpenAmount =
-    0;
 }
 
 
 function updateDoor(){
 
-    if(
-        !doorOpening
-    ){
-        return;
-    }
+if(
+!doorOpening
+)
+return;
 
 
-    doorOpenAmount +=
-    .025;
+doorOpenAmount +=
+.03;
 
 
-    if(
-        doorOpenAmount >
-        1
-    ){
-
-        doorOpenAmount =
-        1;
-
-    }
+doorOpenAmount =
+Math.min(
+doorOpenAmount,
+1
+);
 
 
-    leftDoorPivot.rotation.y =
-    -
-    doorOpenAmount
-    *
-    Math.PI
-    /
-    2;
+leftDoorPivot.rotation.y =
+-
+doorOpenAmount
+*
+Math.PI
+/
+2;
 
 
-    rightDoorPivot.rotation.y =
-    doorOpenAmount
-    *
-    Math.PI
-    /
-    2;
+rightDoorPivot.rotation.y =
+doorOpenAmount
+*
+Math.PI
+/
+2;
+
 }
 
 
-/* ================================
-   ROBO WALKS THROUGH DOOR
-================================ */
+/* =========================
+   TURN ROBOT
+========================= */
 
-function walkRoboThroughDoor(){
+function turnRobotToDoor(){
 
-    resetRobot();
+emotion =
+"normal";
+
+robotTurning =
+true;
+
+turnProgress =
+0;
+
+}
 
 
-    roboWalking =
-    true;
+function updateRobotTurn(){
+
+if(
+!robotTurning
+)
+return;
 
 
-    roboWalkProgress =
-    0;
+turnProgress +=
+.025;
+
+
+turnProgress =
+Math.min(
+turnProgress,
+1
+);
+
+
+robot.rotation.y =
+THREE.MathUtils.lerp(
+0,
+Math.PI,
+turnProgress
+);
+
+
+if(
+turnProgress >=
+1
+){
+
+robot.rotation.y =
+Math.PI;
+
+robotTurning =
+false;
+
+walkRobotInside();
+
+}
+
+}
+
+
+/* =========================
+   WALK THROUGH DOOR
+========================= */
+
+function walkRobotInside(){
+
+robotWalking =
+true;
+
+walkProgress =
+0;
+
+cameraFollowing =
+true;
+
 }
 
 
 function updateRobotWalk(){
 
-    if(
-        !roboWalking
-    ){
-        return;
-    }
+if(
+!robotWalking
+)
+return;
 
 
-    roboWalkProgress +=
-    .012;
+walkProgress +=
+.012;
 
 
-    robot.position.z =
-    1.2
-    -
-    roboWalkProgress
-    *
-    7;
+robot.position.z =
+1.2 -
+walkProgress *
+8;
 
 
-    robot.position.y =
-    -.15
-    +
-    Math.abs(
-        Math.sin(
-            roboWalkProgress
-            *
-            32
-        )
-    )
-    *
-    .1;
+robot.position.y =
+-.15 +
+Math.abs(
+Math.sin(
+walkProgress *
+34
+)
+)
+*
+.1;
 
 
-    armL.rotation.x =
-    Math.sin(
-        roboWalkProgress
-        *
-        32
-    )
-    *
-    .55;
+armL.rotation.x =
+Math.sin(
+walkProgress *
+34
+)
+*
+.5;
 
 
-    armR.rotation.x =
-    -
-    Math.sin(
-        roboWalkProgress
-        *
-        32
-    )
-    *
-    .55;
+armR.rotation.x =
+-
+Math.sin(
+walkProgress *
+34
+)
+*
+.5;
 
 
-    legL.rotation.x =
-    -
-    Math.sin(
-        roboWalkProgress
-        *
-        32
-    )
-    *
-    .4;
+legL.rotation.x =
+-
+Math.sin(
+walkProgress *
+34
+)
+*
+.4;
 
 
-    legR.rotation.x =
-    Math.sin(
-        roboWalkProgress
-        *
-        32
-    )
-    *
-    .4;
+legR.rotation.x =
+Math.sin(
+walkProgress *
+34
+)
+*
+.4;
 
 
-    if(
-        roboWalkProgress >=
-        1
-    ){
+if(
+walkProgress >=
+1
+){
 
-        roboWalking =
-        false;
+robotWalking =
+false;
 
-    }
+cameraFollowing =
+false;
+
+finishDoorTransition();
+
+}
 
 }
 
 
-/* ================================
+/* =========================
    CAMERA
-================================ */
+========================= */
 
-let cameraTarget =
+const normalCameraPosition =
 new THREE.Vector3(
-    0,
-    2.5,
-    8
+0,
+2.5,
+8
 );
 
 
-function moveCameraForward(){
+function updateCamera(){
 
-    cameraTarget.set(
-        0,
-        2,
-        4.6
-    );
+if(
+cameraFollowing
+){
+
+const followPosition =
+new THREE.Vector3(
+
+robot.position.x,
+
+robot.position.y +
+2.2,
+
+robot.position.z +
+4
+
+);
+
+
+camera.position.lerp(
+followPosition,
+.08
+);
+
+
+camera.lookAt(
+
+robot.position.x,
+
+robot.position.y +
+.8,
+
+robot.position.z -
+2
+
+);
+
+}
+
+else
+{
+
+camera.position.lerp(
+normalCameraPosition,
+.05
+);
+
+
+camera.lookAt(
+0,
+.5,
+-1
+);
+
+}
+
 }
 
 
-function resetCamera(){
-
-    cameraTarget.set(
-        0,
-        2.5,
-        8
-    );
-}
-
-
-/* ================================
-   RENDER LOOP
-================================ */
+/* =========================
+   RENDER
+========================= */
 
 function resize(){
 
-    const box =
-    canvas.getBoundingClientRect();
+const box =
+canvas.getBoundingClientRect();
 
 
-    renderer.setSize(
-        box.width,
-        box.height,
-        false
-    );
+renderer.setSize(
+box.width,
+box.height,
+false
+);
 
 
-    camera.aspect =
-    box.width
-    /
-    box.height;
+camera.aspect =
+box.width /
+box.height;
 
 
-    camera.updateProjectionMatrix();
+camera.updateProjectionMatrix();
+
 }
 
 
 function animate(
-    time
+time
 ){
 
-    requestAnimationFrame(
-        animate
-    );
+requestAnimationFrame(
+animate
+);
 
 
-    resize();
+resize();
 
 
-    camera.position.lerp(
-        cameraTarget,
-        .04
-    );
+updateEmotion(
+time
+);
 
 
-    camera.lookAt(
-        0,
-        .5,
-        -1
-    );
+updateExplosion();
 
 
-    updateEmotion(
-        time
-    );
+updateDoor();
 
 
-    updateExplosion();
+updateRobotTurn();
 
 
-    updateDoor();
+updateRobotWalk();
 
 
-    updateRobotWalk();
+updateCamera();
 
 
-    renderer.render(
-        scene,
-        camera
-    );
+renderer.render(
+scene,
+camera
+);
+
 }
 
 
 requestAnimationFrame(
-    animate
+animate
 );
 
 
-/* ================================
+/* =========================
    ANALYTICS
-================================ */
+========================= */
 
 function track(
-    name,
-    parameters = {}
+name,
+params={}
 ){
 
-    if(
-        typeof gtag ===
-        "function"
-    ){
+if(
+typeof gtag ===
+"function"
+){
 
-        gtag(
-            "event",
-            name,
-            parameters
-        );
+gtag(
+"event",
+name,
+params
+);
 
-    }
+}
+
 }
 
 
-/* ================================
+/* =========================
    START GAME
-================================ */
+========================= */
 
 function startGame(){
 
-    currentLevel =
-    0;
+currentLevel =
+0;
+
+currentDoor =
+0;
+
+score =
+0;
+
+lives =
+3;
 
 
-    currentDoor =
-    0;
+document
+.getElementById(
+"startScreen"
+)
+.classList
+.add(
+"hidden"
+);
 
 
-    score =
-    0;
+document
+.getElementById(
+"levelScreen"
+)
+.classList
+.add(
+"hidden"
+);
 
 
-    lives =
-    3;
+document
+.getElementById(
+"endScreen"
+)
+.classList
+.add(
+"hidden"
+);
 
 
-    document
-    .getElementById(
-        "startScreen"
-    )
-    .classList
-    .add(
-        "hidden"
-    );
+document
+.getElementById(
+"questionPanel"
+)
+.classList
+.remove(
+"hidden"
+);
 
 
-    document
-    .getElementById(
-        "levelScreen"
-    )
-    .classList
-    .add(
-        "hidden"
-    );
+track(
+"game_start"
+);
 
 
-    document
-    .getElementById(
-        "endScreen"
-    )
-    .classList
-    .add(
-        "hidden"
-    );
+loadDoor();
 
-
-    document
-    .getElementById(
-        "questionPanel"
-    )
-    .classList
-    .remove(
-        "hidden"
-    );
-
-
-    track(
-        "game_start"
-    );
-
-
-    loadDoor();
 }
 
 
-/* ================================
+/* =========================
    LOAD DOOR
-================================ */
+========================= */
 
 function loadDoor(){
 
-    locked =
-    false;
+locked =
+false;
 
 
-    resetRobot();
+resetRobot();
 
 
-    resetDoor();
+resetDoor();
 
 
-    resetCamera();
+camera.position.copy(
+normalCameraPosition
+);
 
 
-    const item =
-    levels[
-        currentLevel
-    ]
-    .questions[
-        currentDoor
-    ];
+const item =
+levels[
+currentLevel
+]
+.questions[
+currentDoor
+];
 
 
-    document
-    .getElementById(
-        "levelLabel"
-    )
-    .textContent =
-    `Level ${currentLevel + 1}`;
+document
+.getElementById(
+"levelLabel"
+)
+.textContent =
+`Level ${currentLevel + 1}`;
 
 
-    document
-    .getElementById(
-        "doorLabel"
-    )
-    .textContent =
-    `Door ${currentDoor + 1}/5`;
+document
+.getElementById(
+"doorLabel"
+)
+.textContent =
+`Door ${currentDoor + 1}/5`;
 
 
-    document
-    .getElementById(
-        "scoreLabel"
-    )
-    .textContent =
-    `Score: ${score}`;
+document
+.getElementById(
+"scoreLabel"
+)
+.textContent =
+`Score: ${score}`;
 
 
-    document
-    .getElementById(
-        "livesLabel"
-    )
-    .textContent =
-    "❤️".repeat(
-        lives
-    )
-    +
-    "🖤".repeat(
-        3 - lives
-    );
+document
+.getElementById(
+"livesLabel"
+)
+.textContent =
+"❤️".repeat(
+lives
+)
++
+"🖤".repeat(
+3-lives
+);
 
 
-    document
-    .getElementById(
-        "question"
-    )
-    .textContent =
-    item.q;
+document
+.getElementById(
+"question"
+)
+.textContent =
+item.q;
 
 
-    document
-    .getElementById(
-        "feedback"
-    )
-    .textContent =
-    "";
+document
+.getElementById(
+"feedback"
+)
+.textContent =
+"";
 
 
-    const choices =
-    document
-    .getElementById(
-        "choices"
-    );
+const choices =
+document
+.getElementById(
+"choices"
+);
 
 
-    choices.innerHTML =
-    "";
+choices.innerHTML =
+"";
 
 
-    item.answers.forEach(
-        (answer,index) => {
+item.answers.forEach(
+(answer,index) => {
 
-            const button =
-            document.createElement(
-                "button"
-            );
-
-
-            button.textContent =
-            answer;
+const button =
+document.createElement(
+"button"
+);
 
 
-            button.onclick =
-            () =>
-            answerQuestion(
-                index
-            );
+button.textContent =
+answer;
 
 
-            choices.appendChild(
-                button
-            );
+button.onclick =
+() =>
+answerQuestion(
+index
+);
 
-        }
-    );
+
+choices.appendChild(
+button
+);
+
+}
+);
+
 }
 
 
-/* ================================
+/* =========================
    BUTTON LOCK
-================================ */
+========================= */
 
 function disableButtons(
-    state
+state
 ){
 
-    document
-    .querySelectorAll(
-        "#choices button"
-    )
-    .forEach(
-        button => {
+document
+.querySelectorAll(
+"#choices button"
+)
+.forEach(
+button => {
 
-            button.disabled =
-            state;
+button.disabled =
+state;
 
-        }
-    );
+}
+);
+
 }
 
 
-/* ================================
-   ANSWER
-================================ */
+/* =========================
+   ANSWER QUESTION
+========================= */
 
 function answerQuestion(
-    index
+index
 ){
 
-    if(
-        locked
-    ){
-        return;
-    }
+if(
+locked
+)
+return;
 
 
-    locked =
-    true;
+locked =
+true;
 
 
-    disableButtons(
-        true
-    );
+disableButtons(
+true
+);
 
 
-    const item =
-    levels[
-        currentLevel
-    ]
-    .questions[
-        currentDoor
-    ];
+const item =
+levels[
+currentLevel
+]
+.questions[
+currentDoor
+];
 
 
-    const feedback =
-    document
-    .getElementById(
-        "feedback"
-    );
+const feedback =
+document
+.getElementById(
+"feedback"
+);
 
 
-    /* CORRECT ANSWER */
+/* CORRECT */
 
-    if(
-        index ===
-        item.correct
-    ){
+if(
+index ===
+item.correct
+){
 
-        score +=
-        100;
+score +=
+100;
 
 
-        document
-        .getElementById(
-            "scoreLabel"
-        )
-        .textContent =
-        `Score: ${score}`;
+document
+.getElementById(
+"scoreLabel"
+)
+.textContent =
+`Score: ${score}`;
 
 
-        feedback.textContent =
-        "✅ Correct!";
+feedback.textContent =
+"✅ Correct!";
 
 
-        playEmotion(
-            item.emotion
-        );
+playEmotion(
+item.emotion
+);
 
 
-        track(
-            "door_complete",
-            {
+track(
+"door_complete",
+{
 
-                level_number:
-                currentLevel + 1,
+level_number:
+currentLevel + 1,
 
-                door_number:
-                currentDoor + 1,
+door_number:
+currentDoor + 1,
 
-                emotion:
-                item.emotion
+emotion:
+item.emotion
 
-            }
-        );
+}
+);
 
 
-        /* Emotion first */
+/* emotion */
 
-        setTimeout(
-            () => {
+setTimeout(
+() => {
 
-                resetRobot();
+openDoor();
 
+feedback.textContent =
+"🚪 Door opening...";
 
-                feedback.textContent =
-                "🚪 Door opening...";
+},
+700
+);
 
 
-                openDoor();
+/* turn and go */
 
-            },
-            900
-        );
+setTimeout(
+() => {
 
+feedback.textContent =
+"🤖 Robo is going inside!";
 
-        /* Let door open completely */
+turnRobotToDoor();
 
-        setTimeout(
-            () => {
-
-                feedback.textContent =
-                "🤖 Robo is entering...";
-
-
-                walkRoboThroughDoor();
-
-
-                moveCameraForward();
-
-            },
-            1900
-        );
-
-
-        /* Robo now passes through */
-
-        setTimeout(
-            () => {
-
-                feedback.textContent =
-                "✨ Door cleared!";
-
-            },
-            3100
-        );
-
-
-        /* Pause, THEN next door */
-
-        setTimeout(
-            () => {
-
-                currentDoor++;
-
-
-                if(
-                    currentDoor >=
-                    5
-                ){
-
-                    completeLevel();
-
-                }
-
-                else{
-
-                    loadDoor();
-
-                }
-
-            },
-            3900
-        );
-
-    }
-
-
-    /* WRONG ANSWER */
-
-    else{
-
-        lives--;
-
-
-        feedback.textContent =
-        "💥 Wrong! Robo broke into pieces!";
-
-
-        document
-        .getElementById(
-            "livesLabel"
-        )
-        .textContent =
-        "❤️".repeat(
-            lives
-        )
-        +
-        "🖤".repeat(
-            3 - lives
-        );
-
-
-        explodeRobot();
-
-
-        track(
-            "wrong_answer",
-            {
-
-                level_number:
-                currentLevel + 1,
-
-                door_number:
-                currentDoor + 1
-
-            }
-        );
-
-
-        if(
-            lives <=
-            0
-        ){
-
-            setTimeout(
-                () => {
-
-                    finishGame(
-                        false
-                    );
-
-                },
-                2000
-            );
-
-        }
-
-
-        else{
-
-            setTimeout(
-                () => {
-
-                    resetRobot();
-
-
-                    feedback.textContent =
-                    "🔧 Robo rebuilt himself. Try again!";
-
-
-                    disableButtons(
-                        false
-                    );
-
-
-                    locked =
-                    false;
-
-                },
-                1900
-            );
-
-        }
-
-    }
+},
+1300
+);
 
 }
 
 
-/* ================================
+/* WRONG */
+
+else
+{
+
+lives--;
+
+
+feedback.textContent =
+"💥 Wrong! Robo broke into pieces!";
+
+
+document
+.getElementById(
+"livesLabel"
+)
+.textContent =
+"❤️".repeat(
+lives
+)
++
+"🖤".repeat(
+3-lives
+);
+
+
+explodeRobot();
+
+
+track(
+"wrong_answer",
+{
+
+level_number:
+currentLevel + 1,
+
+door_number:
+currentDoor + 1
+
+}
+);
+
+
+if(
+lives <=
+0
+){
+
+setTimeout(
+() => {
+
+finishGame(
+false
+);
+
+},
+1900
+);
+
+}
+
+else
+{
+
+setTimeout(
+() => {
+
+resetRobot();
+
+
+feedback.textContent =
+"🔧 Robo rebuilt himself. Try again!";
+
+
+disableButtons(
+false
+);
+
+
+locked =
+false;
+
+},
+1800
+);
+
+}
+
+}
+
+}
+
+
+/* =========================
+   CONTINUE IMMEDIATELY
+========================= */
+
+function finishDoorTransition(){
+
+currentDoor++;
+
+
+if(
+currentDoor >=
+5
+){
+
+completeLevel();
+
+}
+
+else
+{
+
+loadDoor();
+
+}
+
+}
+
+
+/* =========================
    LEVEL COMPLETE
-================================ */
+========================= */
 
 function completeLevel(){
 
-    document
-    .getElementById(
-        "questionPanel"
-    )
-    .classList
-    .add(
-        "hidden"
-    );
+document
+.getElementById(
+"questionPanel"
+)
+.classList
+.add(
+"hidden"
+);
 
 
-    if(
-        currentLevel ===
-        4
-    ){
+if(
+currentLevel ===
+4
+){
 
-        finishGame(
-            true
-        );
+finishGame(
+true
+);
 
+return;
 
-        return;
-    }
-
-
-    document
-    .getElementById(
-        "levelScreen"
-    )
-    .classList
-    .remove(
-        "hidden"
-    );
-
-
-    document
-    .getElementById(
-        "levelTitle"
-    )
-    .textContent =
-    `Level ${currentLevel + 1} Complete!`;
-
-
-    document
-    .getElementById(
-        "levelMessage"
-    )
-    .textContent =
-    `You unlocked all five doors. Now enter Level ${currentLevel + 2}.`;
-
-
-    track(
-        "level_complete",
-        {
-
-            level_number:
-            currentLevel + 1
-
-        }
-    );
 }
 
 
-/* ================================
+document
+.getElementById(
+"levelScreen"
+)
+.classList
+.remove(
+"hidden"
+);
+
+
+document
+.getElementById(
+"levelTitle"
+)
+.textContent =
+`Level ${currentLevel + 1} Complete!`;
+
+
+document
+.getElementById(
+"levelMessage"
+)
+.textContent =
+`You unlocked all five doors. Now enter Level ${currentLevel + 2}.`;
+
+
+track(
+"level_complete",
+{
+
+level_number:
+currentLevel + 1
+
+}
+);
+
+}
+
+
+/* =========================
    NEXT LEVEL
-================================ */
+========================= */
 
 function nextLevel(){
 
-    currentLevel++;
+currentLevel++;
+
+currentDoor =
+0;
 
 
-    currentDoor =
-    0;
+document
+.getElementById(
+"levelScreen"
+)
+.classList
+.add(
+"hidden"
+);
 
 
-    document
-    .getElementById(
-        "levelScreen"
-    )
-    .classList
-    .add(
-        "hidden"
-    );
+document
+.getElementById(
+"questionPanel"
+)
+.classList
+.remove(
+"hidden"
+);
 
 
-    document
-    .getElementById(
-        "questionPanel"
-    )
-    .classList
-    .remove(
-        "hidden"
-    );
+loadDoor();
 
-
-    loadDoor();
 }
 
 
-/* ================================
-   FINISH GAME
-================================ */
+/* =========================
+   FINISH
+========================= */
 
 function finishGame(
-    win
+win
 ){
 
-    document
-    .getElementById(
-        "questionPanel"
-    )
-    .classList
-    .add(
-        "hidden"
-    );
+document
+.getElementById(
+"questionPanel"
+)
+.classList
+.add(
+"hidden"
+);
 
 
-    document
-    .getElementById(
-        "levelScreen"
-    )
-    .classList
-    .add(
-        "hidden"
-    );
+document
+.getElementById(
+"levelScreen"
+)
+.classList
+.add(
+"hidden"
+);
 
 
-    document
-    .getElementById(
-        "endScreen"
-    )
-    .classList
-    .remove(
-        "hidden"
-    );
+document
+.getElementById(
+"endScreen"
+)
+.classList
+.remove(
+"hidden"
+);
 
 
-    document
-    .getElementById(
-        "endIcon"
-    )
-    .textContent =
-    win
-    ?
-    "🏆🤖🚪"
-    :
-    "💥🤖";
+document
+.getElementById(
+"endIcon"
+)
+.textContent =
+win
+?
+"🏆🤖🚪"
+:
+"💥🤖";
 
 
-    document
-    .getElementById(
-        "endTitle"
-    )
-    .textContent =
-    win
-    ?
-    "Emotion Lab Escaped!"
-    :
-    "Game Over";
+document
+.getElementById(
+"endTitle"
+)
+.textContent =
+win
+?
+"Emotion Lab Escaped!"
+:
+"Game Over";
 
 
-    document
-    .getElementById(
-        "endMessage"
-    )
-    .textContent =
-    win
-
-    ?
-
-    `You completed all 5 levels and unlocked all 25 doors! Final score: ${score}.`
-
-    :
-
-    `Robo ran out of lives at Level ${currentLevel + 1}, Door ${currentDoor + 1}. Final score: ${score}.`;
+document
+.getElementById(
+"endMessage"
+)
+.textContent =
+win
+?
+`You completed all 5 levels and unlocked all 25 doors! Final score: ${score}.`
+:
+`Robo ran out of lives at Level ${currentLevel + 1}, Door ${currentDoor + 1}. Final score: ${score}.`;
 
 
-    track(
-        "game_finish",
-        {
+track(
+"game_finish",
+{
 
-            result:
-            win
-            ?
-            "win"
-            :
-            "lose",
+result:
+win
+?
+"win"
+:
+"lose",
 
-            score:
-            score
+score:
+score
 
-        }
-    );
+}
+);
+
 }
 
 </script>
 
 </body>
-
 </html>
