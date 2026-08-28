@@ -1,29 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8">
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-1DNR89J5R6"></script>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>Emotion Escape 3D</title>
+
+<link rel="icon" type="image/png" href="favicon.png">
+
+<!-- GOOGLE ANALYTICS -->
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-1DNR89J5R6">
+</script>
+
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){ dataLayer.push(arguments); }
+
+function gtag(){
+    dataLayer.push(arguments);
+}
+
 gtag("js", new Date());
 gtag("config", "G-1DNR89J5R6");
 </script>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>Emotion Escape - 3D Robot Game</title>
-
-<meta
-name="description"
-content="Play Emotion Escape, a 3D robot emotion game with five levels and twenty-five doors."
->
-
-<link rel="icon" type="image/png" href="favicon.png">
-
 <style>
-*{box-sizing:border-box}
+
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
@@ -42,24 +52,28 @@ body{
 
 header{
     min-height:70px;
-    padding:15px 28px;
+    padding:14px 25px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:15px;
+
     background:rgba(2,6,23,.96);
+
     border-bottom:1px solid #334155;
+
     z-index:20;
 }
 
-h1{
+header h1{
     margin:0;
     font-size:25px;
 }
 
 .stats{
     display:flex;
-    gap:18px;
+    gap:16px;
     flex-wrap:wrap;
     font-weight:bold;
 }
@@ -71,50 +85,84 @@ h1{
 }
 
 #gameCanvas{
+    display:block;
     width:100%;
     height:100%;
-    display:block;
 }
 
 .question-panel{
     position:absolute;
+
     left:50%;
-    bottom:22px;
+    bottom:20px;
+
     transform:translateX(-50%);
-    width:min(850px,92%);
-    padding:19px;
+
+    width:min(860px,94%);
+
+    padding:18px;
+
     border-radius:22px;
-    background:rgba(2,6,23,.9);
-    backdrop-filter:blur(12px);
+
+    background:rgba(2,6,23,.91);
+
     border:1px solid rgba(148,163,184,.35);
+
+    backdrop-filter:blur(12px);
+}
+
+.question-top{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+
+    margin-bottom:12px;
+}
+
+.speak-button{
+    width:auto;
+    padding:10px 18px;
+    background:#38bdf8;
 }
 
 .question{
     text-align:center;
     font-size:20px;
-    line-height:1.4;
+    line-height:1.45;
     margin-bottom:15px;
 }
 
 .choices{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:12px;
+    gap:11px;
+}
+
+button,
+select,
+input{
+    font:inherit;
 }
 
 button{
     border:0;
     border-radius:14px;
-    padding:15px;
+    padding:14px;
+
     font-size:16px;
     font-weight:bold;
+
     cursor:pointer;
-    color:#020617;
+}
+
+.answer-button{
     background:#e2e8f0;
+    color:#020617;
 }
 
 button:hover{
-    transform:translateY(-2px);
+    transform:translateY(-1px);
 }
 
 button:disabled{
@@ -123,8 +171,9 @@ button:disabled{
 }
 
 .feedback{
-    min-height:28px;
+    min-height:30px;
     margin-top:12px;
+
     text-align:center;
     font-size:17px;
     font-weight:bold;
@@ -133,65 +182,148 @@ button:disabled{
 .full-screen{
     position:absolute;
     inset:0;
+
     z-index:30;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    padding:30px;
+
+    padding:25px;
+
     text-align:center;
+
     background:
     radial-gradient(
         circle,
         rgba(30,58,138,.97),
-        rgba(2,6,23,.99)
+        rgba(2,6,23,.995)
     );
 }
 
 .card{
-    width:min(650px,95%);
-    padding:36px;
+    width:min(680px,96%);
+
+    padding:32px;
+
     border-radius:28px;
-    background:rgba(15,23,42,.94);
+
+    background:rgba(15,23,42,.95);
+
     border:1px solid #475569;
 }
 
-.card .icon{
-    font-size:75px;
+.big-icon{
+    font-size:70px;
 }
 
 .card h2{
-    margin:15px 0 8px;
-    font-size:36px;
+    margin:13px 0;
+    font-size:35px;
 }
 
 .card p{
     color:#cbd5e1;
-    font-size:19px;
     line-height:1.5;
 }
 
-.primary{background:#38bdf8}
-.next{background:#22c55e}
-.hidden{display:none!important}
+.setup-grid{
+    margin:23px 0;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+
+    text-align:left;
+}
+
+.setup-item{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.setup-item label{
+    font-weight:bold;
+}
+
+.setup-item select,
+.setup-item input{
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #64748b;
+    border-radius:12px;
+
+    background:#0f172a;
+    color:white;
+
+    outline:none;
+}
+
+.time-box{
+    grid-column:1 / -1;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:#020617;
+
+    text-align:center;
+
+    font-size:21px;
+    font-weight:bold;
+}
+
+.primary{
+    background:#38bdf8;
+    color:#020617;
+}
+
+.next{
+    background:#22c55e;
+    color:#020617;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.trophy-text{
+    font-size:26px;
+    font-weight:bold;
+}
 
 @media(max-width:700px){
+
     header{
         flex-direction:column;
         align-items:flex-start;
     }
 
     #gameArea{
-        min-height:760px;
+        min-height:800px;
     }
 
     .choices{
         grid-template-columns:1fr;
     }
 
-    .question{
-        font-size:18px;
+    .setup-grid{
+        grid-template-columns:1fr;
+    }
+
+    .time-box{
+        grid-column:auto;
+    }
+
+    .card{
+        padding:22px;
     }
 }
+
 </style>
 </head>
 
@@ -200,798 +332,2699 @@ button:disabled{
 <div class="game">
 
 <header>
-<h1>🤖 Emotion Escape 3D</h1>
+
+<h1 id="mainTitle">
+🤖 Emotion Escape 3D
+</h1>
 
 <div class="stats">
-<span id="levelLabel">Level 1</span>
-<span id="doorLabel">Door 1/5</span>
-<span id="scoreLabel">Score: 0</span>
-<span id="livesLabel">❤️❤️❤️</span>
+
+<span id="levelLabel">
+Level 1
+</span>
+
+<span id="doorLabel">
+Door 1/5
+</span>
+
+<span id="scoreLabel">
+Score: 0
+</span>
+
+<span id="livesLabel">
+❤️❤️❤️
+</span>
+
+<span id="countryHeader">
+🌍 Egypt
+</span>
+
+<span id="timeHeader">
+⏰ --:--
+</span>
+
 </div>
+
 </header>
+
 
 <div id="gameArea">
 
 <canvas id="gameCanvas"></canvas>
 
-<div id="questionPanel" class="question-panel hidden">
-<div id="question" class="question"></div>
-<div id="choices" class="choices"></div>
-<div id="feedback" class="feedback"></div>
+
+<!-- QUESTION PANEL -->
+
+<div
+  id="questionPanel"
+  class="question-panel hidden"
+>
+
+<div class="question-top">
+
+<button
+  id="speakButton"
+  class="speak-button"
+  type="button"
+>
+🔊 Speak Again
+</button>
+
 </div>
 
-<div id="startScreen" class="full-screen">
+<div
+  id="question"
+  class="question"
+></div>
+
+<div
+  id="choices"
+  class="choices"
+></div>
+
+<div
+  id="feedback"
+  class="feedback"
+></div>
+
+</div>
+
+
+<!-- START SCREEN -->
+
+<div
+  id="startScreen"
+  class="full-screen"
+>
+
 <div class="card">
-<div class="icon">🤖🚪</div>
 
-<h2>Emotion Escape 3D</h2>
+<div class="big-icon">
+🤖🌍🚪
+</div>
 
-<p>
-Help Robo understand emotions,
-walk through 25 doors,
-and escape the 3D Emotion Lab.
+<h2 id="startTitle">
+Emotion Escape 3D
+</h2>
+
+<p id="startDescription">
+Choose your language, country and robot name,
+then enter the Emotion Lab.
 </p>
 
-<p><strong>5 Levels • 5 Doors Each</strong></p>
 
-<button class="primary" onclick="startGame()">
-Enter the Lab
+<div class="setup-grid">
+
+
+<div class="setup-item">
+
+<label
+  id="languageLabel"
+  for="languageSelect"
+>
+🌐 Language
+</label>
+
+<select id="languageSelect">
+
+<option value="en">
+English
+</option>
+
+<option value="ar">
+العربية
+</option>
+
+<option value="fr">
+Français
+</option>
+
+<option value="es">
+Español
+</option>
+
+<option value="de">
+Deutsch
+</option>
+
+<option value="it">
+Italiano
+</option>
+
+<option value="tr">
+Türkçe
+</option>
+
+<option value="zh">
+中文
+</option>
+
+</select>
+
+</div>
+
+
+<div class="setup-item">
+
+<label
+  id="countryLabel"
+  for="countrySelect"
+>
+🌍 Country
+</label>
+
+<select id="countrySelect">
+
+<option value="Egypt|Africa/Cairo">
+🇪🇬 Egypt
+</option>
+
+<option value="Saudi Arabia|Asia/Riyadh">
+🇸🇦 Saudi Arabia
+</option>
+
+<option value="United Arab Emirates|Asia/Dubai">
+🇦🇪 United Arab Emirates
+</option>
+
+<option value="Qatar|Asia/Qatar">
+🇶🇦 Qatar
+</option>
+
+<option value="Kuwait|Asia/Kuwait">
+🇰🇼 Kuwait
+</option>
+
+<option value="Jordan|Asia/Amman">
+🇯🇴 Jordan
+</option>
+
+<option value="Lebanon|Asia/Beirut">
+🇱🇧 Lebanon
+</option>
+
+<option value="Iraq|Asia/Baghdad">
+🇮🇶 Iraq
+</option>
+
+<option value="Oman|Asia/Muscat">
+🇴🇲 Oman
+</option>
+
+<option value="Bahrain|Asia/Bahrain">
+🇧🇭 Bahrain
+</option>
+
+<option value="Morocco|Africa/Casablanca">
+🇲🇦 Morocco
+</option>
+
+<option value="Algeria|Africa/Algiers">
+🇩🇿 Algeria
+</option>
+
+<option value="Tunisia|Africa/Tunis">
+🇹🇳 Tunisia
+</option>
+
+<option value="United Kingdom|Europe/London">
+🇬🇧 United Kingdom
+</option>
+
+<option value="France|Europe/Paris">
+🇫🇷 France
+</option>
+
+<option value="Germany|Europe/Berlin">
+🇩🇪 Germany
+</option>
+
+<option value="Spain|Europe/Madrid">
+🇪🇸 Spain
+</option>
+
+<option value="Italy|Europe/Rome">
+🇮🇹 Italy
+</option>
+
+<option value="Austria|Europe/Vienna">
+🇦🇹 Austria
+</option>
+
+<option value="Switzerland|Europe/Zurich">
+🇨🇭 Switzerland
+</option>
+
+<option value="Netherlands|Europe/Amsterdam">
+🇳🇱 Netherlands
+</option>
+
+<option value="Sweden|Europe/Stockholm">
+🇸🇪 Sweden
+</option>
+
+<option value="Norway|Europe/Oslo">
+🇳🇴 Norway
+</option>
+
+<option value="Turkey|Europe/Istanbul">
+🇹🇷 Turkey
+</option>
+
+<option value="United States - New York|America/New_York">
+🇺🇸 USA - New York
+</option>
+
+<option value="United States - Los Angeles|America/Los_Angeles">
+🇺🇸 USA - Los Angeles
+</option>
+
+<option value="Canada - Toronto|America/Toronto">
+🇨🇦 Canada - Toronto
+</option>
+
+<option value="Brazil|America/Sao_Paulo">
+🇧🇷 Brazil
+</option>
+
+<option value="Mexico|America/Mexico_City">
+🇲🇽 Mexico
+</option>
+
+<option value="India|Asia/Kolkata">
+🇮🇳 India
+</option>
+
+<option value="Pakistan|Asia/Karachi">
+🇵🇰 Pakistan
+</option>
+
+<option value="China|Asia/Shanghai">
+🇨🇳 China
+</option>
+
+<option value="Japan|Asia/Tokyo">
+🇯🇵 Japan
+</option>
+
+<option value="South Korea|Asia/Seoul">
+🇰🇷 South Korea
+</option>
+
+<option value="Singapore|Asia/Singapore">
+🇸🇬 Singapore
+</option>
+
+<option value="Australia - Sydney|Australia/Sydney">
+🇦🇺 Australia - Sydney
+</option>
+
+<option value="New Zealand|Pacific/Auckland">
+🇳🇿 New Zealand
+</option>
+
+</select>
+
+</div>
+
+
+<div class="setup-item">
+
+<label
+  id="nameLabel"
+  for="robotNameInput"
+>
+🤖 Robo's Name
+</label>
+
+<input
+  id="robotNameInput"
+  type="text"
+  maxlength="15"
+  value="Robo"
+  placeholder="Robo"
+/>
+
+</div>
+
+
+<div
+  id="countryTimeBox"
+  class="time-box"
+>
+
+🌍 Egypt
+&nbsp;&nbsp;
+⏰
+<span id="countryTime">
+--:--
+</span>
+
+</div>
+
+</div>
+
+
+<button
+  id="startButton"
+  class="primary"
+  type="button"
+>
+🚪 Enter the Lab
 </button>
-</div>
+
 </div>
 
-<div id="levelScreen" class="full-screen hidden">
+</div>
+
+
+<!-- LEVEL SCREEN -->
+
+<div
+  id="levelScreen"
+  class="full-screen hidden"
+>
+
 <div class="card">
-<div class="icon">🎉🚪</div>
 
-<h2 id="levelTitle">Level Complete!</h2>
+<div class="big-icon">
+🎉🤖🚪
+</div>
+
+<h2 id="levelTitle">
+Level Complete!
+</h2>
 
 <p id="levelMessage"></p>
 
-<button class="next" onclick="nextLevel()">
+<button
+  id="nextLevelButton"
+  class="next"
+  type="button"
+>
 Enter Next Level ▶
 </button>
-</div>
+
 </div>
 
-<div id="endScreen" class="full-screen hidden">
+</div>
+
+
+<!-- END SCREEN -->
+
+<div
+  id="endScreen"
+  class="full-screen hidden"
+>
+
 <div class="card">
-<div id="endIcon" class="icon">🏆🤖</div>
 
-<h2 id="endTitle">Emotion Lab Escaped!</h2>
+<div
+  id="endIcon"
+  class="big-icon"
+>
+🏆🤖
+</div>
 
-<p id="endMessage"></p>
+<h2 id="endTitle">
+Emotion Lab Escaped!
+</h2>
 
-<button class="primary" onclick="startGame()">
+<p
+  id="endMessage"
+  class="trophy-text"
+></p>
+
+<button
+  id="playAgainButton"
+  class="primary"
+  type="button"
+>
 Play Again
 </button>
+
 </div>
+
 </div>
+
 
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+
+<script
+src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js">
+</script>
+
 
 <script>
-const levels = [
 
-{
-name:"Emotion Basics",
-questions:[
-{
-q:"Your best friend surprises you with a birthday gift. How would Robo probably feel?",
-answers:["Happy 😄","Angry 😠","Afraid 😨","Disgusted 🤢"],
-correct:0,
-emotion:"happy"
-},
-{
-q:"Robo hears a loud unknown noise in a dark room. What emotion fits best?",
-answers:["Surprised 😲","Happy 😄","Calm 😌","Proud 😎"],
-correct:0,
-emotion:"surprised"
-},
-{
-q:"Someone breaks Robo's favorite invention on purpose. How might Robo feel?",
-answers:["Angry 😠","Happy 😄","Calm 😌","Excited 🤩"],
-correct:0,
-emotion:"angry"
-},
-{
-q:"Robo loses an important competition after trying very hard. How might Robo feel?",
-answers:["Sad 😢","Happy 😄","Surprised 😲","Proud 😎"],
-correct:0,
-emotion:"sad"
-},
-{
-q:"Robo smells spoiled food. How might he feel?",
-answers:["Disgusted 🤢","Happy 😄","Proud 😎","Excited 🤩"],
-correct:0,
-emotion:"disgusted"
-}
-]
-},
+/* =========================================================
+   LANGUAGE SYSTEM
+========================================================= */
 
-{
-name:"Recognizing Feelings",
-questions:[
-{
-q:"Robo is about to speak on a stage and feels nervous. What emotion fits best?",
-answers:["Afraid 😨","Happy 😄","Disgusted 🤢","Proud 😎"],
-correct:0,
-emotion:"afraid"
-},
-{
-q:"Robo finishes a difficult project by himself. How might he feel?",
-answers:["Proud 😎","Sad 😢","Angry 😠","Afraid 😨"],
-correct:0,
-emotion:"proud"
-},
-{
-q:"Robo finishes all his work and sits quietly. How does he probably feel?",
-answers:["Calm 😌","Angry 😠","Afraid 😨","Disgusted 🤢"],
-correct:0,
-emotion:"calm"
-},
-{
-q:"Robo opens a box and unexpectedly finds a puppy. How does he feel?",
-answers:["Surprised 😲","Angry 😠","Sad 😢","Disgusted 🤢"],
-correct:0,
-emotion:"surprised"
-},
-{
-q:"Robo's friend thanks him for helping. How might Robo feel?",
-answers:["Happy 😄","Afraid 😨","Angry 😠","Disgusted 🤢"],
-correct:0,
-emotion:"happy"
-}
-]
+const UI = {
+
+en:{
+    language:"🌐 Language",
+    country:"🌍 Country",
+    name:"🤖 Robo's Name",
+    start:"🚪 Enter the Lab",
+    startDescription:
+    "Choose your language, country and robot name, then enter the Emotion Lab.",
+
+    level:"Level",
+    door:"Door",
+    score:"Score",
+    speak:"🔊 Speak Again",
+
+    correct:"✅ Correct!",
+    wrong:"💥 Wrong! {name} broke into pieces!",
+    rebuilt:"🔧 {name} rebuilt himself. Try again!",
+
+    levelComplete:"Level {level} Complete!",
+    levelMessage:
+    "{name} unlocked all five doors. Now enter Level {next}.",
+
+    next:"Enter Next Level ▶",
+
+    win:"🏆 {name} ESCAPED THE EMOTION LAB!",
+    winMessage:
+    "{name} completed all 25 doors and escaped with the trophy! Final score: {score}.",
+
+    gameOver:"Game Over",
+    loseMessage:
+    "{name} ran out of lives. Final score: {score}.",
+
+    again:"Play Again"
 },
 
-{
-name:"Good Reactions",
-questions:[
-{
-q:"Robo is angry because someone took his pencil. What should he do?",
-answers:["Stay calm and explain","Shout loudly","Break something","Push the person"],
-correct:0,
-emotion:"calm"
+ar:{
+    language:"🌐 اللغة",
+    country:"🌍 الدولة",
+    name:"🤖 اسم الروبوت",
+    start:"🚪 ادخل المختبر",
+    startDescription:
+    "اختر اللغة والدولة واسم الروبوت ثم ادخل مختبر المشاعر.",
+
+    level:"المستوى",
+    door:"الباب",
+    score:"النقاط",
+    speak:"🔊 اسمع مرة أخرى",
+
+    correct:"✅ إجابة صحيحة!",
+    wrong:"💥 إجابة خاطئة! تفكك {name} إلى أجزاء!",
+    rebuilt:"🔧 عاد {name} من جديد. حاول مرة أخرى!",
+
+    levelComplete:"اكتمل المستوى {level}!",
+    levelMessage:
+    "فتح {name} الأبواب الخمسة. انتقل الآن إلى المستوى {next}.",
+
+    next:"المستوى التالي ▶",
+
+    win:"🏆 نجح {name} في الهروب من مختبر المشاعر!",
+    winMessage:
+    "أكمل {name} جميع الأبواب الـ25 وهرب بالكأس! النتيجة النهائية: {score}.",
+
+    gameOver:"انتهت اللعبة",
+    loseMessage:
+    "نفدت محاولات {name}. النتيجة النهائية: {score}.",
+
+    again:"العب مرة أخرى"
 },
-{
-q:"Robo's friend is sad. What should Robo do?",
-answers:["Listen and help","Laugh","Ignore them","Tell everyone"],
-correct:0,
-emotion:"happy"
+
+fr:{
+    language:"🌐 Langue",
+    country:"🌍 Pays",
+    name:"🤖 Nom du robot",
+    start:"🚪 Entrer dans le laboratoire",
+    startDescription:
+    "Choisis ta langue, ton pays et le nom du robot.",
+
+    level:"Niveau",
+    door:"Porte",
+    score:"Score",
+    speak:"🔊 Réécouter",
+
+    correct:"✅ Correct !",
+    wrong:"💥 Mauvaise réponse ! {name} s'est cassé !",
+    rebuilt:"🔧 {name} est réparé. Réessaie !",
+
+    levelComplete:"Niveau {level} terminé !",
+    levelMessage:
+    "{name} a ouvert les cinq portes. Passe au niveau {next}.",
+
+    next:"Niveau suivant ▶",
+
+    win:"🏆 {name} S'EST ÉCHAPPÉ !",
+    winMessage:
+    "{name} a terminé les 25 portes avec le trophée ! Score final : {score}.",
+
+    gameOver:"Partie terminée",
+    loseMessage:"Score final : {score}.",
+
+    again:"Rejouer"
 },
-{
-q:"Robo feels afraid before a test. What could help?",
-answers:["Breathe slowly and prepare","Run away","Rip the test","Yell"],
-correct:0,
-emotion:"calm"
+
+es:{
+    language:"🌐 Idioma",
+    country:"🌍 País",
+    name:"🤖 Nombre del robot",
+    start:"🚪 Entrar al laboratorio",
+    startDescription:
+    "Elige idioma, país y nombre del robot.",
+
+    level:"Nivel",
+    door:"Puerta",
+    score:"Puntuación",
+    speak:"🔊 Escuchar otra vez",
+
+    correct:"✅ ¡Correcto!",
+    wrong:"💥 ¡Incorrecto! ¡{name} se rompió!",
+    rebuilt:"🔧 {name} está reparado. ¡Inténtalo otra vez!",
+
+    levelComplete:"¡Nivel {level} completado!",
+    levelMessage:
+    "{name} abrió las cinco puertas. Ahora entra al nivel {next}.",
+
+    next:"Siguiente nivel ▶",
+
+    win:"🏆 ¡{name} ESCAPÓ DEL LABORATORIO!",
+    winMessage:
+    "{name} completó las 25 puertas y escapó con el trofeo. Puntuación: {score}.",
+
+    gameOver:"Fin del juego",
+    loseMessage:"Puntuación final: {score}.",
+
+    again:"Jugar de nuevo"
 },
-{
-q:"Robo makes a mistake. What should he do?",
-answers:["Learn and try again","Blame everyone","Quit","Get angry"],
-correct:0,
-emotion:"proud"
+
+de:{
+    language:"🌐 Sprache",
+    country:"🌍 Land",
+    name:"🤖 Robotername",
+    start:"🚪 Labor betreten",
+    startDescription:
+    "Wähle Sprache, Land und den Namen deines Roboters.",
+
+    level:"Level",
+    door:"Tür",
+    score:"Punkte",
+    speak:"🔊 Noch einmal",
+
+    correct:"✅ Richtig!",
+    wrong:"💥 Falsch! {name} ist auseinandergefallen!",
+    rebuilt:"🔧 {name} wurde repariert. Versuch es erneut!",
+
+    levelComplete:"Level {level} geschafft!",
+    levelMessage:
+    "{name} hat alle fünf Türen geöffnet. Weiter zu Level {next}.",
+
+    next:"Nächstes Level ▶",
+
+    win:"🏆 {name} IST ENTKOMMEN!",
+    winMessage:
+    "{name} hat alle 25 Türen geschafft und ist mit dem Pokal entkommen! Punkte: {score}.",
+
+    gameOver:"Spiel vorbei",
+    loseMessage:"Endpunktzahl: {score}.",
+
+    again:"Nochmal spielen"
 },
-{
-q:"Robo wins a contest. What is the best reaction?",
-answers:["Celebrate kindly","Make fun of others","Boast","Ignore everyone"],
-correct:0,
-emotion:"happy"
+
+it:{
+    language:"🌐 Lingua",
+    country:"🌍 Paese",
+    name:"🤖 Nome del robot",
+    start:"🚪 Entra nel laboratorio",
+    startDescription:
+    "Scegli lingua, paese e nome del robot.",
+
+    level:"Livello",
+    door:"Porta",
+    score:"Punti",
+    speak:"🔊 Ascolta di nuovo",
+
+    correct:"✅ Corretto!",
+    wrong:"💥 Sbagliato! {name} si è rotto!",
+    rebuilt:"🔧 {name} è stato riparato. Riprova!",
+
+    levelComplete:"Livello {level} completato!",
+    levelMessage:
+    "{name} ha aperto tutte le cinque porte. Vai al livello {next}.",
+
+    next:"Livello successivo ▶",
+
+    win:"🏆 {name} È FUGGITO!",
+    winMessage:
+    "{name} ha completato tutte le 25 porte ed è fuggito con il trofeo! Punti: {score}.",
+
+    gameOver:"Game Over",
+    loseMessage:"Punteggio finale: {score}.",
+
+    again:"Gioca ancora"
+},
+
+tr:{
+    language:"🌐 Dil",
+    country:"🌍 Ülke",
+    name:"🤖 Robotun adı",
+    start:"🚪 Laboratuvara gir",
+    startDescription:
+    "Dilini, ülkeni ve robotunun adını seç.",
+
+    level:"Seviye",
+    door:"Kapı",
+    score:"Puan",
+    speak:"🔊 Tekrar dinle",
+
+    correct:"✅ Doğru!",
+    wrong:"💥 Yanlış! {name} parçalara ayrıldı!",
+    rebuilt:"🔧 {name} yeniden yapıldı. Tekrar dene!",
+
+    levelComplete:"Seviye {level} tamamlandı!",
+    levelMessage:
+    "{name} beş kapıyı açtı. Şimdi seviye {next}.",
+
+    next:"Sonraki Seviye ▶",
+
+    win:"🏆 {name} LABORATUVARDAN KAÇTI!",
+    winMessage:
+    "{name} 25 kapının hepsini tamamladı ve kupayla kaçtı! Puan: {score}.",
+
+    gameOver:"Oyun Bitti",
+    loseMessage:"Son puan: {score}.",
+
+    again:"Tekrar Oyna"
+},
+
+zh:{
+    language:"🌐 语言",
+    country:"🌍 国家",
+    name:"🤖 机器人名字",
+    start:"🚪 进入实验室",
+    startDescription:
+    "选择语言、国家和机器人的名字。",
+
+    level:"关卡",
+    door:"门",
+    score:"分数",
+    speak:"🔊 再听一次",
+
+    correct:"✅ 正确！",
+    wrong:"💥 错误！{name} 散架了！",
+    rebuilt:"🔧 {name} 修好了，再试一次！",
+
+    levelComplete:"第 {level} 关完成！",
+    levelMessage:
+    "{name} 打开了五扇门。进入第 {next} 关。",
+
+    next:"下一关 ▶",
+
+    win:"🏆 {name} 逃出了情绪实验室！",
+    winMessage:
+    "{name} 完成了25扇门并带着奖杯逃脱！最终分数：{score}。",
+
+    gameOver:"游戏结束",
+    loseMessage:"最终分数：{score}。",
+
+    again:"再玩一次"
 }
-]
+
+};
+
+
+const VOICE_LANGUAGE = {
+    en:"en-US",
+    ar:"ar-EG",
+    fr:"fr-FR",
+    es:"es-ES",
+    de:"de-DE",
+    it:"it-IT",
+    tr:"tr-TR",
+    zh:"zh-CN"
+};
+
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+const questions = [
+
+/* LEVEL 1 */
+
+{
+emotion:"happy",
+
+en:["Your best friend surprises you with a birthday gift. How would Robo probably feel?",
+["Happy 😄","Angry 😠","Afraid 😨","Disgusted 🤢"]],
+
+ar:["فاجأك صديقك بهدية عيد ميلاد. كيف سيشعر الروبوت؟",
+["سعيد 😄","غاضب 😠","خائف 😨","مشمئز 🤢"]],
+
+fr:["Ton ami te surprend avec un cadeau. Comment se sent le robot ?",
+["Heureux 😄","En colère 😠","Effrayé 😨","Dégoûté 🤢"]]
 },
 
 {
-name:"Understanding Others",
-questions:[
-{
-q:"A classmate becomes quiet after losing something important. What may they feel?",
-answers:["Sad 😢","Excited 🤩","Proud 😎","Disgusted 🤢"],
-correct:0,
-emotion:"sad"
-},
-{
-q:"Someone jumps when a balloon suddenly pops. What are they probably feeling?",
-answers:["Surprised 😲","Proud 😎","Happy 😄","Calm 😌"],
-correct:0,
-emotion:"surprised"
-},
-{
-q:"Your teammate shakes before a competition. What emotion might this show?",
-answers:["Afraid 😨","Disgusted 🤢","Happy 😄","Proud 😎"],
-correct:0,
-emotion:"afraid"
-},
-{
-q:"A friend smiles after completing something difficult. What may they feel?",
-answers:["Proud 😎","Angry 😠","Sad 😢","Disgusted 🤢"],
-correct:0,
-emotion:"proud"
-},
-{
-q:"Someone moves away from a terrible smell. What emotion are they showing?",
-answers:["Disgusted 🤢","Happy 😄","Proud 😎","Calm 😌"],
-correct:0,
-emotion:"disgusted"
-}
-]
+emotion:"surprised",
+
+en:["Robo hears a sudden loud noise. How does he feel?",
+["Surprised 😲","Happy 😄","Calm 😌","Proud 😎"]],
+
+ar:["سمع الروبوت صوتًا عاليًا مفاجئًا. كيف يشعر؟",
+["متفاجئ 😲","سعيد 😄","هادئ 😌","فخور 😎"]],
+
+fr:["Le robot entend soudainement un bruit fort. Comment se sent-il ?",
+["Surpris 😲","Heureux 😄","Calme 😌","Fier 😎"]]
 },
 
 {
-name:"Emotion Master",
-questions:[
-{
-q:"Robo is frustrated because a machine will not work. What should he do?",
-answers:["Pause and try another solution","Kick it","Yell","Give up"],
-correct:0,
-emotion:"calm"
+emotion:"angry",
+
+en:["Someone breaks Robo's invention on purpose. How might he feel?",
+["Angry 😠","Happy 😄","Calm 😌","Proud 😎"]],
+
+ar:["كسر شخص اختراع الروبوت عمدًا. كيف قد يشعر؟",
+["غاضب 😠","سعيد 😄","هادئ 😌","فخور 😎"]],
+
+fr:["Quelqu'un casse volontairement l'invention du robot. Comment se sent-il ?",
+["En colère 😠","Heureux 😄","Calme 😌","Fier 😎"]]
 },
+
 {
-q:"Robo's teammate accidentally makes a mistake. What should Robo do?",
-answers:["Help calmly","Shout","Leave","Laugh"],
-correct:0,
-emotion:"calm"
+emotion:"sad",
+
+en:["Robo loses an important competition after trying hard.",
+["Sad 😢","Happy 😄","Surprised 😲","Proud 😎"]],
+
+ar:["خسر الروبوت مسابقة مهمة بعد أن حاول كثيرًا.",
+["حزين 😢","سعيد 😄","متفاجئ 😲","فخور 😎"]],
+
+fr:["Le robot perd une compétition importante après avoir beaucoup essayé.",
+["Triste 😢","Heureux 😄","Surpris 😲","Fier 😎"]]
 },
+
 {
-q:"Robo feels jealous because his friend won a prize. What should he do?",
-answers:["Congratulate the friend","Insult the friend","Take the prize","Stop being friends"],
-correct:0,
-emotion:"proud"
+emotion:"disgusted",
+
+en:["Robo smells spoiled food. How does he feel?",
+["Disgusted 🤢","Happy 😄","Proud 😎","Excited 🤩"]],
+
+ar:["شم الروبوت طعامًا فاسدًا. كيف يشعر؟",
+["مشمئز 🤢","سعيد 😄","فخور 😎","متحمس 🤩"]],
+
+fr:["Le robot sent de la nourriture avariée.",
+["Dégoûté 🤢","Heureux 😄","Fier 😎","Excité 🤩"]]
 },
+
+
+/* LEVEL 2 */
+
 {
-q:"Robo is excited but needs to hear instructions. What should he do?",
-answers:["Calm down and listen","Interrupt","Run around","Ignore them"],
-correct:0,
-emotion:"calm"
+emotion:"afraid",
+
+en:["Robo is about to speak on a stage and feels nervous.",
+["Afraid 😨","Happy 😄","Disgusted 🤢","Proud 😎"]],
+
+ar:["سيقف الروبوت على المسرح وهو متوتر.",
+["خائف 😨","سعيد 😄","مشمئز 🤢","فخور 😎"]],
+
+fr:["Le robot doit parler sur scène et il est nerveux.",
+["Effrayé 😨","Heureux 😄","Dégoûté 🤢","Fier 😎"]]
 },
+
 {
-q:"FINAL DOOR: Someone is being left out of a game. What should Robo do?",
-answers:["Invite them to join","Ignore them","Laugh","Tell them to leave"],
-correct:0,
-emotion:"happy"
-}
-]
+emotion:"proud",
+
+en:["Robo finishes a difficult project by himself.",
+["Proud 😎","Sad 😢","Angry 😠","Afraid 😨"]],
+
+ar:["أنهى الروبوت مشروعًا صعبًا بنفسه.",
+["فخور 😎","حزين 😢","غاضب 😠","خائف 😨"]],
+
+fr:["Le robot termine seul un projet difficile.",
+["Fier 😎","Triste 😢","En colère 😠","Effrayé 😨"]]
+},
+
+{
+emotion:"calm",
+
+en:["Robo finishes all his work and sits quietly.",
+["Calm 😌","Angry 😠","Afraid 😨","Disgusted 🤢"]],
+
+ar:["أنهى الروبوت عمله وجلس بهدوء.",
+["هادئ 😌","غاضب 😠","خائف 😨","مشمئز 🤢"]],
+
+fr:["Le robot termine son travail et s'assoit tranquillement.",
+["Calme 😌","En colère 😠","Effrayé 😨","Dégoûté 🤢"]]
+},
+
+{
+emotion:"surprised",
+
+en:["Robo opens a box and unexpectedly finds a puppy.",
+["Surprised 😲","Angry 😠","Sad 😢","Disgusted 🤢"]],
+
+ar:["فتح الروبوت صندوقًا ووجد جروًا بشكل مفاجئ.",
+["متفاجئ 😲","غاضب 😠","حزين 😢","مشمئز 🤢"]],
+
+fr:["Le robot ouvre une boîte et trouve un chiot.",
+["Surpris 😲","En colère 😠","Triste 😢","Dégoûté 🤢"]]
+},
+
+{
+emotion:"happy",
+
+en:["Robo's friend thanks him for helping.",
+["Happy 😄","Afraid 😨","Angry 😠","Disgusted 🤢"]],
+
+ar:["شكر صديق الروبوت له لأنه ساعده.",
+["سعيد 😄","خائف 😨","غاضب 😠","مشمئز 🤢"]],
+
+fr:["L'ami du robot le remercie pour son aide.",
+["Heureux 😄","Effrayé 😨","En colère 😠","Dégoûté 🤢"]]
+},
+
+
+/* LEVEL 3 */
+
+{
+emotion:"calm",
+
+en:["Robo is angry because someone took his pencil. What should he do?",
+["Stay calm and explain","Shout loudly","Break something","Push the person"]],
+
+ar:["الروبوت غاضب لأن شخصًا أخذ قلمه. ماذا يفعل؟",
+["يهدأ ويتحدث","يصرخ","يكسر شيئًا","يدفع الشخص"]],
+
+fr:["Le robot est en colère car quelqu'un a pris son crayon.",
+["Rester calme et expliquer","Crier","Casser quelque chose","Pousser la personne"]]
+},
+
+{
+emotion:"happy",
+
+en:["Robo's friend is sad. What should Robo do?",
+["Listen and help","Laugh","Ignore them","Tell everyone"]],
+
+ar:["صديق الروبوت حزين. ماذا يجب أن يفعل؟",
+["يستمع ويساعده","يضحك","يتجاهله","يخبر الجميع"]],
+
+fr:["L'ami du robot est triste. Que doit-il faire ?",
+["Écouter et aider","Rire","L'ignorer","Le dire à tout le monde"]]
+},
+
+{
+emotion:"calm",
+
+en:["Robo feels afraid before a test. What could help?",
+["Breathe slowly and prepare","Run away","Rip the test","Yell"]],
+
+ar:["يشعر الروبوت بالخوف قبل الاختبار. ماذا يساعده؟",
+["يتنفس بهدوء ويستعد","يهرب","يمزق الاختبار","يصرخ"]],
+
+fr:["Le robot a peur avant un examen.",
+["Respirer lentement et se préparer","S'enfuir","Déchirer l'examen","Crier"]]
+},
+
+{
+emotion:"proud",
+
+en:["Robo makes a mistake. What should he do?",
+["Learn and try again","Blame everyone","Quit","Get angry"]],
+
+ar:["ارتكب الروبوت خطأ. ماذا يجب أن يفعل؟",
+["يتعلم ويحاول مرة أخرى","يلوم الجميع","يستسلم","يغضب"]],
+
+fr:["Le robot fait une erreur.",
+["Apprendre et réessayer","Accuser les autres","Abandonner","Se mettre en colère"]]
+},
+
+{
+emotion:"happy",
+
+en:["Robo wins a contest. What is the best reaction?",
+["Celebrate kindly","Make fun of others","Boast","Ignore everyone"]],
+
+ar:["فاز الروبوت بمسابقة. ما أفضل رد فعل؟",
+["يحتفل بلطف","يسخر من الآخرين","يتفاخر","يتجاهل الجميع"]],
+
+fr:["Le robot gagne un concours.",
+["Fêter gentiment","Se moquer des autres","Se vanter","Ignorer tout le monde"]]
+},
+
+
+/* LEVEL 4 */
+
+{
+emotion:"sad",
+en:["A classmate becomes quiet after losing something important.",
+["Sad 😢","Excited 🤩","Proud 😎","Disgusted 🤢"]],
+ar:["أصبح زميل هادئًا بعد أن فقد شيئًا مهمًا.",
+["حزين 😢","متحمس 🤩","فخور 😎","مشمئز 🤢"]]
+},
+
+{
+emotion:"surprised",
+en:["Someone jumps when a balloon suddenly pops.",
+["Surprised 😲","Proud 😎","Happy 😄","Calm 😌"]],
+ar:["قفز شخص عندما انفجر بالون فجأة.",
+["متفاجئ 😲","فخور 😎","سعيد 😄","هادئ 😌"]]
+},
+
+{
+emotion:"afraid",
+en:["Your teammate shakes before a competition.",
+["Afraid 😨","Disgusted 🤢","Happy 😄","Proud 😎"]],
+ar:["يرتجف زميلك قبل المسابقة.",
+["خائف 😨","مشمئز 🤢","سعيد 😄","فخور 😎"]]
+},
+
+{
+emotion:"proud",
+en:["A friend smiles after completing something difficult.",
+["Proud 😎","Angry 😠","Sad 😢","Disgusted 🤢"]],
+ar:["يبتسم صديق بعد إنهاء شيء صعب.",
+["فخور 😎","غاضب 😠","حزين 😢","مشمئز 🤢"]]
+},
+
+{
+emotion:"disgusted",
+en:["Someone moves away from a terrible smell.",
+["Disgusted 🤢","Happy 😄","Proud 😎","Calm 😌"]],
+ar:["ابتعد شخص عن رائحة سيئة جدًا.",
+["مشمئز 🤢","سعيد 😄","فخور 😎","هادئ 😌"]]
+},
+
+
+/* LEVEL 5 */
+
+{
+emotion:"calm",
+en:["Robo is frustrated because a machine will not work. What should he do?",
+["Pause and try another solution","Kick it","Yell","Give up"]],
+ar:["الروبوت منزعج لأن الجهاز لا يعمل. ماذا يفعل؟",
+["يهدأ ويجرب حلًا آخر","يركله","يصرخ","يستسلم"]]
+},
+
+{
+emotion:"calm",
+en:["Robo's teammate accidentally makes a mistake.",
+["Help calmly","Shout","Leave","Laugh"]],
+ar:["ارتكب زميل الروبوت خطأ بالصدفة.",
+["يساعده بهدوء","يصرخ","يغادر","يضحك"]]
+},
+
+{
+emotion:"proud",
+en:["Robo feels jealous because his friend won a prize.",
+["Congratulate the friend","Insult the friend","Take the prize","Stop being friends"]],
+ar:["يشعر الروبوت بالغيرة لأن صديقه فاز بجائزة.",
+["يهنئ صديقه","يهينه","يأخذ الجائزة","ينهي الصداقة"]]
+},
+
+{
+emotion:"calm",
+en:["Robo is excited but needs to hear instructions.",
+["Calm down and listen","Interrupt","Run around","Ignore them"]],
+ar:["الروبوت متحمس لكنه يحتاج إلى سماع التعليمات.",
+["يهدأ ويستمع","يقاطع","يجري","يتجاهل التعليمات"]]
+},
+
+{
+emotion:"happy",
+en:["FINAL DOOR: Someone is being left out of a game. What should Robo do?",
+["Invite them to join","Ignore them","Laugh","Tell them to leave"]],
+ar:["الباب الأخير: هناك شخص مستبعد من اللعبة. ماذا يفعل الروبوت؟",
+["يدعوه للانضمام","يتجاهله","يضحك","يطلب منه المغادرة"]]
 }
 
 ];
 
+
+/* =========================================================
+   TRANSLATION FALLBACK
+========================================================= */
+
+function getQuestionData(item){
+
+    const language =
+    document.getElementById("languageSelect").value;
+
+    /*
+      Full custom question translations are provided
+      for English and Arabic throughout the game.
+
+      French is included in early lessons.
+
+      Other languages safely fall back to English
+      while the interface and TTS language still change.
+    */
+
+    return (
+        item[language] ||
+        item.en
+    );
+}
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
 let currentLevel = 0;
 let currentDoor = 0;
+
 let score = 0;
 let lives = 3;
+
 let locked = false;
 
-const canvas = document.getElementById("gameCanvas");
+let robotName = "Robo";
 
-const renderer = new THREE.WebGLRenderer({
+let selectedCountry = "Egypt";
+let selectedTimeZone = "Africa/Cairo";
+
+let selectedLanguage = "en";
+
+let lastSpokenText = "";
+
+let victoryMode = false;
+
+
+/* =========================================================
+   COUNTRY TIME
+========================================================= */
+
+const countrySelect =
+document.getElementById("countrySelect");
+
+function updateCountry(){
+
+    const parts =
+    countrySelect.value.split("|");
+
+    selectedCountry = parts[0];
+    selectedTimeZone = parts[1];
+
+    updateClock();
+}
+
+function updateClock(){
+
+    let time = "--:--";
+
+    try{
+
+        time =
+        new Intl.DateTimeFormat(
+            selectedLanguage === "ar"
+            ? "ar-EG"
+            : "en-US",
+            {
+                timeZone:selectedTimeZone,
+                hour:"numeric",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        ).format(new Date());
+
+    }catch(error){
+
+        time = "--:--";
+    }
+
+    document.getElementById(
+        "countryTime"
+    ).textContent = time;
+
+    document.getElementById(
+        "countryTimeBox"
+    ).childNodes[0].textContent =
+    "🌍 " + selectedCountry + "  ";
+
+    document.getElementById(
+        "countryHeader"
+    ).textContent =
+    "🌍 " + selectedCountry;
+
+    document.getElementById(
+        "timeHeader"
+    ).textContent =
+    "⏰ " + time;
+}
+
+countrySelect.addEventListener(
+    "change",
+    updateCountry
+);
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =========================================================
+   TEXT TO SPEECH
+========================================================= */
+
+function speak(text){
+
+    if(!("speechSynthesis" in window)){
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const utterance =
+    new SpeechSynthesisUtterance(text);
+
+    utterance.lang =
+    VOICE_LANGUAGE[selectedLanguage] ||
+    "en-US";
+
+    utterance.rate = .93;
+    utterance.pitch = 1;
+
+    const voices =
+    speechSynthesis.getVoices();
+
+    const matchingVoice =
+    voices.find(
+        voice =>
+        voice.lang
+        .toLowerCase()
+        .startsWith(
+            utterance.lang
+            .substring(0,2)
+            .toLowerCase()
+        )
+    );
+
+    if(matchingVoice){
+        utterance.voice = matchingVoice;
+    }
+
+    speechSynthesis.speak(
+        utterance
+    );
+}
+
+document.getElementById(
+    "speakButton"
+).addEventListener(
+    "click",
+    ()=>{
+        speak(lastSpokenText);
+    }
+);
+
+
+/* =========================================================
+   LANGUAGE UPDATE
+========================================================= */
+
+function formatText(
+    text,
+    values={}
+){
+
+    let result = text;
+
+    Object.keys(values).forEach(key=>{
+
+        result =
+        result.replaceAll(
+            `{${key}}`,
+            values[key]
+        );
+
+    });
+
+    return result;
+}
+
+
+function applyLanguage(){
+
+    selectedLanguage =
+    document.getElementById(
+        "languageSelect"
+    ).value;
+
+    const t =
+    UI[selectedLanguage];
+
+    document.documentElement.lang =
+    selectedLanguage;
+
+    document.documentElement.dir =
+    selectedLanguage === "ar"
+    ? "rtl"
+    : "ltr";
+
+    document.getElementById(
+        "languageLabel"
+    ).textContent =
+    t.language;
+
+    document.getElementById(
+        "countryLabel"
+    ).textContent =
+    t.country;
+
+    document.getElementById(
+        "nameLabel"
+    ).textContent =
+    t.name;
+
+    document.getElementById(
+        "startButton"
+    ).textContent =
+    t.start;
+
+    document.getElementById(
+        "startDescription"
+    ).textContent =
+    t.startDescription;
+
+    document.getElementById(
+        "speakButton"
+    ).textContent =
+    t.speak;
+
+    document.getElementById(
+        "nextLevelButton"
+    ).textContent =
+    t.next;
+
+    document.getElementById(
+        "playAgainButton"
+    ).textContent =
+    t.again;
+
+    updateClock();
+
+    if(
+        !document
+        .getElementById(
+            "questionPanel"
+        )
+        .classList
+        .contains("hidden")
+    ){
+        loadDoor(false);
+    }
+}
+
+
+document.getElementById(
+    "languageSelect"
+).addEventListener(
+    "change",
+    applyLanguage
+);
+
+
+/* =========================================================
+   THREE.JS
+========================================================= */
+
+const canvas =
+document.getElementById(
+    "gameCanvas"
+);
+
+const renderer =
+new THREE.WebGLRenderer({
     canvas,
     antialias:true
 });
 
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setPixelRatio(
+    Math.min(
+        window.devicePixelRatio,
+        2
+    )
+);
+
 renderer.shadowMap.enabled = true;
 
-const scene = new THREE.Scene();
-scene.background = new THREE.Color(0x07111f);
-scene.fog = new THREE.Fog(0x07111f,12,35);
 
-const camera = new THREE.PerspectiveCamera(52,1,.1,100);
-camera.position.set(0,2.5,8);
+const scene =
+new THREE.Scene();
 
-const ambient = new THREE.AmbientLight(0xffffff,1);
+scene.background =
+new THREE.Color(
+    0x07111f
+);
+
+scene.fog =
+new THREE.Fog(
+    0x07111f,
+    12,
+    35
+);
+
+
+const camera =
+new THREE.PerspectiveCamera(
+    52,
+    1,
+    .1,
+    100
+);
+
+camera.position.set(
+    0,
+    2.5,
+    8
+);
+
+
+const normalCameraPosition =
+new THREE.Vector3(
+    0,
+    2.5,
+    8
+);
+
+
+/* LIGHTING */
+
+const ambient =
+new THREE.AmbientLight(
+    0xffffff,
+    1
+);
+
 scene.add(ambient);
 
-const mainLight = new THREE.DirectionalLight(0xffffff,2);
-mainLight.position.set(4,9,5);
+
+const mainLight =
+new THREE.DirectionalLight(
+    0xffffff,
+    2
+);
+
+mainLight.position.set(
+    4,
+    9,
+    5
+);
+
 scene.add(mainLight);
 
-const cyanLight = new THREE.PointLight(0x22d3ee,24,15);
-cyanLight.position.set(-4,3,2);
+
+const cyanLight =
+new THREE.PointLight(
+    0x22d3ee,
+    24,
+    15
+);
+
+cyanLight.position.set(
+    -4,
+    3,
+    2
+);
+
 scene.add(cyanLight);
 
-const purpleLight = new THREE.PointLight(0x6366f1,18,15);
-purpleLight.position.set(4,3,2);
+
+const purpleLight =
+new THREE.PointLight(
+    0x6366f1,
+    18,
+    15
+);
+
+purpleLight.position.set(
+    4,
+    3,
+    2
+);
+
 scene.add(purpleLight);
 
-const whiteMaterial = new THREE.MeshStandardMaterial({
+
+/* MATERIALS */
+
+const whiteMaterial =
+new THREE.MeshStandardMaterial({
     color:0xf8fafc,
     metalness:.55,
     roughness:.25
 });
 
-const darkMaterial = new THREE.MeshStandardMaterial({
+const darkMaterial =
+new THREE.MeshStandardMaterial({
     color:0x020617,
     metalness:.7,
     roughness:.25
 });
 
-const metalMaterial = new THREE.MeshStandardMaterial({
+const metalMaterial =
+new THREE.MeshStandardMaterial({
     color:0x94a3b8,
     metalness:.85,
     roughness:.22
 });
 
-const cyanMaterial = new THREE.MeshStandardMaterial({
+const cyanMaterial =
+new THREE.MeshStandardMaterial({
     color:0x22d3ee,
     emissive:0x22d3ee,
     emissiveIntensity:2.5
 });
 
-const wallMaterial = new THREE.MeshStandardMaterial({
+const wallMaterial =
+new THREE.MeshStandardMaterial({
     color:0x111827,
     metalness:.25,
     roughness:.65
 });
 
-const floorMaterial = new THREE.MeshStandardMaterial({
+const floorMaterial =
+new THREE.MeshStandardMaterial({
     color:0x172033,
     metalness:.5,
     roughness:.4
 });
 
-const doorMaterial = new THREE.MeshStandardMaterial({
+const doorMaterial =
+new THREE.MeshStandardMaterial({
     color:0x1d4ed8,
     metalness:.7,
     roughness:.25
 });
 
-const glowMaterial = new THREE.MeshStandardMaterial({
+const glowMaterial =
+new THREE.MeshStandardMaterial({
     color:0x38bdf8,
     emissive:0x38bdf8,
     emissiveIntensity:2
 });
 
-const floor = new THREE.Mesh(
-    new THREE.BoxGeometry(12,.25,25),
+const goldMaterial =
+new THREE.MeshStandardMaterial({
+    color:0xffd700,
+    emissive:0x8a6000,
+    emissiveIntensity:.4,
+    metalness:.9,
+    roughness:.18
+});
+
+
+/* =========================================================
+   LAB
+========================================================= */
+
+const floor =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        12,
+        .25,
+        25
+    ),
     floorMaterial
 );
-floor.position.set(0,-1.55,-5);
+
+floor.position.set(
+    0,
+    -1.55,
+    -5
+);
+
 scene.add(floor);
 
-const leftWall = new THREE.Mesh(
-    new THREE.BoxGeometry(.3,7,25),
+
+const leftWall =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        .3,
+        7,
+        25
+    ),
     wallMaterial
 );
-leftWall.position.set(-6,2,-5);
+
+leftWall.position.set(
+    -6,
+    2,
+    -5
+);
+
 scene.add(leftWall);
 
-const rightWall = leftWall.clone();
+
+const rightWall =
+leftWall.clone();
+
 rightWall.position.x = 6;
+
 scene.add(rightWall);
 
-const ceiling = new THREE.Mesh(
-    new THREE.BoxGeometry(12,.2,25),
+
+const ceiling =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        12,
+        .2,
+        25
+    ),
     wallMaterial
 );
-ceiling.position.set(0,5.4,-5);
+
+ceiling.position.set(
+    0,
+    5.4,
+    -5
+);
+
 scene.add(ceiling);
 
-const backWall = new THREE.Mesh(
-    new THREE.BoxGeometry(12,7,.3),
+
+const backWall =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        12,
+        7,
+        .3
+    ),
     wallMaterial
 );
-backWall.position.set(0,2,-14);
+
+backWall.position.set(
+    0,
+    2,
+    -14
+);
+
 scene.add(backWall);
 
-for(let z=5; z>-14; z-=2.5){
 
-    const strip1 = new THREE.Mesh(
-        new THREE.BoxGeometry(.12,.03,1.4),
+for(
+    let z=5;
+    z>-14;
+    z-=2.5
+){
+
+    const strip1 =
+    new THREE.Mesh(
+        new THREE.BoxGeometry(
+            .12,
+            .03,
+            1.4
+        ),
         glowMaterial
     );
 
-    strip1.position.set(-4.3,-1.4,z);
+    strip1.position.set(
+        -4.3,
+        -1.4,
+        z
+    );
+
     scene.add(strip1);
 
-    const strip2 = strip1.clone();
+
+    const strip2 =
+    strip1.clone();
+
     strip2.position.x = 4.3;
+
     scene.add(strip2);
 }
 
-const doorGroup = new THREE.Group();
-doorGroup.position.set(0,.55,-4);
+
+/* =========================================================
+   DOOR
+========================================================= */
+
+const doorGroup =
+new THREE.Group();
+
+doorGroup.position.set(
+    0,
+    .55,
+    -4
+);
+
 scene.add(doorGroup);
 
-const frameLeft = new THREE.Mesh(
-    new THREE.BoxGeometry(.35,4.5,.5),
+
+const frameLeft =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        .35,
+        4.5,
+        .5
+    ),
     metalMaterial
 );
+
 frameLeft.position.x = -1.7;
+
 doorGroup.add(frameLeft);
 
-const frameRight = frameLeft.clone();
+
+const frameRight =
+frameLeft.clone();
+
 frameRight.position.x = 1.7;
+
 doorGroup.add(frameRight);
 
-const frameTop = new THREE.Mesh(
-    new THREE.BoxGeometry(3.75,.35,.5),
+
+const frameTop =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        3.75,
+        .35,
+        .5
+    ),
     metalMaterial
 );
+
 frameTop.position.y = 2.1;
+
 doorGroup.add(frameTop);
 
-const leftDoorPivot = new THREE.Group();
-leftDoorPivot.position.set(-1.6,0,0);
-doorGroup.add(leftDoorPivot);
 
-const doorLeft = new THREE.Mesh(
-    new THREE.BoxGeometry(1.55,3.85,.3),
+const leftDoorPivot =
+new THREE.Group();
+
+leftDoorPivot.position.set(
+    -1.6,
+    0,
+    0
+);
+
+doorGroup.add(
+    leftDoorPivot
+);
+
+
+const doorLeft =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        1.55,
+        3.85,
+        .3
+    ),
     doorMaterial
 );
-doorLeft.position.x = .775;
-leftDoorPivot.add(doorLeft);
 
-const rightDoorPivot = new THREE.Group();
-rightDoorPivot.position.set(1.6,0,0);
-doorGroup.add(rightDoorPivot);
+doorLeft.position.x =
+.775;
 
-const doorRight = new THREE.Mesh(
-    new THREE.BoxGeometry(1.55,3.85,.3),
+leftDoorPivot.add(
+    doorLeft
+);
+
+
+const rightDoorPivot =
+new THREE.Group();
+
+rightDoorPivot.position.set(
+    1.6,
+    0,
+    0
+);
+
+doorGroup.add(
+    rightDoorPivot
+);
+
+
+const doorRight =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        1.55,
+        3.85,
+        .3
+    ),
     doorMaterial
 );
-doorRight.position.x = -.775;
-rightDoorPivot.add(doorRight);
 
-const doorLight = new THREE.Mesh(
-    new THREE.BoxGeometry(.12,3.2,.36),
+doorRight.position.x =
+-.775;
+
+rightDoorPivot.add(
+    doorRight
+);
+
+
+const doorGlow =
+new THREE.Mesh(
+    new THREE.BoxGeometry(
+        .1,
+        3,
+        .36
+    ),
     glowMaterial
 );
-doorLight.position.z = .1;
-doorGroup.add(doorLight);
 
-const robot = new THREE.Group();
-robot.position.set(0,-.15,1.2);
+doorGlow.position.z =
+.1;
+
+doorGroup.add(
+    doorGlow
+);
+
+
+/* =========================================================
+   ROBOT
+========================================================= */
+
+const robot =
+new THREE.Group();
+
+robot.position.set(
+    0,
+    -.15,
+    1.2
+);
+
 scene.add(robot);
+
 
 const robotParts = [];
 
-function addRobotPart(mesh,name){
-    mesh.userData.name = name;
-    robot.add(mesh);
-    robotParts.push(mesh);
-    return mesh;
+
+function addRobotPart(
+    object,
+    name
+){
+
+    object.userData.name =
+    name;
+
+    robot.add(
+        object
+    );
+
+    robotParts.push(
+        object
+    );
+
+    return object;
 }
 
-const body = addRobotPart(
+
+const body =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.BoxGeometry(1.4,1.3,.85),
+        new THREE.BoxGeometry(
+            1.4,
+            1.3,
+            .85
+        ),
         whiteMaterial
     ),
     "body"
 );
+
 body.position.y = 0;
 
-const head = addRobotPart(
+
+const head =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.BoxGeometry(1.75,1.1,1),
+        new THREE.BoxGeometry(
+            1.75,
+            1.1,
+            1
+        ),
         whiteMaterial
     ),
     "head"
 );
-head.position.y = 1.48;
 
-const face = addRobotPart(
+head.position.y =
+1.48;
+
+
+const face =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.BoxGeometry(1.45,.72,.08),
+        new THREE.BoxGeometry(
+            1.45,
+            .72,
+            .08
+        ),
         darkMaterial
     ),
     "face"
 );
-face.position.set(0,1.48,.54);
 
-const eyeL = addRobotPart(
+face.position.set(
+    0,
+    1.48,
+    .54
+);
+
+
+const eyeL =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.SphereGeometry(.13,20,20),
+        new THREE.SphereGeometry(
+            .13,
+            20,
+            20
+        ),
         cyanMaterial
     ),
     "eyeL"
 );
-eyeL.scale.y = 1.4;
-eyeL.position.set(-.36,1.6,.61);
 
-const eyeR = addRobotPart(
+eyeL.scale.y =
+1.4;
+
+eyeL.position.set(
+    -.36,
+    1.6,
+    .61
+);
+
+
+const eyeR =
+addRobotPart(
     eyeL.clone(),
     "eyeR"
 );
-eyeR.position.x = .36;
 
-const mouth = addRobotPart(
+eyeR.position.x =
+.36;
+
+
+const mouth =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.BoxGeometry(.46,.07,.08),
+        new THREE.BoxGeometry(
+            .46,
+            .07,
+            .08
+        ),
         cyanMaterial
     ),
     "mouth"
 );
-mouth.position.set(0,1.28,.61);
 
-const heart = addRobotPart(
+mouth.position.set(
+    0,
+    1.28,
+    .61
+);
+
+
+const heart =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.SphereGeometry(.2,20,20),
+        new THREE.SphereGeometry(
+            .2,
+            20,
+            20
+        ),
         cyanMaterial
     ),
     "heart"
 );
-heart.scale.set(1,1,.4);
-heart.position.set(0,.08,.48);
 
-const armL = addRobotPart(
+heart.scale.set(
+    1,
+    1,
+    .4
+);
+
+heart.position.set(
+    0,
+    .08,
+    .48
+);
+
+
+const armL =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.CapsuleGeometry(.2,.72,8,16),
+        new THREE.CapsuleGeometry(
+            .2,
+            .72,
+            8,
+            16
+        ),
         whiteMaterial
     ),
     "armL"
 );
-armL.position.set(-1,0,0);
 
-const armR = addRobotPart(
+armL.position.set(
+    -1,
+    0,
+    0
+);
+
+
+const armR =
+addRobotPart(
     armL.clone(),
     "armR"
 );
-armR.position.x = 1;
 
-const legL = addRobotPart(
+armR.position.x =
+1;
+
+
+const legL =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.CapsuleGeometry(.22,.52,8,16),
+        new THREE.CapsuleGeometry(
+            .22,
+            .52,
+            8,
+            16
+        ),
         whiteMaterial
     ),
     "legL"
 );
-legL.position.set(-.38,-1,0);
 
-const legR = addRobotPart(
+legL.position.set(
+    -.38,
+    -1,
+    0
+);
+
+
+const legR =
+addRobotPart(
     legL.clone(),
     "legR"
 );
-legR.position.x = .38;
 
-const footL = addRobotPart(
+legR.position.x =
+.38;
+
+
+const footL =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.BoxGeometry(.56,.22,.75),
+        new THREE.BoxGeometry(
+            .56,
+            .22,
+            .75
+        ),
         metalMaterial
     ),
     "footL"
 );
-footL.position.set(-.38,-1.42,.1);
 
-const footR = addRobotPart(
+footL.position.set(
+    -.38,
+    -1.42,
+    .1
+);
+
+
+const footR =
+addRobotPart(
     footL.clone(),
     "footR"
 );
-footR.position.x = .38;
 
-const antenna = addRobotPart(
+footR.position.x =
+.38;
+
+
+const antenna =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.CylinderGeometry(.05,.05,.5,16),
+        new THREE.CylinderGeometry(
+            .05,
+            .05,
+            .5,
+            16
+        ),
         metalMaterial
     ),
     "antenna"
 );
-antenna.position.set(0,2.35,0);
 
-const antennaBall = addRobotPart(
+antenna.position.set(
+    0,
+    2.35,
+    0
+);
+
+
+const antennaBall =
+addRobotPart(
     new THREE.Mesh(
-        new THREE.SphereGeometry(.13,20,20),
+        new THREE.SphereGeometry(
+            .13,
+            20,
+            20
+        ),
         cyanMaterial
     ),
     "antennaBall"
 );
-antennaBall.position.set(0,2.64,0);
 
-robotParts.forEach(part=>{
-    part.userData.homePosition = part.position.clone();
-    part.userData.homeRotation = part.rotation.clone();
-});
+antennaBall.position.set(
+    0,
+    2.64,
+    0
+);
 
-let emotion = "normal";
-let emotionStart = 0;
 
-let exploded = false;
-let explosionParts = [];
+robotParts.forEach(
+    part=>{
 
-let doorOpening = false;
-let doorOpenAmount = 0;
+        part.userData.homePosition =
+        part.position.clone();
 
-let robotTurning = false;
-let turnProgress = 0;
+        part.userData.homeRotation =
+        part.rotation.clone();
 
-let robotWalking = false;
-let walkProgress = 0;
+        part.userData.homeScale =
+        part.scale.clone();
 
-let cameraFollowing = false;
+    }
+);
+
+
+/* =========================================================
+   3D TROPHY
+========================================================= */
+
+const trophy =
+new THREE.Group();
+
+robot.add(
+    trophy
+);
+
+trophy.visible = false;
+
+
+/* CUP */
+
+const trophyCup =
+new THREE.Mesh(
+    new THREE.CylinderGeometry(
+        .38,
+        .23,
+        .62,
+        24,
+        1,
+        true
+    ),
+    goldMaterial
+);
+
+trophy.add(
+    trophyCup
+);
+
+
+/* STEM */
+
+const trophyStem =
+new THREE.Mesh(
+    new THREE.CylinderGeometry(
+        .08,
+        .08,
+        .35,
+        16
+    ),
+    goldMaterial
+);
+
+trophyStem.position.y =
+-.47;
+
+trophy.add(
+    trophyStem
+);
+
+
+/* BASE */
+
+const trophyBase =
+new THREE.Mesh(
+    new THREE.CylinderGeometry(
+        .34,
+        .42,
+        .18,
+        20
+    ),
+    goldMaterial
+);
+
+trophyBase.position.y =
+-.7;
+
+trophy.add(
+    trophyBase
+);
+
+
+/* HANDLES */
+
+const handleGeometry =
+new THREE.TorusGeometry(
+    .32,
+    .055,
+    12,
+    24,
+    Math.PI
+);
+
+const handleLeft =
+new THREE.Mesh(
+    handleGeometry,
+    goldMaterial
+);
+
+handleLeft.rotation.z =
+Math.PI/2;
+
+handleLeft.position.x =
+-.38;
+
+trophy.add(
+    handleLeft
+);
+
+
+const handleRight =
+handleLeft.clone();
+
+handleRight.rotation.z =
+-Math.PI/2;
+
+handleRight.position.x =
+.38;
+
+trophy.add(
+    handleRight
+);
+
+
+trophy.position.set(
+    0,
+    .15,
+    .95
+);
+
+trophy.scale.set(
+    .85,
+    .85,
+    .85
+);
+
+
+/* =========================================================
+   ANIMATION STATE
+========================================================= */
+
+let emotion =
+"normal";
+
+let emotionStart =
+0;
+
+let exploded =
+false;
+
+let explosionParts =
+[];
+
+let doorOpening =
+false;
+
+let doorOpenAmount =
+0;
+
+let robotTurning =
+false;
+
+let turnProgress =
+0;
+
+let robotWalking =
+false;
+
+let walkProgress =
+0;
+
+let cameraFollowing =
+false;
+
+let finalVictoryRun =
+false;
+
+
+/* =========================================================
+   RESET ROBOT
+========================================================= */
 
 function resetRobot(){
 
     exploded = false;
+
     explosionParts = [];
 
-    emotion = "normal";
+    emotion =
+    "normal";
 
-    robotTurning = false;
-    turnProgress = 0;
+    robotTurning =
+    false;
 
-    robotWalking = false;
-    walkProgress = 0;
+    turnProgress =
+    0;
 
-    cameraFollowing = false;
+    robotWalking =
+    false;
 
-    robot.position.set(0,-.15,1.2);
-    robot.rotation.set(0,0,0);
-    robot.scale.set(1,1,1);
+    walkProgress =
+    0;
 
-    robotParts.forEach(part=>{
-        part.position.copy(part.userData.homePosition);
-        part.rotation.copy(part.userData.homeRotation);
-    });
+    cameraFollowing =
+    false;
 
-    eyeL.scale.set(1,1.4,1);
-    eyeR.scale.set(1,1.4,1);
-    mouth.scale.set(1,1,1);
+    finalVictoryRun =
+    false;
 
-    cyanLight.color.set(0x22d3ee);
+    robot.position.set(
+        0,
+        -.15,
+        1.2
+    );
+
+    robot.rotation.set(
+        0,
+        0,
+        0
+    );
+
+    robot.scale.set(
+        1,
+        1,
+        1
+    );
+
+    robotParts.forEach(
+        part=>{
+
+            part.position.copy(
+                part.userData.homePosition
+            );
+
+            part.rotation.copy(
+                part.userData.homeRotation
+            );
+
+            part.scale.copy(
+                part.userData.homeScale
+            );
+
+        }
+    );
+
+    cyanLight.color.set(
+        0x22d3ee
+    );
+
+    trophy.visible =
+    false;
 }
 
-function playEmotion(type){
+
+/* =========================================================
+   EMOTIONS
+========================================================= */
+
+function playEmotion(
+    type
+){
+
     resetRobot();
-    emotion = type;
-    emotionStart = performance.now();
+
+    emotion =
+    type;
+
+    emotionStart =
+    performance.now();
 }
 
-function updateEmotion(time){
 
-    if(emotion==="normal") return;
-    if(robotTurning || robotWalking) return;
+function updateEmotion(
+    time
+){
 
-    const t = (time-emotionStart)/1000;
+    if(
+        emotion ===
+        "normal"
+    ){
+        return;
+    }
 
-    if(emotion==="happy"){
+    if(
+        robotWalking ||
+        robotTurning
+    ){
+        return;
+    }
+
+    const t =
+    (
+        time -
+        emotionStart
+    ) / 1000;
+
+
+    if(
+        emotion ===
+        "happy"
+    ){
+
         robot.position.y =
-        -.15 + Math.abs(Math.sin(t*7))*.5;
+        -.15 +
+        Math.abs(
+            Math.sin(
+                t*7
+            )
+        )*.5;
 
-        armL.rotation.z = -.8;
-        armR.rotation.z = .8;
+        armL.rotation.z =
+        -.8;
+
+        armR.rotation.z =
+        .8;
     }
 
-    if(emotion==="angry"){
-        robot.position.x = Math.sin(t*35)*.1;
-        robot.rotation.z = Math.sin(t*30)*.05;
-        cyanLight.color.set(0xef4444);
+
+    if(
+        emotion ===
+        "angry"
+    ){
+
+        robot.position.x =
+        Math.sin(
+            t*35
+        )*.1;
+
+        robot.rotation.z =
+        Math.sin(
+            t*30
+        )*.05;
+
+        cyanLight.color.set(
+            0xef4444
+        );
     }
 
-    if(emotion==="afraid"){
-        robot.position.x = Math.sin(t*45)*.07;
+
+    if(
+        emotion ===
+        "afraid"
+    ){
+
+        robot.position.x =
+        Math.sin(
+            t*45
+        )*.07;
+    }
+
+
+    if(
+        emotion ===
+        "surprised"
+    ){
+
+        const scale =
+        1 +
+        Math.abs(
+            Math.sin(
+                t*6
+            )
+        )*.18;
+
+        robot.scale.set(
+            scale,
+            scale,
+            scale
+        );
+
+        eyeL.scale.set(
+            1.5,
+            1.9,
+            1.5
+        );
+
+        eyeR.scale.set(
+            1.5,
+            1.9,
+            1.5
+        );
+    }
+
+
+    if(
+        emotion ===
+        "sad"
+    ){
+
         robot.position.y =
-        -.15 + Math.sin(t*40)*.04;
+        -.35;
+
+        head.rotation.z =
+        -.12;
+
+        armL.rotation.z =
+        .25;
+
+        armR.rotation.z =
+        -.25;
     }
 
-    if(emotion==="surprised"){
-        const s =
-        1 + Math.abs(Math.sin(t*6))*.2;
 
-        robot.scale.set(s,s,s);
+    if(
+        emotion ===
+        "disgusted"
+    ){
 
-        eyeL.scale.set(1.5,1.9,1.5);
-        eyeR.scale.set(1.5,1.9,1.5);
+        robot.rotation.z =
+        -.18;
+
+        head.rotation.y =
+        -.4;
+
+        cyanLight.color.set(
+            0x22c55e
+        );
     }
 
-    if(emotion==="sad"){
-        robot.position.y = -.35;
-        head.rotation.z = -.12;
-        armL.rotation.z = .25;
-        armR.rotation.z = -.25;
-    }
 
-    if(emotion==="disgusted"){
-        robot.rotation.z = -.18;
-        head.rotation.y = -.4;
-        cyanLight.color.set(0x22c55e);
-    }
+    if(
+        emotion ===
+        "calm"
+    ){
 
-    if(emotion==="calm"){
         robot.position.y =
-        -.15 + Math.sin(t*2)*.03;
+        -.15 +
+        Math.sin(
+            t*2
+        )*.03;
     }
 
-    if(emotion==="proud"){
-        armL.rotation.z = -.55;
-        armR.rotation.z = .55;
-        robot.scale.set(1.08,1.08,1.08);
+
+    if(
+        emotion ===
+        "proud"
+    ){
+
+        armL.rotation.z =
+        -.55;
+
+        armR.rotation.z =
+        .55;
     }
 }
+
+
+/* =========================================================
+   WRONG ANSWER EXPLOSION
+========================================================= */
 
 function explodeRobot(){
 
     resetRobot();
 
-    exploded = true;
-    explosionParts = [];
+    exploded =
+    true;
 
-    robotParts.forEach(part=>{
+    explosionParts =
+    [];
 
-        explosionParts.push({
-            part,
-            velocity:new THREE.Vector3(
-                (Math.random()-.5)*.1,
-                Math.random()*.08+.03,
-                (Math.random()-.5)*.08
-            ),
-            spin:new THREE.Vector3(
-                Math.random()*.18,
-                Math.random()*.18,
-                Math.random()*.18
-            )
-        });
+    robotParts.forEach(
+        part=>{
 
-    });
+            explosionParts.push({
+
+                part,
+
+                velocity:
+                new THREE.Vector3(
+                    (Math.random()-.5)*.1,
+                    Math.random()*.08+.03,
+                    (Math.random()-.5)*.08
+                ),
+
+                spin:
+                new THREE.Vector3(
+                    Math.random()*.18,
+                    Math.random()*.18,
+                    Math.random()*.18
+                )
+
+            });
+
+        }
+    );
 }
+
 
 function updateExplosion(){
 
-    if(!exploded) return;
+    if(!exploded){
+        return;
+    }
 
-    explosionParts.forEach(item=>{
+    explosionParts.forEach(
+        item=>{
 
-        item.velocity.y -= .003;
+            item.velocity.y -=
+            .003;
 
-        item.part.position.add(
-            item.velocity
-        );
+            item.part.position.add(
+                item.velocity
+            );
 
-        item.part.rotation.x += item.spin.x;
-        item.part.rotation.y += item.spin.y;
-        item.part.rotation.z += item.spin.z;
-    });
+            item.part.rotation.x +=
+            item.spin.x;
+
+            item.part.rotation.y +=
+            item.spin.y;
+
+            item.part.rotation.z +=
+            item.spin.z;
+
+        }
+    );
 }
+
+
+/* =========================================================
+   DOOR
+========================================================= */
 
 function resetDoor(){
 
-    doorOpening = false;
-    doorOpenAmount = 0;
+    doorOpening =
+    false;
 
-    leftDoorPivot.rotation.y = 0;
-    rightDoorPivot.rotation.y = 0;
+    doorOpenAmount =
+    0;
+
+    leftDoorPivot.rotation.y =
+    0;
+
+    rightDoorPivot.rotation.y =
+    0;
 }
+
 
 function openDoor(){
-    doorOpening = true;
+
+    doorOpening =
+    true;
 }
+
 
 function updateDoor(){
 
-    if(!doorOpening) return;
+    if(
+        !doorOpening
+    ){
+        return;
+    }
 
-    doorOpenAmount += .035;
+    doorOpenAmount +=
+    .038;
 
     doorOpenAmount =
-    Math.min(doorOpenAmount,1);
+    Math.min(
+        doorOpenAmount,
+        1
+    );
 
     leftDoorPivot.rotation.y =
-    -doorOpenAmount * Math.PI/2;
+    -doorOpenAmount *
+    Math.PI/2;
 
     rightDoorPivot.rotation.y =
-    doorOpenAmount * Math.PI/2;
+    doorOpenAmount *
+    Math.PI/2;
 }
 
-function beginCorrectTransition(emotionType){
 
-    playEmotion(emotionType);
+/* =========================================================
+   CORRECT ANSWER TRANSITION
+========================================================= */
+
+function beginCorrectTransition(
+    emotionType
+){
+
+    playEmotion(
+        emotionType
+    );
 
     openDoor();
 
-    robotTurning = true;
-    turnProgress = 0;
+    robotTurning =
+    true;
 
-    cameraFollowing = true;
+    turnProgress =
+    0;
+
+    cameraFollowing =
+    true;
 }
+
 
 function updateRobotTurn(){
 
-    if(!robotTurning) return;
+    if(
+        !robotTurning
+    ){
+        return;
+    }
 
-    turnProgress += .035;
-    turnProgress = Math.min(turnProgress,1);
+    turnProgress +=
+    .04;
+
+    turnProgress =
+    Math.min(
+        turnProgress,
+        1
+    );
 
     robot.rotation.y =
     THREE.MathUtils.lerp(
@@ -1000,71 +3033,147 @@ function updateRobotTurn(){
         turnProgress
     );
 
-    if(turnProgress >= 1){
+    if(
+        turnProgress >=
+        1
+    ){
 
-        robot.rotation.y = Math.PI;
+        robot.rotation.y =
+        Math.PI;
 
-        robotTurning = false;
+        robotTurning =
+        false;
 
-        robotWalking = true;
-        walkProgress = 0;
+        robotWalking =
+        true;
+
+        walkProgress =
+        0;
     }
 }
 
+
+/* =========================================================
+   WALK THROUGH DOOR
+========================================================= */
+
 function updateRobotWalk(){
 
-    if(!robotWalking) return;
+    if(
+        !robotWalking
+    ){
+        return;
+    }
 
-    walkProgress += .014;
+    walkProgress +=
+    finalVictoryRun
+    ? .021
+    : .015;
 
     robot.position.z =
-    1.2 - walkProgress*8;
+    1.2 -
+    walkProgress*8;
 
     robot.position.y =
     -.15 +
     Math.abs(
         Math.sin(
-            walkProgress*34
+            walkProgress *
+            (
+                finalVictoryRun
+                ? 45
+                : 34
+            )
         )
     )*.1;
+
 
     armL.rotation.x =
     Math.sin(
         walkProgress*34
-    )*.5;
+    )*.45;
 
     armR.rotation.x =
     -Math.sin(
         walkProgress*34
-    )*.5;
+    )*.45;
+
 
     legL.rotation.x =
     -Math.sin(
-        walkProgress*34
-    )*.4;
+        walkProgress*
+        (
+            finalVictoryRun
+            ? 45
+            : 34
+        )
+    )*.45;
 
     legR.rotation.x =
     Math.sin(
-        walkProgress*34
-    )*.4;
+        walkProgress*
+        (
+            finalVictoryRun
+            ? 45
+            : 34
+        )
+    )*.45;
 
-    if(walkProgress >= 1){
 
-        robotWalking = false;
-        cameraFollowing = false;
+    /*
+       Keep arms closer to trophy
+       during final victory run
+    */
 
-        finishDoorTransition();
+    if(
+        finalVictoryRun
+    ){
+
+        armL.rotation.z =
+        -.42;
+
+        armR.rotation.z =
+        .42;
+    }
+
+
+    if(
+        walkProgress >=
+        1
+    ){
+
+        robotWalking =
+        false;
+
+        cameraFollowing =
+        false;
+
+
+        if(
+            finalVictoryRun
+        ){
+
+            showVictoryScreen();
+
+        }else{
+
+            finishDoorTransition();
+        }
     }
 }
 
-const normalCameraPosition =
-new THREE.Vector3(0,2.5,8);
+
+/* =========================================================
+   CAMERA
+========================================================= */
 
 function updateCamera(){
 
-    if(cameraFollowing){
+    if(
+        cameraFollowing
+    ){
 
-        const followPosition =
+        const follow =
         new THREE.Vector3(
             robot.position.x,
             robot.position.y+2.2,
@@ -1072,7 +3181,7 @@ function updateCamera(){
         );
 
         camera.position.lerp(
-            followPosition,
+            follow,
             .1
         );
 
@@ -1097,6 +3206,130 @@ function updateCamera(){
     }
 }
 
+
+/* =========================================================
+   FINAL TROPHY RUN
+========================================================= */
+
+function startFinalVictory(){
+
+    victoryMode =
+    true;
+
+    document.getElementById(
+        "questionPanel"
+    ).classList.add(
+        "hidden"
+    );
+
+    trophy.visible =
+    true;
+
+    emotion =
+    "normal";
+
+    /*
+      Robo holds trophy
+    */
+
+    armL.rotation.z =
+    -.42;
+
+    armR.rotation.z =
+    .42;
+
+    armL.rotation.x =
+    -.15;
+
+    armR.rotation.x =
+    -.15;
+
+
+    openDoor();
+
+    robotTurning =
+    true;
+
+    turnProgress =
+    0;
+
+    cameraFollowing =
+    true;
+
+    finalVictoryRun =
+    true;
+}
+
+
+/*
+   When turning finishes,
+   normal walk code automatically starts.
+   finalVictoryRun makes it a faster run.
+*/
+
+
+function showVictoryScreen(){
+
+    const t =
+    UI[selectedLanguage];
+
+    document.getElementById(
+        "endScreen"
+    ).classList.remove(
+        "hidden"
+    );
+
+    document.getElementById(
+        "endIcon"
+    ).textContent =
+    "🏆🤖🎉";
+
+    document.getElementById(
+        "endTitle"
+    ).textContent =
+    formatText(
+        t.win,
+        {
+            name:robotName
+        }
+    );
+
+    document.getElementById(
+        "endMessage"
+    ).textContent =
+    formatText(
+        t.winMessage,
+        {
+            name:robotName,
+            score:score
+        }
+    );
+
+    speak(
+        formatText(
+            t.win,
+            {
+                name:robotName
+            }
+        )
+    );
+
+    track(
+        "game_finish",
+        {
+            result:"win",
+            score:score,
+            country:selectedCountry,
+            language:selectedLanguage
+        }
+    );
+}
+
+
+/* =========================================================
+   CANVAS RESIZE
+========================================================= */
+
 function resize(){
 
     const box =
@@ -1109,208 +3342,481 @@ function resize(){
     );
 
     camera.aspect =
-    box.width/box.height;
+    box.width /
+    box.height;
 
     camera.updateProjectionMatrix();
 }
 
-function animate(time){
 
-    requestAnimationFrame(animate);
+/* =========================================================
+   MAIN LOOP
+========================================================= */
+
+function animate(
+    time
+){
+
+    requestAnimationFrame(
+        animate
+    );
 
     resize();
 
-    updateEmotion(time);
+    updateEmotion(
+        time
+    );
+
     updateExplosion();
+
     updateDoor();
+
     updateRobotTurn();
+
     updateRobotWalk();
+
     updateCamera();
 
-    renderer.render(scene,camera);
+    renderer.render(
+        scene,
+        camera
+    );
 }
 
-requestAnimationFrame(animate);
+requestAnimationFrame(
+    animate
+);
 
-function track(name,params={}){
 
-    if(typeof gtag==="function"){
-        gtag("event",name,params);
+/* =========================================================
+   ANALYTICS
+========================================================= */
+
+function track(
+    name,
+    params={}
+){
+
+    if(
+        typeof gtag ===
+        "function"
+    ){
+
+        gtag(
+            "event",
+            name,
+            params
+        );
     }
 }
 
+
+/* =========================================================
+   START GAME
+========================================================= */
+
 function startGame(){
 
-    currentLevel = 0;
-    currentDoor = 0;
-    score = 0;
-    lives = 3;
+    selectedLanguage =
+    document.getElementById(
+        "languageSelect"
+    ).value;
 
-    document
-    .getElementById("startScreen")
-    .classList.add("hidden");
+    const enteredName =
+    document.getElementById(
+        "robotNameInput"
+    ).value.trim();
 
-    document
-    .getElementById("levelScreen")
-    .classList.add("hidden");
+    robotName =
+    enteredName ||
+    "Robo";
 
-    document
-    .getElementById("endScreen")
-    .classList.add("hidden");
+    currentLevel =
+    0;
 
-    document
-    .getElementById("questionPanel")
-    .classList.remove("hidden");
+    currentDoor =
+    0;
 
-    track("game_start");
+    score =
+    0;
 
-    loadDoor();
+    lives =
+    3;
+
+    victoryMode =
+    false;
+
+    document.getElementById(
+        "startScreen"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "endScreen"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "levelScreen"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "questionPanel"
+    ).classList.remove(
+        "hidden"
+    );
+
+    track(
+        "game_start",
+        {
+            language:selectedLanguage,
+            country:selectedCountry,
+            robot_name:robotName
+        }
+    );
+
+    loadDoor(
+        true
+    );
 }
 
-function loadDoor(){
 
-    locked = false;
+/* =========================================================
+   LOAD QUESTION
+========================================================= */
+
+function getQuestionIndex(){
+
+    return (
+        currentLevel *
+        5
+    ) +
+    currentDoor;
+}
+
+
+function loadDoor(
+    autoSpeak=true
+){
+
+    locked =
+    false;
 
     resetRobot();
+
     resetDoor();
 
     camera.position.copy(
         normalCameraPosition
     );
 
+    const t =
+    UI[selectedLanguage];
+
     const item =
-    levels[currentLevel]
-    .questions[currentDoor];
+    questions[
+        getQuestionIndex()
+    ];
 
-    document
-    .getElementById("levelLabel")
-    .textContent =
-    `Level ${currentLevel+1}`;
+    const data =
+    getQuestionData(
+        item
+    );
 
-    document
-    .getElementById("doorLabel")
-    .textContent =
-    `Door ${currentDoor+1}/5`;
+    const questionText =
+    data[0];
 
-    document
-    .getElementById("scoreLabel")
-    .textContent =
-    `Score: ${score}`;
+    const answers =
+    data[1];
 
-    document
-    .getElementById("livesLabel")
-    .textContent =
-    "❤️".repeat(lives) +
-    "🖤".repeat(3-lives);
 
-    document
-    .getElementById("question")
-    .textContent =
-    item.q;
+    document.getElementById(
+        "levelLabel"
+    ).textContent =
+    `${t.level} ${currentLevel+1}`;
 
-    document
-    .getElementById("feedback")
-    .textContent =
+    document.getElementById(
+        "doorLabel"
+    ).textContent =
+    `${t.door} ${currentDoor+1}/5`;
+
+    document.getElementById(
+        "scoreLabel"
+    ).textContent =
+    `${t.score}: ${score}`;
+
+    document.getElementById(
+        "livesLabel"
+    ).textContent =
+    "❤️".repeat(
+        lives
+    ) +
+    "🖤".repeat(
+        3-lives
+    );
+
+    document.getElementById(
+        "question"
+    ).textContent =
+    questionText;
+
+    document.getElementById(
+        "feedback"
+    ).textContent =
     "";
 
     const choices =
-    document.getElementById("choices");
+    document.getElementById(
+        "choices"
+    );
 
-    choices.innerHTML = "";
+    choices.innerHTML =
+    "";
 
-    item.answers.forEach(
-        (answer,index)=>{
+
+    answers.forEach(
+        (
+            answer,
+            index
+        )=>{
 
             const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
+
+            button.className =
+            "answer-button";
 
             button.textContent =
             answer;
 
-            button.onclick =
-            ()=>answerQuestion(index);
+            button.addEventListener(
+                "click",
+                ()=>{
+                    answerQuestion(
+                        index
+                    );
+                }
+            );
 
-            choices.appendChild(button);
+            choices.appendChild(
+                button
+            );
+        }
+    );
+
+
+    lastSpokenText =
+    questionText;
+
+
+    if(
+        autoSpeak
+    ){
+
+        /*
+           Browser TTS usually requires
+           the player to press Start once first.
+           After that questions can be spoken.
+        */
+
+        setTimeout(
+            ()=>{
+                speak(
+                    questionText
+                );
+            },
+            150
+        );
+    }
+}
+
+
+/* =========================================================
+   ANSWERS
+========================================================= */
+
+function disableAnswerButtons(
+    state
+){
+
+    document
+    .querySelectorAll(
+        "#choices button"
+    )
+    .forEach(
+        button=>{
+
+            button.disabled =
+            state;
+
         }
     );
 }
 
-function disableButtons(state){
 
-    document
-    .querySelectorAll("#choices button")
-    .forEach(button=>{
-        button.disabled = state;
-    });
-}
+function answerQuestion(
+    index
+){
 
-function answerQuestion(index){
+    if(
+        locked
+    ){
+        return;
+    }
 
-    if(locked) return;
+    locked =
+    true;
 
-    locked = true;
-    disableButtons(true);
+    disableAnswerButtons(
+        true
+    );
+
+
+    const t =
+    UI[selectedLanguage];
 
     const item =
-    levels[currentLevel]
-    .questions[currentDoor];
+    questions[
+        getQuestionIndex()
+    ];
 
-    const feedback =
-    document.getElementById("feedback");
 
-    if(index === item.correct){
+    /*
+       Correct answer is position 0.
+    */
 
-        score += 100;
+    if(
+        index ===
+        0
+    ){
 
-        document
-        .getElementById("scoreLabel")
-        .textContent =
-        `Score: ${score}`;
+        score +=
+        100;
 
-        feedback.textContent =
-        "✅ Correct!";
+        document.getElementById(
+            "scoreLabel"
+        ).textContent =
+        `${t.score}: ${score}`;
 
-        beginCorrectTransition(
-            item.emotion
-        );
+        document.getElementById(
+            "feedback"
+        ).textContent =
+        t.correct;
+
 
         track(
             "door_complete",
             {
-                level_number:currentLevel+1,
-                door_number:currentDoor+1,
-                emotion:item.emotion
+                level_number:
+                currentLevel+1,
+
+                door_number:
+                currentDoor+1,
+
+                emotion:
+                item.emotion
             }
+        );
+
+
+        /*
+          FINAL DOOR:
+          emotion -> trophy -> run out
+        */
+
+        if(
+            currentLevel === 4 &&
+            currentDoor === 4
+        ){
+
+            playEmotion(
+                "happy"
+            );
+
+            /*
+               Short emotion animation is handled
+               in the same continuous sequence,
+               without the old 700/1300ms door pause.
+            */
+
+            requestAnimationFrame(
+                ()=>{
+                    startFinalVictory();
+                }
+            );
+
+            return;
+        }
+
+
+        /*
+           NORMAL DOOR:
+           door and Robo movement begin together.
+           NO ARTIFICIAL SHORT PAUSE.
+        */
+
+        beginCorrectTransition(
+            item.emotion
         );
 
     }else{
 
         lives--;
 
-        feedback.textContent =
-        "💥 Wrong! Robo broke into pieces!";
+        document.getElementById(
+            "feedback"
+        ).textContent =
+        formatText(
+            t.wrong,
+            {
+                name:robotName
+            }
+        );
 
-        document
-        .getElementById("livesLabel")
-        .textContent =
-        "❤️".repeat(lives) +
-        "🖤".repeat(3-lives);
+        document.getElementById(
+            "livesLabel"
+        ).textContent =
+        "❤️".repeat(
+            lives
+        ) +
+        "🖤".repeat(
+            3-lives
+        );
+
 
         explodeRobot();
+
 
         track(
             "wrong_answer",
             {
-                level_number:currentLevel+1,
-                door_number:currentDoor+1
+                level_number:
+                currentLevel+1,
+
+                door_number:
+                currentDoor+1
             }
         );
 
-        if(lives <= 0){
+
+        if(
+            lives <=
+            0
+        ){
 
             setTimeout(
-                ()=>finishGame(false),
-                1800
+                ()=>{
+                    finishGame(
+                        false
+                    );
+                },
+                1600
             );
 
         }else{
@@ -1320,122 +3826,288 @@ function answerQuestion(index){
 
                     resetRobot();
 
-                    feedback.textContent =
-                    "🔧 Robo rebuilt himself. Try again!";
+                    document.getElementById(
+                        "feedback"
+                    ).textContent =
+                    formatText(
+                        t.rebuilt,
+                        {
+                            name:
+                            robotName
+                        }
+                    );
 
-                    disableButtons(false);
-                    locked = false;
+                    disableAnswerButtons(
+                        false
+                    );
+
+                    locked =
+                    false;
 
                 },
-                1700
+                1500
             );
         }
     }
 }
 
+
+/* =========================================================
+   NEXT DOOR
+========================================================= */
+
 function finishDoorTransition(){
 
     currentDoor++;
 
-    if(currentDoor >= 5){
+    if(
+        currentDoor >=
+        5
+    ){
 
         completeLevel();
 
     }else{
 
-        loadDoor();
+        loadDoor(
+            true
+        );
     }
 }
 
+
+/* =========================================================
+   LEVEL COMPLETE
+========================================================= */
+
 function completeLevel(){
 
-    document
-    .getElementById("questionPanel")
-    .classList.add("hidden");
+    document.getElementById(
+        "questionPanel"
+    ).classList.add(
+        "hidden"
+    );
 
-    if(currentLevel === 4){
+    const t =
+    UI[selectedLanguage];
 
-        finishGame(true);
+
+    if(
+        currentLevel >=
+        4
+    ){
+
+        startFinalVictory();
         return;
     }
 
-    document
-    .getElementById("levelScreen")
-    .classList.remove("hidden");
 
-    document
-    .getElementById("levelTitle")
-    .textContent =
-    `Level ${currentLevel+1} Complete!`;
+    document.getElementById(
+        "levelScreen"
+    ).classList.remove(
+        "hidden"
+    );
 
-    document
-    .getElementById("levelMessage")
-    .textContent =
-    `You unlocked all five doors. Now enter Level ${currentLevel+2}.`;
+    document.getElementById(
+        "levelTitle"
+    ).textContent =
+    formatText(
+        t.levelComplete,
+        {
+            level:
+            currentLevel+1
+        }
+    );
+
+    document.getElementById(
+        "levelMessage"
+    ).textContent =
+    formatText(
+        t.levelMessage,
+        {
+            name:
+            robotName,
+
+            next:
+            currentLevel+2
+        }
+    );
+
+
+    speak(
+        document.getElementById(
+            "levelMessage"
+        ).textContent
+    );
+
 
     track(
         "level_complete",
         {
-            level_number:currentLevel+1
+            level_number:
+            currentLevel+1
         }
     );
 }
+
+
+/* =========================================================
+   NEXT LEVEL
+========================================================= */
 
 function nextLevel(){
 
     currentLevel++;
-    currentDoor = 0;
 
-    document
-    .getElementById("levelScreen")
-    .classList.add("hidden");
+    currentDoor =
+    0;
 
-    document
-    .getElementById("questionPanel")
-    .classList.remove("hidden");
+    document.getElementById(
+        "levelScreen"
+    ).classList.add(
+        "hidden"
+    );
 
-    loadDoor();
+    document.getElementById(
+        "questionPanel"
+    ).classList.remove(
+        "hidden"
+    );
+
+    loadDoor(
+        true
+    );
 }
 
-function finishGame(win){
 
-    document
-    .getElementById("questionPanel")
-    .classList.add("hidden");
+/* =========================================================
+   GAME OVER
+========================================================= */
 
-    document
-    .getElementById("levelScreen")
-    .classList.add("hidden");
-
-    document
-    .getElementById("endScreen")
-    .classList.remove("hidden");
-
-    document
-    .getElementById("endIcon")
-    .textContent =
-    win ? "🏆🤖🚪" : "💥🤖";
-
-    document
-    .getElementById("endTitle")
-    .textContent =
-    win ? "Emotion Lab Escaped!" : "Game Over";
-
-    document
-    .getElementById("endMessage")
-    .textContent =
+function finishGame(
     win
-    ? `You completed all 5 levels and unlocked all 25 doors! Final score: ${score}.`
-    : `Robo ran out of lives at Level ${currentLevel+1}, Door ${currentDoor+1}. Final score: ${score}.`;
+){
+
+    document.getElementById(
+        "questionPanel"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "levelScreen"
+    ).classList.add(
+        "hidden"
+    );
+
+    document.getElementById(
+        "endScreen"
+    ).classList.remove(
+        "hidden"
+    );
+
+    const t =
+    UI[selectedLanguage];
+
+
+    if(
+        win
+    ){
+
+        showVictoryScreen();
+
+        return;
+    }
+
+
+    document.getElementById(
+        "endIcon"
+    ).textContent =
+    "💥🤖";
+
+    document.getElementById(
+        "endTitle"
+    ).textContent =
+    t.gameOver;
+
+    document.getElementById(
+        "endMessage"
+    ).textContent =
+    formatText(
+        t.loseMessage,
+        {
+            name:robotName,
+            score:score
+        }
+    );
+
 
     track(
         "game_finish",
         {
-            result:win ? "win" : "lose",
+            result:"lose",
             score:score
         }
     );
 }
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+document.getElementById(
+    "startButton"
+).addEventListener(
+    "click",
+    startGame
+);
+
+
+document.getElementById(
+    "nextLevelButton"
+).addEventListener(
+    "click",
+    nextLevel
+);
+
+
+document.getElementById(
+    "playAgainButton"
+).addEventListener(
+    "click",
+    ()=>{
+
+        document.getElementById(
+            "endScreen"
+        ).classList.add(
+            "hidden"
+        );
+
+        document.getElementById(
+            "startScreen"
+        ).classList.remove(
+            "hidden"
+        );
+
+        resetRobot();
+        resetDoor();
+
+        camera.position.copy(
+            normalCameraPosition
+        );
+
+    }
+);
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+applyLanguage();
+
+updateCountry();
 
 </script>
 
